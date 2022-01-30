@@ -18,7 +18,7 @@ export function componentStyleOverrides(theme) {
           fontWeight: 500,
           textTransform: 'capitalize',
           borderRadius: '4px',
-          background: 'red',
+          background: 'primary200',
         },
       },
     },
