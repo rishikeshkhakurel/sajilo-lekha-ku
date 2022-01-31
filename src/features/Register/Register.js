@@ -14,16 +14,31 @@ export default function Register(props) {
 
   const [errors, setErrors] = useState({});
 
+
   //provies the update value typed by the user
   const handleChange = (e) => {
     setValue({ ...values, [e.target.name]: e.target.value });
   };
 
-  //checks the errors for the input fields
+  
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    //checks the errors for the input fields
+
     setErrors(validate(values));
-  };
+
+  // only store form value if input data are valid after Submit
+
+    
+    if(Object.entries(errors).length === 0){
+      const formValue = {...values};
+      // console.log(formValue);
+    }
+    }
+    
+    
+  
 
   // css for textfield
   const styleTextField = {
