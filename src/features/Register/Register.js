@@ -14,13 +14,11 @@ export default function Register(props) {
 
   const [errors, setErrors] = useState({});
 
-
-  //provies the update value typed by the user
+  //provide the update value typed by the user
   const handleChange = (e) => {
     setValue({ ...values, [e.target.name]: e.target.value });
   };
 
-  
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -28,17 +26,16 @@ export default function Register(props) {
 
     setErrors(validate(values));
 
-  // only store form value if input data are valid after Submit
+    // only store form value if input data are valid after Submit
 
-    
-    if(Object.entries(errors).length === 0){
-      const formValue = {...values};
+    if (Object.entries(errors).length === 0) {
+      const formValue = { ...values };
       // console.log(formValue);
     }
+    else{
+      alert("Invalid data entry");
     }
-    
-    
-  
+  };
 
   // css for textfield
   const styleTextField = {
