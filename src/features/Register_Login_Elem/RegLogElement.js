@@ -1,11 +1,18 @@
 import React from "react";
-import { Grid, Paper, Avatar, Typography } from "@mui/material";
+import { Grid, Paper, Avatar, Typography, Box } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { display } from "@mui/system";
 export default function RegLogElement(props) {
   
 
   return (
     <>
+    <Box sx ={ {
+      height: "100vh",
+      display:"flex",
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
       <Grid align="center">
         <Paper
           elevation={10}
@@ -26,6 +33,7 @@ export default function RegLogElement(props) {
           {props.children}
         </Paper>
       </Grid>
+      </Box>
     </>
   );
 }

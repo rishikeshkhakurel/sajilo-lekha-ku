@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import RegLogElement from "../Register_Login_Elem/RegLogElement";
-import validate from "./registerValidate";
+import { validate } from "./registerValidate";
 import { TextField, Button } from "@mui/material";
 
 export default function Register(props) {
@@ -14,27 +14,24 @@ export default function Register(props) {
 
   const [errors, setErrors] = useState({});
 
-  //provide the update value typed by the user
   const handleChange = (e) => {
+    //provide the update value typed by the user
+
     setValue({ ...values, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
+
+    //prevent the default action of form
     e.preventDefault();
 
     //checks the errors for the input fields
 
     setErrors(validate(values));
 
-    // only store form value if input data are valid after Submit
-
-    if (Object.entries(errors).length === 0) {
-      const formValue = { ...values };
-      // console.log(formValue);
-    }
-    else{
-      alert("Invalid data entry");
-    }
+    //store the value after submission
+    const formValue = { ...values };
+    // console.log(formValue);
   };
 
   // css for textfield
@@ -115,7 +112,9 @@ export default function Register(props) {
             helperText={errors.confirmPassword}
           />
 
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" sx={{
+            marginTop:"40px"
+          }}>
             Submit
           </Button>
         </form>
