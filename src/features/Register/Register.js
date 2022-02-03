@@ -23,21 +23,27 @@ export default function Register(props) {
   };
 
   const handleSubmit = (e) => {
-
     //prevent the default action of form
     e.preventDefault();
 
-    
     //checks the errors for the input fields
-    
+
     setErrors(validate(values));
-    
+
     //store the value after submission
     const formValue = { ...values };
     // console.log(formValue);
-    if(!errors.email && !errors.password && !errors.confirmPassword && !errors.number){
-      const resp=axios.post(http_config.BASE_URL+'/auth/register',formValue)
-      console.log(resp)
+    if (
+      !errors.email &&
+      !errors.password &&
+      !errors.confirmPassword &&
+      !errors.number
+    ) {
+      axios
+        .post(http_config.BASE_URL + "/auth/register", formValue)
+        .then((resp) => {
+          console.log(resp);
+        });
     }
   };
 
@@ -119,9 +125,13 @@ export default function Register(props) {
             helperText={errors.confirmPassword}
           />
 
-          <Button variant="contained" type="submit" sx={{
-            marginTop:"40px"
-          }}>
+          <Button
+            variant="contained"
+            type="submit"
+            sx={{
+              marginTop: "40px",
+            }}
+          >
             Submit
           </Button>
         </form>
