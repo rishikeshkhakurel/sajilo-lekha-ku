@@ -2,11 +2,13 @@ import React, {useState} from "react";
 import RegLogElement from "../Register_Login_Elem/RegLogElement";
 import { Button, TextField } from "@mui/material";
 import loginValidate from "./loginValidate";
+import axios from "axios";
+import http_config from "../../config/httpconfig/http_config";
 
 export default function Login() {
    
   const [loginValue, setLoginValue] = useState({
-    name:"",
+    username:"",
     password:""
   });
 
@@ -15,7 +17,7 @@ export default function Login() {
   const handleOnChange = (e) => {
 
     //update the value and stores in loginValue whenever the user types in input field
-   setLoginValue({...loginValue, [e.target.value]:e.target.name })
+   setLoginValue({...loginValue, [e.target.name]:e.target.value })
   }
 
   const handleOnSubmit = (e) => {
@@ -25,6 +27,16 @@ export default function Login() {
 
      //checks the error for the input field
      setLoginError(loginValidate(loginValue));
+
+     //store the value after submission
+    const formValue = { ...loginValue };
+    // console.log(formValue);
+    if(!loginError.username && !loginError.password){
+      console.log(formValue)
+
+      const resp=axios.post(http_config.BASE_URL+'/auth/login',formValue)
+      console.log(resp)
+    }
   }
  
   // css for textfield

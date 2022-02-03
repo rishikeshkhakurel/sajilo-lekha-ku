@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import RegLogElement from "../Register_Login_Elem/RegLogElement";
 import { validate } from "./registerValidate";
 import { TextField, Button } from "@mui/material";
+import axios from "axios";
+import http_config from "../../config/httpconfig/http_config";
 
 export default function Register(props) {
   const [values, setValue] = useState({
@@ -25,13 +27,18 @@ export default function Register(props) {
     //prevent the default action of form
     e.preventDefault();
 
+    
     //checks the errors for the input fields
-
+    
     setErrors(validate(values));
-
+    
     //store the value after submission
     const formValue = { ...values };
     // console.log(formValue);
+    if(!errors.email && !errors.password && !errors.confirmPassword && !errors.number){
+      const resp=axios.post(http_config.BASE_URL+'/auth/register',formValue)
+      console.log(resp)
+    }
   };
 
   // css for textfield
