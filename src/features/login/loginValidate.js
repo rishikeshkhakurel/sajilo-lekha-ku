@@ -3,8 +3,8 @@ const loginValidate = (loginValue) => {
 
     const loginError = {};
 
-    if(!loginValue.username){
-        loginError.username="Username is required";
+    if(!loginValue.userName){
+        loginError.userName="Username is required";
     }
     if(!loginValue.password){
         loginError.password="Password is required"

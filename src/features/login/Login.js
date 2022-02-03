@@ -7,7 +7,7 @@ import http_config from "../../config/httpconfig/http_config";
 
 export default function Login() {
   const [loginValue, setLoginValue] = useState({
-    username: "",
+    userName: "",
     password: "",
   });
 
@@ -28,7 +28,8 @@ export default function Login() {
     //store the value after submission
     const formValue = { ...loginValue };
     // console.log(formValue);
-    if (!loginError.username && !loginError.password) {
+
+    if (!loginError.userName && !loginError.password) {
       console.log(formValue);
 
       axios
@@ -49,16 +50,16 @@ export default function Login() {
     <>
       <RegLogElement title="Login">
         <form onSubmit={handleOnSubmit}>
-          {/* Textfield for username */}
+          {/* Textfield for userName */}
           <TextField
             variant="standard"
-            name="username"
+            name="userName"
             label="Username"
             placeholder="Enter your name"
             style={styleTextField}
             onChange={handleOnChange}
-            error={Boolean(loginError.username)}
-            helperText={loginError.username}
+            error={Boolean(loginError.userName)}
+            helperText={loginError.userName}
           />
 
           {/* Textfield for password */}

@@ -7,9 +7,9 @@ import http_config from "../../config/httpconfig/http_config";
 
 export default function Register(props) {
   const [values, setValue] = useState({
-    username: "",
+    userName: "",
     email: "",
-    number: "",
+    contact: "",
     password: "",
     confirmPassword: "",
   });
@@ -33,11 +33,12 @@ export default function Register(props) {
     //store the value after submission
     const formValue = { ...values };
     // console.log(formValue);
+
     if (
       !errors.email &&
       !errors.password &&
       !errors.confirmPassword &&
-      !errors.number
+      !errors.contact
     ) {
       axios
         .post(http_config.BASE_URL + "/auth/register", formValue)
@@ -57,17 +58,17 @@ export default function Register(props) {
     <React.Fragment>
       <RegLogElement title="Register">
         <form onSubmit={handleSubmit}>
-          {/* Textfield for username */}
+          {/* Textfield for userName */}
           <TextField
             variant="standard"
-            name="username"
+            name="userName"
             label="Username"
             placeholder="Enter your name"
             style={styleTextField}
             onChange={handleChange}
-            value={values.username}
-            error={Boolean(errors.username)}
-            helperText={errors.username}
+            value={values.userName}
+            error={Boolean(errors.userName)}
+            helperText={errors.userName}
           />
 
           {/* Textfield for email address */}
@@ -83,18 +84,18 @@ export default function Register(props) {
             helperText={errors.email}
           />
 
-          {/* Textfield for phone number */}
+          {/* Textfield for phone contact */}
           <TextField
             variant="standard"
-            name="number"
-            label="Phone Number"
+            name="contact"
+            label="Phone number"
             placeholder="Enter your phone number"
             style={styleTextField}
             onChange={handleChange}
-            value={values.number}
-            type="number"
-            error={Boolean(errors.number)}
-            helperText={errors.number}
+            value={values.contact}
+            type="contact"
+            error={Boolean(errors.contact)}
+            helperText={errors.contact}
           />
 
           {/* Textfield for password */}

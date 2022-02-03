@@ -3,8 +3,8 @@ const validate = (values) => {
     const errors = {};
     const regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
 
-    if(!values.username) {
-   errors.username = "Username is required";
+    if(!values.userName) {
+   errors.userName = "Username is required";
     }
 
     if(!values.email) {
@@ -30,11 +30,11 @@ const validate = (values) => {
              errors.confirmPassword="Password don't match"
          }
 
-          if(!values.number){
-             errors.number="Phone number is required"
+          if(!values.contact){
+             errors.contact="Phone number is required"
          }
-         else if(values.number.length !== 10){
-             errors.number="Invalid number"
+         else if(values.contact.length !== 10){
+             errors.contact="Invalid number"
          }
     return errors;
 }
