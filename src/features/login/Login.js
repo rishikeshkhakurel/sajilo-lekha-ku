@@ -4,8 +4,10 @@ import { Button, TextField } from "@mui/material";
 import loginValidate from "./loginValidate";
 import axios from "axios";
 import http_config from "../../config/httpconfig/http_config";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [loginValue, setLoginValue] = useState({
     userName: "",
     password: "",
@@ -36,6 +38,12 @@ export default function Login() {
         .post(http_config.BASE_URL + "/auth/login", formValue)
         .then((resp) => {
           console.log(resp);
+          if (resp.data.login) {
+            navigate("/dashboard");
+            localStorage.setItem('login',resp.data.login);
+            localStorage.setItem('accessToken',resp.data.accessToken);
+            localStorage.setItem('refreshToken',resp.data.refreshToken); 
+          }
         });
     }
   };
@@ -67,6 +75,7 @@ export default function Login() {
             variant="standard"
             name="password"
             label="Password"
+            type="password"
             placeholder="Enter password"
             style={styleTextField}
             onChange={handleOnChange}

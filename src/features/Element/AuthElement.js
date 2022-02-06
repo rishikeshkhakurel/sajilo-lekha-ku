@@ -1,6 +1,7 @@
 import {
   AppBar,
   Box,
+  Collapse,
   Divider,
   Drawer,
   IconButton,
@@ -11,14 +12,35 @@ import {
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Outlet } from "react-router-dom";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const drawerWidth = 240;
+
+const menu = [
+  {
+    name: "product",
+    subcategoty: [
+      { name: "Add Product", link: "/addproduct" },
+      { name: "Edit Product", link: "/editproduct" },
+      { name: "Delete Product", link: "/deleteproduct" },
+    ],
+  },
+  {
+    name: "Customer",
+    subcategoty: [
+      { name: "Add Customer", link: "/addcustomer" },
+      { name: "Edit Customer", link: "/editcustomer" },
+      { name: "Delete Customer", link: "/deletecustomer" },
+    ],
+  },
+];
 
 const AuthElement = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [collapse, setcollapse] = useState("");
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -32,17 +54,93 @@ const AuthElement = (props) => {
       </Toolbar>
       <Divider />
       <List>
-        {[
-          "Product",
+        {menu.map((category) => (
+          <React.Fragment key={category.name}>
+            <ListItem
+              onClick={(e) => {
+                if (collapse === category.name) {
+                  setcollapse("");
+                } else {
+                  setcollapse(category.name);
+                }
+              }}
+              button
+            >
+              <ListItemText>{category.name}</ListItemText>
+              <KeyboardArrowDownIcon
+                sx={
+                  collapse === category.name && { transform: "rotate(180deg)" }
+                }
+              />
+            </ListItem>
+            <Collapse
+              in={collapse === category.name}
+              unmountOnExit
+              timeout="auto"
+            >
+              <List disablePadding>
+                {category.subcategoty.map((subcategory) => (
+                  <Link to={subcategory.link} key={subcategory.name}>
+                    <ListItem button>
+                      <ListItemText button sx={{ pl: 4 }}>
+                        {subcategory.name}
+                      </ListItemText>
+                    </ListItem>
+                  </Link>
+                ))}
+              </List>
+            </Collapse>
+          </React.Fragment>
+        ))}
+        {/* "Product",
           "Damaged  Product",
           "Stock Details",
           "Order",
-          "Statement",
-        ].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+          "Statement", */}
+        {/* <ListItem button>
+          <ListItemText>Product</ListItemText>
+        </ListItem>
+        <Collapse in={true}>
+          <List disablePadding>
+            <ListItem button>
+              <ListItemText button sx={{ pl: 4 }}>
+                Add Product
+              </ListItemText>
+            </ListItem>
+            <ListItem button>
+              <ListItemText button sx={{ pl: 4 }}>
+                Delete Product
+              </ListItemText>
+            </ListItem>
+            <ListItem button>
+              <ListItemText button sx={{ pl: 4 }}>
+                Edit Product
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Collapse> */}
+        {/* <ListItem button>
+          <ListItemText>Customer</ListItemText>
+        </ListItem>
+        <Collapse in={true}>
+          <List disablePadding>
+            <ListItem button>
+              <ListItemText button sx={{ pl: 4 }}>
+                Add Product
+              </ListItemText>
+            </ListItem>
+            <ListItem button>
+              <ListItemText button sx={{ pl: 4 }}>
+                Delete Product
+              </ListItemText>
+            </ListItem>
+            <ListItem button>
+              <ListItemText button sx={{ pl: 4 }}>
+                Edit Product
+              </ListItemText>
+            </ListItem>
+          </List>
+        </Collapse> */}
       </List>
     </div>
   );
@@ -120,8 +218,8 @@ const AuthElement = (props) => {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
-        <Toolbar/>
-        <Outlet/>
+        <Toolbar />
+        <Outlet />
       </Box>
     </Box>
   );

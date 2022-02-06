@@ -1,9 +1,10 @@
-import { StyledEngineProvider } from "@mui/material";
+import { GlobalStyles, StyledEngineProvider } from "@mui/material";
 import React from "react";
 import AppRoutes from "./features/Routes";
 import CssBaseline from "@mui/material/CssBaseline";
-import { ThemeProvider } from '@mui/material/styles'
+import { ThemeProvider } from "@mui/material/styles";
 import theme from "./config/theme";
+import Globalstyle from "./config/style/GlobalStyle";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme()}>
           <CssBaseline />
+          <GlobalStyles styles={Globalstyle} />
           <AppRoutes />
         </ThemeProvider>
       </StyledEngineProvider>
