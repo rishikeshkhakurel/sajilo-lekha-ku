@@ -1,5 +1,5 @@
 import React from "react";
-import Table from "../../../components/table/view";
+import Table from "../../../common/components/table/view";
 
 function createData(name, phone_number, address) {
   return {

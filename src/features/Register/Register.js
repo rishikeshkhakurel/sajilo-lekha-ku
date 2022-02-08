@@ -3,7 +3,7 @@ import RegLogElement from "../Register_Login_Elem/RegLogElement";
 import { validate } from "./registerValidate";
 import { TextField, Button } from "@mui/material";
 import axios from "axios";
-import http_config from "../../config/httpconfig/http_config";
+import http_config from "../../common/config/httpconfig/http_config";
 
 export default function Register(props) {
   const [values, setValue] = useState({

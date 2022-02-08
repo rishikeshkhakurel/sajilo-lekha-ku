@@ -3,7 +3,7 @@ import RegLogElement from "../Register_Login_Elem/RegLogElement";
 import { Button, TextField } from "@mui/material";
 import loginValidate from "./loginValidate";
 import axios from "axios";
-import http_config from "../../config/httpconfig/http_config";
+import http_config from "../../common/config/httpconfig/http_config";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {

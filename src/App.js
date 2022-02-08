@@ -3,8 +3,8 @@ import React from "react";
 import AppRoutes from "./features/Routes";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./config/theme";
-import Globalstyle from "./config/style/GlobalStyle";
+import theme from "./common/config/theme/index";
+import Globalstyle from "./common/config/style/GlobalStyle";
 
 function App() {
   return (
