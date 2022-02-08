@@ -29,11 +29,7 @@ const menu = [
   },
   {
     name: "Customer",
-    subcategoty: [
-      { name: "Add Customer", link: "/addcustomer" },
-      { name: "Edit Customer", link: "/editcustomer" },
-      { name: "Delete Customer", link: "/deletecustomer" },
-    ],
+    link: "/customer",
   },
 ];
 
@@ -56,40 +52,75 @@ const AuthElement = (props) => {
       <List>
         {menu.map((category) => (
           <React.Fragment key={category.name}>
-            <ListItem
-              onClick={(e) => {
-                if (collapse === category.name) {
-                  setcollapse("");
-                } else {
-                  setcollapse(category.name);
-                }
-              }}
-              button
-            >
-              <ListItemText>{category.name}</ListItemText>
-              <KeyboardArrowDownIcon
-                sx={
-                  collapse === category.name && { transform: "rotate(180deg)" }
-                }
-              />
-            </ListItem>
-            <Collapse
-              in={collapse === category.name}
-              unmountOnExit
-              timeout="auto"
-            >
-              <List disablePadding>
-                {category.subcategoty.map((subcategory) => (
-                  <Link to={subcategory.link} key={subcategory.name}>
-                    <ListItem button>
-                      <ListItemText button sx={{ pl: 4 }}>
-                        {subcategory.name}
-                      </ListItemText>
-                    </ListItem>
-                  </Link>
-                ))}
-              </List>
-            </Collapse>
+            {category.link ? (
+              <Link to={category.link}>
+                <ListItem
+                  onClick={(e) => {
+                    if (collapse === category.name) {
+                      setcollapse("");
+                    } else {
+                      setcollapse(category.name);
+                    }
+                  }}
+                  button
+                >
+                  <ListItemText>{category.name}</ListItemText>
+
+                  {category.subcategoty && (
+                    <KeyboardArrowDownIcon
+                      sx={
+                        collapse === category.name && {
+                          transform: "rotate(180deg)",
+                        }
+                      }
+                    />
+                  )}
+                </ListItem>
+              </Link>
+            ) : (
+              <ListItem
+                onClick={(e) => {
+                  if (collapse === category.name) {
+                    setcollapse("");
+                  } else {
+                    setcollapse(category.name);
+                  }
+                }}
+                button
+              >
+                <ListItemText>{category.name}</ListItemText>
+
+                {category.subcategoty && (
+                  <KeyboardArrowDownIcon
+                    sx={
+                      collapse === category.name && {
+                        transform: "rotate(180deg)",
+                      }
+                    }
+                  />
+                )}
+              </ListItem>
+            )}
+
+            {category.subcategoty && (
+              <Collapse
+                in={collapse === category.name}
+                unmountOnExit
+                timeout="auto"
+              >
+                <List disablePadding>
+                  {category.subcategoty.map((subcategory) => (
+                    <Link to={subcategory.link} key={subcategory.name}>
+                      <ListItem button>
+                        <ListItemText button sx={{ pl: 4 }}>
+                          {subcategory.name}
+                        </ListItemText>
+                      </ListItem>
+                    </Link>
+                  ))}
+                </List>
+              </Collapse>
+            )}
           </React.Fragment>
         ))}
         {/* "Product",
