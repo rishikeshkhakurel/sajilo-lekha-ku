@@ -1,11 +1,11 @@
 import React from "react";
 import Table from "../../../components/table/view";
 
-function createData(name, calories, fat) {
+function createData(name, phone_number, address) {
   return {
     name,
-    calories,
-    fat,
+    phone_number,
+    address,
   };
 }
 
