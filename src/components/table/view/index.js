@@ -21,6 +21,7 @@ import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
+import EditIcon from "@mui/icons-material/Edit";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -101,6 +102,12 @@ function TableHeader(props) {
             </TableSortLabel>
           </TableCell>
         ))}
+        <TableCell
+          align={true ? "right" : "left"}
+          padding={false ? "none" : "normal"}
+        >
+          <Typography variant="h5">Edit </Typography>
+        </TableCell>
       </TableRow>
     </TableHead>
   );
@@ -176,7 +183,7 @@ const MuiTable = (props) => {
     setOrderBy(property);
   };
 
-  console.log(selected)
+  console.log(selected);
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelecteds = rows.map((n) => n);
@@ -256,14 +263,14 @@ const MuiTable = (props) => {
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row)}
+                      
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
+                      <TableCell padding="checkbox" onClick={(event) => handleClick(event, row)}>
                         <Checkbox
                           color="primary"
                           checked={isItemSelected}
@@ -272,14 +279,19 @@ const MuiTable = (props) => {
                           }}
                         />
                       </TableCell>
-                      <TableCell padding="none">
+                      <TableCell padding="none" onClick={(event) => handleClick(event, row)}>
                         {Object.values(row)[0]}
                       </TableCell>
                       {num.map((number) => (
-                        <TableCell align="right">
+                        <TableCell key={number} align="right" onClick={(event) => handleClick(event, row)}>
                           {Object.values(row)[number]}
                         </TableCell>
                       ))}
+                      <TableCell align="right">
+                        <Tooltip title="Edit" onClick={(e)=>console.log(row)}>
+                          <EditIcon sx={{ cursor: "pointer" }} />
+                        </Tooltip>
+                      </TableCell>
                     </TableRow>
                   );
                 })}
