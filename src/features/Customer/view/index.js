@@ -2,7 +2,6 @@ import {
   Box,
   FormControl,
   IconButton,
-  OutlinedInput,
   TextField,
 } from "@mui/material";
 import React from "react";
