@@ -17,6 +17,7 @@ const AppRoutes = () => {
     }
   }, [dispatch]);
   const login = useSelector((state)=>state.userSlice)
+  console.log(login.data)
   return (
     <BrowserRouter>
       <Routes>

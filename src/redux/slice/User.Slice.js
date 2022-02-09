@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initState = {
   status: "idel",
-  data: [],
+  data: {login:true},
   error: false,
 };
 
