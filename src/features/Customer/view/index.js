@@ -1,5 +1,13 @@
+import {
+  Box,
+  FormControl,
+  IconButton,
+  OutlinedInput,
+  TextField,
+} from "@mui/material";
 import React from "react";
 import Table from "../../table/view/index";
+import SearchIcon from "@mui/icons-material/Search";
 
 function createData(name, phone_number, address) {
   return {
@@ -39,14 +47,31 @@ const num = [1, 2]; // to identify number of object in rows .... if there is 3 o
 
 function Customer() {
   return (
-    <React.Fragment>
-      <Table
-        title="Customer Details"
-        rows={rows}
-        headCells={headCells}
-        num={num}
-      />
-    </React.Fragment>
+    <Box>
+      <FormControl fullWidth>
+        <TextField
+          sx={{ ml: 1, flex: 1 }}
+          id="filled-search"
+          label="Search"
+          type="search"
+          InputProps={{
+            endAdornment: (
+              <IconButton type="submit">
+                <SearchIcon />
+              </IconButton>
+            ),
+          }}
+        />
+      </FormControl>
+      <Box>
+        <Table
+          title="Customer Details"
+          rows={rows}
+          headCells={headCells}
+          num={num}
+        />
+      </Box>
+    </Box>
   );
 }
 
