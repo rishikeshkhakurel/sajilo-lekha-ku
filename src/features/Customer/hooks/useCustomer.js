@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import http_config from "../../../common/config/httpconfig/http_config";
 import axiosInstance from "../../../common/helper/axiosInterceptor";
