@@ -16,27 +16,23 @@ const AppRoutes = () => {
       dispatch(userSlice.actions.setData({ login: login }));
     }
   }, [dispatch]);
-  const login = useSelector((state)=>state.userSlice)
-  console.log(login.data)
+  const login = useSelector((state) => state.userSlice);
+  console.log("login", login.data);
   return (
     <BrowserRouter>
       <Routes>
-        {login.data.login ? (
+        {login.data.login && (
           <Route path="/" element={<AuthElement />}>
-            <Route index element={<Navigate replace to="dashboard" />} />
-            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="customer" element={<Customer />} />
           </Route>
-        ) : (
-          <Route path="*" element={<Navigate replace to="/login" />} />
         )}
-        {!login.data.login ?(
+        {!login.data.login && (
           <React.Fragment>
-            <Route path="login" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="register" element={<Register />} />
-
           </React.Fragment>
-        ):(<Route path="*" element={<Navigate replace to="/dashboard" />} />)}
+        )}
       </Routes>
     </BrowserRouter>
   );

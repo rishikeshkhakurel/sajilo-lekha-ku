@@ -1,4 +1,7 @@
+import axios from "axios";
 import { useState } from "react";
+import http_config from "../../../common/config/httpconfig/http_config";
+import axiosInstance from "../../../common/helper/axiosInterceptor";
 
 const useCustomer = () => {
   const [credit, setcredit] = useState(true);
@@ -6,7 +9,13 @@ const useCustomer = () => {
 
   const handleCustomerAdd = (e) => {
     e.preventDefault();
-    console.log(formvalue);
+    
+    setformvalue({ ...formvalue, Allow_Credit: credit});
+
+    axiosInstance.post(http_config.BASE_URL+"/api/addCustomer",formvalue).then((resp)=>{
+      console.log(resp)
+
+    })
   };
 
   const handleOnChange = (e) => {
