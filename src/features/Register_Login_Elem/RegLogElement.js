@@ -1,7 +1,6 @@
 import React from "react";
 import { Grid, Paper, Avatar, Typography, Box } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { display } from "@mui/system";
 export default function RegLogElement(props) {
   
 
