@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -177,13 +177,16 @@ const MuiTable = (props) => {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+  useEffect(()=>{
+    console.log("table rerendiring")
+  })
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
 
-  console.log(selected);
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelecteds = rows.map((n) => n);
@@ -263,14 +266,16 @@ const MuiTable = (props) => {
                   return (
                     <TableRow
                       hover
-                      
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox" onClick={(event) => handleClick(event, row)}>
+                      <TableCell
+                        padding="checkbox"
+                        onClick={(event) => handleClick(event, row)}
+                      >
                         <Checkbox
                           color="primary"
                           checked={isItemSelected}
@@ -279,16 +284,23 @@ const MuiTable = (props) => {
                           }}
                         />
                       </TableCell>
-                      <TableCell padding="none" onClick={(event) => handleClick(event, row)}>
+                      <TableCell
+                        padding="none"
+                        onClick={(event) => handleClick(event, row)}
+                      >
                         {Object.values(row)[0]}
                       </TableCell>
                       {num.map((number) => (
-                        <TableCell key={number} align="right" onClick={(event) => handleClick(event, row)}>
+                        <TableCell
+                          key={number}
+                          align="right"
+                          onClick={(event) => handleClick(event, row)}
+                        >
                           {Object.values(row)[number]}
                         </TableCell>
                       ))}
                       <TableCell align="right">
-                        <Tooltip title="Edit" onClick={(e)=>console.log(row)}>
+                        <Tooltip title="Edit" onClick={(e) => console.log(row)}>
                           <EditIcon sx={{ cursor: "pointer" }} />
                         </Tooltip>
                       </TableCell>
@@ -307,15 +319,27 @@ const MuiTable = (props) => {
             </TableBody>
           </Table>
         </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
+        {dense ? (
+          <TablePagination
+            rowsPerPageOptions={[5, 8]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        ) : (
+          <TablePagination
+            rowsPerPageOptions={[5]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        )}
       </Paper>
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
