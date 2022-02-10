@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -93,7 +93,7 @@ function TableHeader(props) {
               direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
             >
-              <Typography variant="h5">{headCell.label}</Typography>
+              {headCell.label}
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
                   {order === "desc" ? "sorted descending" : "sorted ascending"}
@@ -102,12 +102,6 @@ function TableHeader(props) {
             </TableSortLabel>
           </TableCell>
         ))}
-        <TableCell
-          align={true ? "right" : "left"}
-          padding={false ? "none" : "normal"}
-        >
-          <Typography variant="h5">Edit </Typography>
-        </TableCell>
       </TableRow>
     </TableHead>
   );
@@ -177,10 +171,6 @@ const MuiTable = (props) => {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  useEffect(()=>{
-    console.log("table rerendiring")
-  })
-
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -189,19 +179,19 @@ const MuiTable = (props) => {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n);
+      const newSelecteds = rows.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, row) => {
-    const selectedIndex = selected.indexOf(row);
+  const handleClick = (event, name) => {
+    const selectedIndex = selected.indexOf(name);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, row);
+      newSelected = newSelected.concat(selected, name);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -260,7 +250,7 @@ const MuiTable = (props) => {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row);
+                  const isItemSelected = isSelected(Object.values(row)[1]);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
@@ -288,7 +278,7 @@ const MuiTable = (props) => {
                         padding="none"
                         onClick={(event) => handleClick(event, row)}
                       >
-                        {Object.values(row)[0]}
+                        {Object.values(row)[1]}
                       </TableCell>
                       {num.map((number) => (
                         <TableCell
