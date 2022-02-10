@@ -22,6 +22,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 import EditIcon from "@mui/icons-material/Edit";
+import axiosInstance from "../../../common/helper/axiosInterceptor";
+import http_config from "../../../common/config/httpconfig/http_config";
+import { useDispatch } from "react-redux";
+import editSlice from "../../../redux/slice/edit.Slice";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -52,6 +56,15 @@ function stableSort(array, comparator) {
   });
   return stabilizedThis.map((el) => el[0]);
 }
+
+const Delete = (props, url) => {
+  var id = [];
+  props.map((data) => id.push(data._id));
+  const _id = {_id:id}
+  axiosInstance.post(http_config.BASE_URL+url,_id).then((resp)=>{
+    console.log(resp)
+  })
+};
 
 function TableHeader(props) {
   const {
@@ -108,7 +121,8 @@ function TableHeader(props) {
 }
 
 const EnhancedTableToolbar = (props) => {
-  const { numSelected, title } = props;
+  const { Selected, title, deleteurl } = props;
+  const numSelected = Selected.length;
 
   return (
     <Toolbar
@@ -147,7 +161,7 @@ const EnhancedTableToolbar = (props) => {
       {numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
-            <DeleteIcon />
+            <DeleteIcon onClick={(e) => Delete(Selected, deleteurl)} />
           </IconButton>
         </Tooltip>
       ) : (
@@ -162,7 +176,7 @@ const EnhancedTableToolbar = (props) => {
 };
 
 const MuiTable = (props) => {
-  const { rows, title, headCells, num } = props;
+  const { rows, title, headCells, num, deleteurl, id } = props;
 
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
@@ -170,6 +184,11 @@ const MuiTable = (props) => {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const dispatch=useDispatch();
+  const Update=(props, id)=>{
+    dispatch(editSlice.actions.setData({data:props,id:id}))
+  }
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -228,7 +247,7 @@ const MuiTable = (props) => {
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%" }}>
-        <EnhancedTableToolbar numSelected={selected.length} title={title} />
+        <EnhancedTableToolbar Selected={selected} title={title} deleteurl={deleteurl} />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -290,7 +309,7 @@ const MuiTable = (props) => {
                         </TableCell>
                       ))}
                       <TableCell align="right">
-                        <Tooltip title="Edit" onClick={(e) => console.log(row)}>
+                        <Tooltip title="Edit" onClick={(e) => Update(row, id)}>
                           <EditIcon sx={{ cursor: "pointer" }} />
                         </Tooltip>
                       </TableCell>

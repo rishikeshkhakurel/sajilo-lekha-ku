@@ -1,35 +1,31 @@
 import {
   Button,
-  Checkbox,
-  FormControlLabel,
   Paper,
   TextField,
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import useCustomer from "../hooks/useCustomer";
+import useProduct from "../hooks/useProduct";
 
-function AddCustomer() {
+function AddProduct() {
   const {
-    handleCustomerAdd,
-    handleCustomerEdit,
-    credit,
-    setcredit,
+    handleProductAdd,
+    handleProductEdit,
     handleOnChange,
     formvalue,
     setformvalue,
-  } = useCustomer();
+  } = useProduct();
 
-  const editdata = useSelector((state) => state.editSlice.data);
-  useEffect(() => {
-    if (editdata.id === "customer") {
-      console.log(editdata);
-      setformvalue(editdata.data);
-    }
-  }, [editdata, setformvalue]);
+  // const editdata = useSelector((state) => state.editSlice.data);
+  // useEffect(() => {
+  //   if (editdata.id === "product") {
+  //     console.log(editdata);
+  //     setformvalue(editdata.data);
+  //   }
+  // }, [editdata, setformvalue]);
   return (
     <Paper sx={{ mt: 2, mb: 2 }}>
-      <form onSubmit={!editdata.id==='customer'? handleCustomerAdd : handleCustomerEdit}>
+      {/* <form onSubmit={!editdata.id==='product'? handleProductAdd : handleProductEdit}> */}
         <Paper
           container="div"
           sx={{ display: "flex", justifyContent: "space-between", flex: 1 }}
@@ -89,42 +85,7 @@ function AddCustomer() {
             required
             onChange={handleOnChange}
           />
-          <FormControlLabel
-            sx={{ ml: 1, flex: 1 }}
-            control={
-              <Checkbox
-                defaultChecked
-                onChange={(e) => {
-                  setcredit(e.target.checked);
-                  if (!e.target.checked) {
-                    console.log(e.target.checked);
-                    setformvalue({ ...formvalue, Credit_Limit: "" });
-                  }
-                }}
-              />
-            }
-            label="Allow Credit"
-          />
-          {credit ? (
-            <TextField
-              sx={{ ml: 1, flex: 1 }}
-              id="filled-name"
-              label="Credit Limit"
-              name="Credit_Limit"
-              value={formvalue.Credit_Limit}
-              InputLabelProps={{ shrink: true }}
-              required
-              onChange={handleOnChange}
-            />
-          ) : (
-            <TextField
-              sx={{ ml: 1, flex: 1 }}
-              id="filled-name"
-              label="Credit Limit"
-              value={formvalue.Credit_Limit}
-              disabled
-            />
-          )}
+          
           <TextField
             sx={{ ml: 1, flex: 1 }}
             id="filled-name"
@@ -138,12 +99,12 @@ function AddCustomer() {
         </Paper>
         <Paper container="div" sx={{ mt: 2, ml: 1 }}>
           <Button type="submit" variant="contained">
-            {editdata.id === "customer" ? "Update" : "Submit"}
+            {/* {editdata.id === "product" ? "Update" : "Submit"} */}
           </Button>
         </Paper>
-      </form>
+      {/* </form> */}
     </Paper>
   );
 }
 
-export default AddCustomer;
+export default AddProduct;

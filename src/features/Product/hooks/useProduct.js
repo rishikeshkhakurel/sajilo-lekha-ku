@@ -2,42 +2,40 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import http_config from "../../../common/config/httpconfig/http_config";
 import axiosInstance from "../../../common/helper/axiosInterceptor";
-import customerSlice from "../../../redux/slice/Customer.Slice";
+import productSlice from "../../../redux/slice/Product.Slice";
 
-const useCustomer = () => {
+const useProduct = () => {
   const dispatch = useDispatch();
-  const [credit, setcredit] = useState(true);
   const [formvalue, setformvalue] = useState("");
 
   useEffect(() => {
     axiosInstance
-      .get(http_config.BASE_URL + "/api/displayCustomer")
+      .get(http_config.BASE_URL + "/api/getProduct")
       .then((resp) => {
-        dispatch(customerSlice.actions.setData(resp.customers ));
+        console.log("product",resp)
+        // dispatch(productSlice.actions.setData(resp.products ));
       });
   }, [dispatch]);
 
-  const handleCustomerAdd = (e) => {
+  const handleProductAdd = (e) => {
     e.preventDefault();
 
-    setformvalue({ ...formvalue, Allow_Credit: credit });
     console.log(formvalue);
 
     axiosInstance
-      .post(http_config.BASE_URL + "/api/addCustomer", formvalue)
+      .post(http_config.BASE_URL + "/api/addProduct", formvalue)
       .then((resp) => {
         console.log(resp);
       });
   };
 
-  const handleCustomerEdit = (e) => {
+  const handleProductEdit = (e) => {
     e.preventDefault();
 
-    setformvalue({ ...formvalue, Allow_Credit: credit });
     console.log(formvalue);
 
     axiosInstance
-      .post(http_config.BASE_URL + "/api/updateCustomer", formvalue)
+      .post(http_config.BASE_URL + "/api/updateProduct", formvalue)
       .then((resp) => {
         console.log(resp);
       });
@@ -48,14 +46,12 @@ const useCustomer = () => {
   };
 
   return {
-    handleCustomerAdd,
-    handleCustomerEdit,
-    credit,
-    setcredit,
+    handleProductAdd,
+    handleProductEdit,
     handleOnChange,
     setformvalue,
     formvalue,
   };
 };
 
-export default useCustomer;
+export default useProduct;

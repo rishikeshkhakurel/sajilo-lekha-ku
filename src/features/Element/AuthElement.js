@@ -20,16 +20,20 @@ const drawerWidth = 240;
 
 const menu = [
   {
-    name: "product",
+    name: "hi",
     subcategoty: [
-      { name: "Add Product", link: "/addproduct" },
-      { name: "Edit Product", link: "/editproduct" },
-      { name: "Delete Product", link: "/deleteproduct" },
+      { name: "Add hi", link: "/addproduct" },
+      { name: "Edit hi", link: "/editproduct" },
+      { name: "Delete hi", link: "/deleteproduct" },
     ],
   },
   {
     name: "Customer",
     link: "/customer",
+  },
+  {
+    name: "Product",
+    link: "/product",
   },
 ];
 

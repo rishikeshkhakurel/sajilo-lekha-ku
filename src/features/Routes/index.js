@@ -6,6 +6,7 @@ import Customer from "../Customer/view";
 import Dashboard from "../Dashboard/view/index";
 import AuthElement from "../Element/AuthElement";
 import Login from "../login/Login";
+import Product from "../Product/view";
 import Register from "../Register/Register";
 
 const AppRoutes = () => {
@@ -25,6 +26,7 @@ const AppRoutes = () => {
           <Route path="/" element={<AuthElement />}>
             <Route path="/" element={<Dashboard />} />
             <Route path="customer" element={<Customer />} />
+            <Route path="product" element={<Product />} />
           </Route>
         )}
         {!login.data.login && (
