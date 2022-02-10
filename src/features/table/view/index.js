@@ -179,7 +179,7 @@ const MuiTable = (props) => {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
+      const newSelecteds = rows.map((n) => n);
       setSelected(newSelecteds);
       return;
     }
