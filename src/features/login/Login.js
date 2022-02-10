@@ -39,7 +39,7 @@ export default function Login() {
         .then((resp) => {
           console.log(resp);
           if (resp.data.login) {
-            navigate("/dashboard");
+            navigate("/");
             localStorage.setItem('login',resp.data.login);
             localStorage.setItem('accessToken',resp.data.accessToken);
             localStorage.setItem('refreshToken',resp.data.refreshToken); 
