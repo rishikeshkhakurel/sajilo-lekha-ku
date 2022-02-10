@@ -5,8 +5,11 @@ import loginValidate from "./loginValidate";
 import axios from "axios";
 import http_config from "../../common/config/httpconfig/http_config";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import userSlice from "../../redux/slice/User.Slice";
 
 export default function Login() {
+  const dispatch=useDispatch()
   const navigate = useNavigate();
   const [loginValue, setLoginValue] = useState({
     userName: "",
@@ -39,6 +42,7 @@ export default function Login() {
         .then((resp) => {
           console.log(resp);
           if (resp.data.login) {
+            dispatch(userSlice.actions.setData({ login: true }));
             navigate("/");
             localStorage.setItem('login',resp.data.login);
             localStorage.setItem('accessToken',resp.data.accessToken);

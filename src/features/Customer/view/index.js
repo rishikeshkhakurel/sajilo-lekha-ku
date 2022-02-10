@@ -24,6 +24,7 @@ const rows = [
 const headCells = [
   {
     numeric: false,
+    id:'CustomerName',
     disablePadding: true,
     label: "Customer Name",
     minWidth: 170,
@@ -31,36 +32,42 @@ const headCells = [
   },
   {
     numeric: true,
+    id:'Contact_No',
     disablePadding: false,
     label: "Contact Number",
     minWidth: 170,
   },
   {
     numeric: true,
+    id:'Address',
     disablePadding: false,
     label: "Address",
     minWidth: 170,
   },
   {
     numeric: true,
+    id:'Contractor_Name',
     disablePadding: false,
     label: "Contractor Name",
     minWidth: 170,
   },
   {
     numeric: true,
+    id:'Contractor_ContactNo',
     disablePadding: false,
     label: "Contractor Number",
     minWidth: 170,
   },
   {
     numeric: true,
+    id:'Credit_Limit',
     disablePadding: false,
     label: "Credit Limit",
     minWidth: 170,
   },
   {
     numeric: true,
+    id:'Status',
     disablePadding: false,
     label: "Status",
     minWidth: 170,
@@ -68,11 +75,13 @@ const headCells = [
   {
     numeric: true,
     disablePadding: false,
+    id:'Allow_Credit',
     label: "Credit Status",
     minWidth: 170,
   },
   {
     numeric: true,
+    id:'Remarks',
     disablePadding: false,
     label: "Remark",
     minWidth: 170,
