@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import userSlice from "../../redux/slice/User.Slice";
 import Customer from "../Customer/view";
 import Dashboard from "../Dashboard/view/index";
