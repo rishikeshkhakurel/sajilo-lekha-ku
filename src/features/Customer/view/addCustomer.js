@@ -5,7 +5,7 @@ import {
   Paper,
   TextField,
 } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useCustomer from "../hooks/useCustomer";
 
@@ -20,16 +20,19 @@ function AddCustomer() {
     setformvalue,
   } = useCustomer();
 
+  const [update,setupdate]=useState(false);
+
   const editdata = useSelector((state) => state.editSlice.data);
   useEffect(() => {
     if (editdata.id === "customer") {
       console.log(editdata);
       setformvalue(editdata.data);
+      setupdate(true)
     }
   }, [editdata, setformvalue]);
   return (
     <Paper sx={{ mt: 2, mb: 2 }}>
-      <form onSubmit={!editdata.id==='customer'? handleCustomerAdd : handleCustomerEdit}>
+      <form onSubmit={!update? handleCustomerAdd : handleCustomerEdit}>
         <Paper
           container="div"
           sx={{ display: "flex", justifyContent: "space-between", flex: 1 }}
