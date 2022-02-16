@@ -7,7 +7,7 @@ import customerSlice from "../../../redux/slice/Customer.Slice";
 
 const useCustomer = () => {
   const dispatch = useDispatch();
-  const {decoder}=useDecodeApiMessage()
+  const decoder=useDecodeApiMessage()
   const [credit, setcredit] = useState(true);
   const [formvalue, setformvalue] = useState("");
 
