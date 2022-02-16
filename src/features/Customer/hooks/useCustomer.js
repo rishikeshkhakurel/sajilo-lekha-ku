@@ -7,22 +7,9 @@ import customerSlice from "../../../redux/slice/Customer.Slice";
 
 const useCustomer = () => {
   const dispatch = useDispatch();
-  const decoder=useDecodeApiMessage()
+  const decoder = useDecodeApiMessage();
   const [credit, setcredit] = useState(true);
   const [formvalue, setformvalue] = useState("");
-
-  useEffect(() => {
-    axiosInstance
-      .get(http_config.BASE_URL + "/api/displayCustomer")
-      .then((resp) => {
-        dispatch(customerSlice.actions.setData(resp.customers ));
-        console.log(resp)
-      },(err)=>{
-        if(err){
-          decoder(err)
-        }
-      })
-  }, [dispatch]);
 
   const handleCustomerAdd = (e) => {
     e.preventDefault();
@@ -53,6 +40,24 @@ const useCustomer = () => {
   const handleOnChange = (e) => {
     setformvalue({ ...formvalue, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    axiosInstance.get(http_config.BASE_URL + "/api/displayCustomer").then(
+      (resp) => {
+        dispatch(customerSlice.actions.setData(resp.customers));
+        console.log(resp);
+      },
+      (err) => {
+        if (err) {
+          decoder(err);
+        }
+      }
+    );
+  }, [dispatch]);
+
+  useEffect(()=>{
+    console.log("rerendiring")
+  })
 
   return {
     handleCustomerAdd,

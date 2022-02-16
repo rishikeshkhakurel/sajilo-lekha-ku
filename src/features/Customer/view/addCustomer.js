@@ -41,9 +41,9 @@ function AddCustomer() {
             sx={{ ml: 1, flex: 1 }}
             id="filled-name"
             label="Name"
-            name="CustomerName"
+            name="customerName"
             required
-            value={formvalue.CustomerName}
+            value={formvalue.customerName}
             InputLabelProps={{ shrink: true }}
             onChange={handleOnChange}
           />
@@ -51,7 +51,7 @@ function AddCustomer() {
             sx={{ ml: 1, flex: 1 }}
             id="filled-name"
             label="Phone Number"
-            name="Contact_No"
+            name="contact_No"
             value={formvalue.Contact_No}
             InputLabelProps={{ shrink: true }}
             required
@@ -61,7 +61,7 @@ function AddCustomer() {
             sx={{ ml: 1, flex: 1 }}
             id="filled-name"
             label="Address"
-            name="Address"
+            name="address"
             value={formvalue.Address}
             InputLabelProps={{ shrink: true }}
             required
@@ -71,7 +71,7 @@ function AddCustomer() {
             sx={{ ml: 1, flex: 1 }}
             id="filled-name"
             label="Contractor_Name"
-            name="Contractor_Name"
+            name="contractor_Name"
             value={formvalue.Contractor_Name}
             InputLabelProps={{ shrink: true }}
             required
@@ -86,7 +86,7 @@ function AddCustomer() {
             sx={{ ml: 1, flex: 1 }}
             id="filled-name"
             label="Contractor Number"
-            name="Contractor_ContactNo"
+            name="contractor_ContactNo"
             value={formvalue.Contractor_ContactNo}
             InputLabelProps={{ shrink: true }}
             required
@@ -113,7 +113,7 @@ function AddCustomer() {
               sx={{ ml: 1, flex: 1 }}
               id="filled-name"
               label="Credit Limit"
-              name="Credit_Limit"
+              name="credit_Limit"
               value={formvalue.Credit_Limit}
               InputLabelProps={{ shrink: true }}
               required
@@ -123,7 +123,7 @@ function AddCustomer() {
             <TextField
               sx={{ ml: 1, flex: 1 }}
               id="filled-name"
-              label="Credit Limit"
+              label="credit Limit"
               value={formvalue.Credit_Limit}
               disabled
             />
@@ -132,7 +132,7 @@ function AddCustomer() {
             sx={{ ml: 1, flex: 1 }}
             id="filled-name"
             label="Remark"
-            name="Remarks"
+            name="remarks"
             value={formvalue.Remarks}
             InputLabelProps={{ shrink: true }}
             required

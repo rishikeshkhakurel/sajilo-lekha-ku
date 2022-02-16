@@ -85,9 +85,9 @@ const Customer = () => {
   };
 
 
-  useEffect(()=>{
-    setRows(customerdata)
-  },[customerdata])
+  // useEffect(()=>{
+  //   setRows(customerdata)
+  // },[customerdata])
 
   const MemoTable = useMemo(
     () => (
