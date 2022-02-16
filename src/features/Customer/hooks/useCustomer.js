@@ -22,7 +22,7 @@ const useCustomer = () => {
           decoder(err)
         }
       })
-  }, [dispatch, decoder]);
+  }, [dispatch]);
 
   const handleCustomerAdd = (e) => {
     e.preventDefault();
