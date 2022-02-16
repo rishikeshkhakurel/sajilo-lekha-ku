@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initState = {
   status: "idel",
-  data: {login:false},
+  data: {login:localStorage.getItem("login")},
   error: false,
 };
 
