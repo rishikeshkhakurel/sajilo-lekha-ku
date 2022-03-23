@@ -8,7 +8,8 @@ import AuthElement from "../Element/AuthElement";
 import Login from "../login/Login";
 import Product from "../Product/view";
 import Register from "../Register/Register";
-
+import Tax from "../Tax/index";
+import Invoice from "../Cutomer_invoice/invoice";
 const AppRoutes = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,16 +23,19 @@ const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {login.data.login && (
+        {!login.data.login && (
           <Route path="/" element={<AuthElement />}>
             <Route path="/" element={<Dashboard />} />
             <Route path="customer" element={<Customer />} />
             <Route path="product" element={<Product />} />
+            <Route path = "tax" element={<Tax/>} />
+            <Route path = "CustomerInvoice" element={<Invoice/>} />
+            
           </Route>
         )}
         {!login.data.login && (
           <React.Fragment>
-            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="register" element={<Register />} />
           </React.Fragment>
         )}

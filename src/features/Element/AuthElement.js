@@ -32,9 +32,17 @@ const menu = [
     link: "/customer",
   },
   {
+    name:" Customer Invoice",
+    link: "/CustomerInvoice"
+  },
+  {
     name: "Product",
     link: "/product",
   },
+  {
+    name:"Tax",
+    link:"/tax",
+  }
 ];
 
 const AuthElement = (props) => {
