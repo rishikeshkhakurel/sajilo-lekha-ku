@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import staffSlice from "../../../../redux/slice/staffSlice.js";
 import Tables from "../../../table/view/index.js";
+import useStaffDetails from "../hooks/useStaffDetails.js";
 
 
 export default function StaffDetails() {  
+  useStaffDetails()
   const data=useSelector((state)=>state.staffSlice.data)
   console.log(data)
 

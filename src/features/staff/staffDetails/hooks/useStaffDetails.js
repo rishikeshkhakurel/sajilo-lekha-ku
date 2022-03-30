@@ -15,3 +15,5 @@ const useStaffDetails = () => {
       });
   }, []);
 };
+
+export default useStaffDetails;
