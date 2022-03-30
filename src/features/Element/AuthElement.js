@@ -42,7 +42,28 @@ const menu = [
   {
     name:"Tax",
     link:"/tax",
-  }
+  },
+  {
+    name: "Staff",
+    subcategoty: [
+      { name: "Add staff", link: "/addStaff" },
+      { name: "Staff Ledger", link: "/StaffLedger" },
+      { name: "Staff Details", link: "/StaffDetails" },
+    ]
+  },
+
+
+  {
+    name: "Loan",
+    subcategoty: [
+      { name: "Add loan", link: "/addLoan" },
+      { name: "Pay principle", link: "/payPrinciple" },
+      { name: "Pay interest", link: "/payInterest" },
+     
+    ]
+  },
+
+  
 ];
 
 const AuthElement = (props) => {

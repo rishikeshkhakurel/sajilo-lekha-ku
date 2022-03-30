@@ -5,8 +5,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useSelector } from "react-redux";
 import AddProduct from "./addProduct";
 
-function createData(name, phone_number, address) {
+function createData(SN,name, phone_number, address) {
   return {
+    SN,
     name,
     phone_number,
     address,
@@ -14,11 +15,11 @@ function createData(name, phone_number, address) {
 }
 
 const rows = [
-  createData("Ram", 9843123456, "kathmandu"),
-  createData("Sham", 9843123456, "kathmandu"),
-  createData("Sita", 9843123456, "kathmandu"),
-  createData("Hari", 9843123456, "kathmandu"),
-  createData("Gita", 9843123456, "kathmandu"),
+  createData(1,"Ram", 9843123456, "kathmandu"),
+  createData(2,"Sham", 9843123456, "kathmandu"),
+  createData(3,"Sita", 9843123456, "kathmandu"),
+  createData(4,"Hari", 9843123456, "kathmandu"),
+  createData(5,"Gita", 9843123456, "kathmandu"),
 ];
 
 const headCells = [
@@ -39,7 +40,7 @@ const headCells = [
   },
 ];
 
-const num = [2, 3, 4, 5, 6, 7, 8, 9]; // to identify number of object in rows .... if there is 3 object pass [1,2] if there is 5 object then pass [1,2,3,4] since a object must have padding none and fixed object
+const num = [1,2,]; // to identify number of object in rows .... if there is 3 object pass [1,2] if there is 5 object then pass [1,2,3,4] since a object must have padding none and fixed object
 
 const Product = () => {
   // const productdata = useSelector((state) => state.productSlice.data);

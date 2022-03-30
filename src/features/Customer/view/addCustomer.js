@@ -8,6 +8,7 @@ import {
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import useCustomer from "../hooks/useCustomer";
+import Validate from "../hooks/validate.js";
 
 function AddCustomer() {
   const {
@@ -18,7 +19,12 @@ function AddCustomer() {
     handleOnChange,
     formvalue,
     setformvalue,
+    errors,
+  
+
   } = useCustomer();
+
+
 
   const editdata = useSelector((state) => state.editSlice.data);
   useEffect(() => {
@@ -29,7 +35,7 @@ function AddCustomer() {
   }, [editdata, setformvalue]);
   return (
     <Paper sx={{ mt: 2, mb: 2 }}>
-      <form onSubmit={!editdata.id==='customer'? handleCustomerAdd : handleCustomerEdit}>
+      <form onSubmit={editdata.id==='customer'? handleCustomerAdd : handleCustomerEdit }>
         <Paper
           container="div"
           sx={{ display: "flex", justifyContent: "space-between", flex: 1 }}
@@ -43,6 +49,8 @@ function AddCustomer() {
             value={formvalue.CustomerName}
             InputLabelProps={{ shrink: true }}
             onChange={handleOnChange}
+            error={Boolean(errors.CutomerName)}
+            helperText={errors.CutomerName}
           />
           <TextField
             sx={{ ml: 1, flex: 1 }}
@@ -53,6 +61,9 @@ function AddCustomer() {
             InputLabelProps={{ shrink: true }}
             required
             onChange={handleOnChange}
+            error={Boolean(errors.Contact_No)}
+            helperText={errors.Contact_No}
+
           />
           <TextField
             sx={{ ml: 1, flex: 1 }}
@@ -63,6 +74,9 @@ function AddCustomer() {
             InputLabelProps={{ shrink: true }}
             required
             onChange={handleOnChange}
+            error={Boolean(errors.Address)}
+            helperText={errors.Address}
+
           />
           <TextField
             sx={{ ml: 1, flex: 1 }}
@@ -73,6 +87,9 @@ function AddCustomer() {
             InputLabelProps={{ shrink: true }}
             required
             onChange={handleOnChange}
+            error={Boolean(errors.Contractor_Name)}
+            helperText={errors.Contractor_ContactNo}
+
           />
         </Paper>
         <Paper
@@ -88,6 +105,8 @@ function AddCustomer() {
             InputLabelProps={{ shrink: true }}
             required
             onChange={handleOnChange}
+            error={Boolean(errors.Contractor_No)}
+
           />
           <FormControlLabel
             sx={{ ml: 1, flex: 1 }}
@@ -137,8 +156,9 @@ function AddCustomer() {
           />
         </Paper>
         <Paper container="div" sx={{ mt: 2, ml: 1 }}>
-          <Button type="submit" variant="contained">
-            {editdata.id === "customer" ? "Update" : "Submit"}
+          <Button type="submit" variant="contained" >
+            {editdata.id === "customer" ? "Update" : "Submit" }
+           
           </Button>
         </Paper>
       </form>

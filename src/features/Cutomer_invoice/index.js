@@ -1,76 +1,62 @@
-import React, {useMemo} from 'react'
+import React, { useMemo } from "react";
 import Tables from "../table/view/index.js";
-import {Box} from "@mui/material";
+import { Box } from "@mui/material";
+
+function createData(sn, name, phone_number, address) {
+  return {
+    sn,
+    name,
+    phone_number,
+    address,
+  };
+}
+
+const rows = [
+  createData(1,"Ram", 9843123456, "kathmandu"),
+  createData(2,"Sham", 9843123456, "kathmandu"),
+  createData(3,"Sita", 9843123456, "kathmandu"),
+  createData(4,"Hari", 9843123456, "kathmandu"),
+  createData(5,"Gita", 9843123456, "kathmandu"),
+];
+
+const headCells = [
+  {
+    numeric: false,
+    disablePadding: true,
+    label: "Customer Name",
+  },
+  {
+    numeric: true,
+    disablePadding: true,
+    label: "Contact Number",
+  },
+  {
+    numeric: true,
+    disablePadding: true,
+    label: "Address",
+  },
+  {
+    numeric: true,
+    disablePadding: false,
+    label: "Edit",
+  },
+];
+
+const num = [2,3];
 export default function InvoiceTable() {
-
-    const headCells=[
-     {
-        numeric: true,
-        id: "SN",
-        disablePadding: true,
-        label: "Customer Name",
-        minWidth: 170,   
-     },
-     {
-        numeric: false,
-        id: "Description",
-        disablePadding: true,
-        label: "Description",
-        minWidth: 170,   
-     },
-     {
-        numeric: false,
-        id: "quality",
-        disablePadding: true,
-        label: "Quality",
-        minWidth: 170,   
-     },
-     {
-        numeric: false,
-        id: "unit",
-        disablePadding: true,
-        label: "Unit",
-        minWidth: 170,   
-     },
-     {
-        numeric: true,
-        id: "size",
-        disablePadding: true,
-        label: "Size",
-        minWidth: 170,   
-     },
-     {
-        numeric: true,
-        id: "rate",
-        disablePadding: true,
-        label: "Rate",
-        minWidth: 170,   
-     },
-     {
-        numeric: true,
-        id: "unit",
-        disablePadding: true,
-        label: "QTY",
-        minWidth: 170,   
-     },
-     {
-        numeric: true,
-        id: "subtotal",
-        disablePadding: true,
-        label: "SUBTOTAL",
-        minWidth: 170,   
-     },
-     
-    ]
-
-    const num =[2,3,4,5,6,7,8];
-    
-   
+  
+  const memo = (
+    <Tables
+      headCells={headCells}
+      num={num}
+      rows={rows}
+      title="customer table"
+    />
+  );
 
   return (
     <React.Fragment>
-
-<Box></Box>
+      <Box>{memo}</Box>
     </React.Fragment>
   );
 }
