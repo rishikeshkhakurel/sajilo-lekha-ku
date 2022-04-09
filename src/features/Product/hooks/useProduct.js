@@ -1,56 +1,50 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import http_config from "../../../common/config/httpconfig/http_config";
 import axiosInstance from "../../../common/helper/axiosInterceptor";
-import productSlice from "../../../redux/slice/Product.Slice";
+import Validate from "../hooks/validate";
 
 const useProduct = () => {
-  const dispatch = useDispatch();
-  const [formvalue, setformvalue] = useState("");
+  
+  const [formvalue, setformvalue] = useState({
+    productName: "", 
+    companyName: "", 
+    size: "", 
+    colour: "", 
+    expireyDate:"", 
+    unit: "", 
+    equivalent_SI_Value: "", 
+    costPrice: "", 
+    sellingPrice: "", 
+    minimum_Stock_Quantity: "", 
+    stock_Quality_In_SI_Value:"", 
+  });
 
-  useEffect(() => {
-    axiosInstance
-      .get(http_config.BASE_URL + "/api/getProduct")
-      .then((resp) => {
-        console.log("product",resp)
-        // dispatch(productSlice.actions.setData(resp.products ));
-      });
-  }, [dispatch]);
+  const [ errors, setErrors] = useState({}); 
 
-  const handleProductAdd = (e) => {
-    e.preventDefault();
-
-    console.log(formvalue);
-
-    axiosInstance
-      .post(http_config.BASE_URL + "/api/addProduct", formvalue)
-      .then((resp) => {
-        console.log(resp);
-      });
-  };
-
-  const handleProductEdit = (e) => {
-    e.preventDefault();
-
-    console.log(formvalue);
-
-    axiosInstance
-      .post(http_config.BASE_URL + "/api/updateProduct", formvalue)
-      .then((resp) => {
-        console.log(resp);
-      });
-  };
+  
 
   const handleOnChange = (e) => {
     setformvalue({ ...formvalue, [e.target.name]: e.target.value });
+    setErrors(Validate(formvalue));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formvalue);
+
+    if(!errors.size && !errors.colour && !errors.expireyDate && !errors.unit && !errors.equivalent_SI_Value && !errors.costPrice && !errors.sellingPrice && !errors.minimum_Stock_Quantity && !errors.stock_Quality_In_SI_Value){
+
+      axiosInstance.BASE_URL.post(http_config.BASE_URL + "/api/addProduct", formvalue).then((response) => {console.log(response)})
+    }
+  }
+
   return {
-    handleProductAdd,
-    handleProductEdit,
+  
     handleOnChange,
     setformvalue,
     formvalue,
+    errors,
+    handleSubmit
   };
 };
 

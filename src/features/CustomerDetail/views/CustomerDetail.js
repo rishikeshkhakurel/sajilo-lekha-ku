@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Table from "../../table/view/index";
 import SearchIcon from "@mui/icons-material/Search";
 import { useSelector } from "react-redux";
-import AddCustomer from "./addCustomer";
+import Customer from "../hooks/customer";
 
 const headCells = [
   {
@@ -73,7 +73,10 @@ const headCells = [
 
 const num = [2, 3, 4, 5, 6, 7, 8, 9]; // to identify number of object in rows .... if there is 3 object pass [1,2] if there is 5 object then pass [1,2,3,4] since a object must have padding none and fixed object
 
-const Customer = () => {
+const CustomerDetail = () => {
+
+Customer();
+
   const customerdata = useSelector((state) => state.customerSlice.data);
   const [rows, setRows] = useState(customerdata);
 
@@ -85,9 +88,9 @@ const Customer = () => {
   };
 
 
-  // useEffect(()=>{
-  //   setRows(customerdata)
-  // },[customerdata])
+  useEffect(()=>{
+    setRows(customerdata)
+  },[customerdata])
 
   const MemoTable = useMemo(
     () => (
@@ -104,7 +107,7 @@ const Customer = () => {
   );
   return (
     <Box>
-      <AddCustomer />
+      
       <FormControl fullWidth sx={{ mt: 2, mb: 2 }}>
         <TextField
           sx={{ ml: 1, flex: 1 }}
@@ -126,4 +129,4 @@ const Customer = () => {
   );
 };
 
-export default Customer;
+export default CustomerDetail;

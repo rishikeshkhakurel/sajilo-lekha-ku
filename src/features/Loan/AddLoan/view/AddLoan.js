@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, TextField, Button } from "@mui/material";
+import { Box, TextField, Button, FormControl, InputLabel, NativeSelect } from "@mui/material";
 import Loan from "../hooks/index";
 export default function AddLoan() {
 
@@ -11,13 +11,12 @@ const {onSubmit, handleChange, errors } = Loan();
 
 
       <form onSubmit={onSubmit}>
-        <Box sx={{display: 'flex', justifyContent:"space-between"}}>
+      
   
   
-
+<Box sx ={{display:"flex", justifyContent:"space-between"}}>
           <TextField
-          fullWidth
-          sx={{ml:1}}
+          sx={{width:"45%", }}
             type="date"
             name="transactionDate"
             label="Transaction Date"
@@ -29,8 +28,8 @@ const {onSubmit, handleChange, errors } = Loan();
           />
 
 <TextField 
-        sx={{ml:1}}
-        fullWidth
+        sx={{width:"45%"}}
+
         name="loanAmount"
         label="Loan Amount"
         type="number"
@@ -42,24 +41,31 @@ const {onSubmit, handleChange, errors } = Loan();
 
         />
 
-          <TextField
-          fullWidth
-          sx={{ml:1}}
-          name="transactionMethod"
-          label="Transaction Method"
-          InputLabelProps = {{shrink: true}}
-          required
-          onChange={handleChange}
-          error={Boolean(errors.transactionMethod)}
-          helperText = {errors.transactionMethod}
-          />
         </Box>
-      
-      
 
-      <Box sx = {{mt:3}}>
+        <Box sx={{mt:4,display:"flex", justifyContent: "space-between"}}>
+
+        <FormControl sx={{ width: "45%" }}>
+              <InputLabel variant="standard" >
+                Transaction Method
+              </InputLabel>
+              <NativeSelect
+                inputProps={{
+                  name: "transactionMethod",
+                }}
+                onChange={handleChange}
+                required
+              >
+                <option value = {"none"}> None</option>
+                <option value={"TM11"}>By cheque</option>
+                <option value={"TM22"}>By cash</option>
+              </NativeSelect>
+            </FormControl>
+        
+        
+    
      
-     <TextField sx={{width:"60%"}}
+     <TextField sx={{width:"45%"}}
       label="Transaction Details"
       name="transactionDetail"
       InputLabelProps = {{shrink: true}}
@@ -70,10 +76,11 @@ const {onSubmit, handleChange, errors } = Loan();
 
      />
 
-      <Button sx={{ml:3, height:"50px"}} variant="contained" type="submit">
+     </Box>
+
+      <Button sx={{mt:4, height:"50px"}} variant="contained" type="submit">
         Add Loan
       </Button>
-     </Box>
      </form>
 
       </Box>

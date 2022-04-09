@@ -25,7 +25,7 @@ export default function Loan() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(formvalue,formvalue);
+        console.log(formvalue);
 
         if(!errors.transactionDate && !errors.loanAmount && !errors.transactionMethod && !errors.transactionDetail) {
       

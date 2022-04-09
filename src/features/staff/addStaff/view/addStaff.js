@@ -14,9 +14,10 @@ export default function AddStaff() {
     <React.Fragment>
       <Box sx={{ m: 3, p: 3 }}>
         <form onSubmit={handleSubmit}>
-          <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
+         
+         <Box sx={{display:"flex", justifyContent:"space-between"}}>
             <TextField
-              sx={{ ml: 1, flex: 1 }}
+              sx={{ width:"45%" }}
               label="Name"
               name="staffName"
               onChange={handleChange}
@@ -27,7 +28,7 @@ export default function AddStaff() {
             />
 
             <TextField
-              sx={{ ml: 1, flex: 1 }}
+              sx={{ width:"45%" }}
               label="Address"
               name="address"
               onChange={handleChange}
@@ -37,8 +38,12 @@ export default function AddStaff() {
               helperText={errors.address}
             />
 
+            </Box>
+
+            <Box sx={{display:"flex", justifyContent:"space-between", mt:4}}>
+
             <TextField
-              sx={{ ml: 1, flex: 1 }}
+              sx={{ width:"45%" }}
               onChange={handleChange}
               label="Contact"
               type="number"
@@ -49,9 +54,9 @@ export default function AddStaff() {
               helperText={errors.contact_No}
             />
 
-            <Box sx={{ ml: 2 }}>
+        
               <FormControl
-                sx={{ width: "150px" }}
+                sx={{ width: "45%" }}
                 error={Boolean(errors.status)}
               >
                 <InputLabel id="status">Status</InputLabel>
@@ -69,22 +74,14 @@ export default function AddStaff() {
 
                 <FormHelperText>{errors.status}</FormHelperText>
               </FormControl>
-            </Box>
-            {/* <TextField
-            sx={{ ml: 1, flex: 1 }}
-            label="Status"
-            name="status"
-            required
-            onChange={handleChange}
-            InputLabelProps={{ shrink: true }}
-            error={Boolean(errors.status)}
-            helperText={errors.status}
-          /> */}
-          </Box>
+            
 
-          <Box sx={{ display: "flex" }}>
+            </Box>
+          
+
+          <Box sx={{ display: "flex", mt:4 }}>
             <TextField
-              sx={{ ml: 1, flex: 1, width: "80%" }}
+              sx={{  width: "45%" }}
               label="Remarks"
               name="remarks"
               required
@@ -93,15 +90,15 @@ export default function AddStaff() {
               helperText={errors.remarks}
               onChange={handleChange}
             />
-
+           </Box>
             <Button
-              sx={{ height: "50px", ml: 3 }}
+              sx={{ height: "50px", mt:4 }}
               type="submit"
               variant="contained"
             >
               Submit
             </Button>
-          </Box>
+          
         </form>
       </Box>
     </React.Fragment>

@@ -3,6 +3,8 @@ import customerSlice from "./slice/Customer.Slice";
 import editSlice from "./slice/edit.Slice";
 import userSlice from "./slice/User.Slice";
 import staffSlice from "./slice/staffSlice";
+import productSlice from "./slice/ProductSlice";
+import loanSlice from "./slice/loanSlice";
 
 const store = configureStore({
     reducer:{
@@ -10,6 +12,8 @@ const store = configureStore({
         customerSlice:customerSlice.reducer,
         editSlice:editSlice.reducer,
         staffSlice : staffSlice.reducer,
+        productSlice:productSlice.reducer,
+        loanSlice:loanSlice.reducer
 
     }
 })

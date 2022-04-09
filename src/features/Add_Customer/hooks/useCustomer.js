@@ -4,7 +4,6 @@ import http_config from "../../../common/config/httpconfig/http_config";
 import axiosInstance from "../../../common/helper/axiosInterceptor";
 import useDecodeApiMessage from "../../../common/helper/decodeApiMessage";
 import customerSlice from "../../../redux/slice/Customer.Slice";
-import Validate from "../hooks/validate";
 
 const useCustomer = () => {
   const dispatch = useDispatch();
@@ -13,7 +12,7 @@ const useCustomer = () => {
   const [formvalue, setformvalue] = useState("");
   const [errors, setErrors] = useState({});
   const [getdata,setgetdata] = useState({});
-
+  
 
 
   const handleCustomerAdd = (e) => {
@@ -52,19 +51,7 @@ const useCustomer = () => {
     
   };
 
-  useEffect(() => {
-    axiosInstance.get(http_config.BASE_URL + "/api/displayCustomer").then(
-      (resp) => {
-        dispatch(customerSlice.actions.setData(resp.customers));
-        console.log(resp);
-      },
-      (err) => {
-        if (err) {
-          decoder(err);
-        }
-      }
-    );
-  }, [dispatch]);
+  
 
   useEffect(()=>{
     console.log("rerendiring")

@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, {useState} from 'react'
+import http_config from '../../../../common/config/httpconfig/http_config';
 import Validate from "../hooks/validate";
 
 export default function Principle() {
@@ -24,13 +26,13 @@ export default function Principle() {
          e.preventDefault();
          console.log(formvalue);
  
-        //  if(!errors.transactionDate && !errors.loanAmount && !errors.transactionMethod && !errors.transactionDetail) {
+         if(!errors.transactionDate && !errors.principleAmount && !errors.transactionMethod && !errors.transactionDetail) {
        
-        //  axios.post(http_config.BASE_URL + "/api/addLoan", formvalue ).then((res)=>{
-        //    console.log(res);
-        //  })
+         axios.post(http_config.BASE_URL + "/api/payPrinciple", formvalue ).then((res)=>{
+           console.log(res);
+         })
        
-        //  }
+         }
  
      }
  

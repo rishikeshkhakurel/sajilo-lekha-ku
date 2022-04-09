@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, TextField, Button } from "@mui/material";
+import { Box, TextField, Button, InputLabel, FormControl, NativeSelect } from "@mui/material";
 import Interest from "../hooks/Interest.js";
 export default function PayInterest() {
 
@@ -11,13 +11,12 @@ const {onSubmit, handleChange, errors } = Interest();
 
 
       <form onSubmit={onSubmit}>
-        <Box sx={{display: 'flex', justifyContent:"space-between"}}>
-  
+
+       <Box sx={{display:"flex", justifyContent:"space-between"}}>  
   
 
           <TextField
-          fullWidth
-          sx={{ml:1}}
+          sx={{width:"45%"}}
             type="date"
             name="transactionDate"
             label="Transaction Date"
@@ -29,7 +28,7 @@ const {onSubmit, handleChange, errors } = Interest();
           />
 
 <TextField 
-        sx={{ml:1}}
+        sx={{width:"45%"}}
         fullWidth
         name="interestAmount"
         label="Interest Amount"
@@ -41,25 +40,32 @@ const {onSubmit, handleChange, errors } = Interest();
         helperText={errors.interestAmount}
 
         />
+       </Box>
 
-          <TextField
-          fullWidth
-          sx={{ml:1}}
-          name="transactionMethod"
-          label="Transaction Method"
-          InputLabelProps = {{shrink: true}}
-          required
-          onChange={handleChange}
-          error={Boolean(errors.transactionMethod)}
-          helperText = {errors.transactionMethod}
-          />
-        </Box>
+       <Box sx={{display:"flex", justifyContent:"space-between", mt:4}}>
+       <FormControl sx={{ width: "45%" }}>
+              <InputLabel variant="standard" >
+                Transaction Method
+              </InputLabel>
+              <NativeSelect
+                inputProps={{
+                  name: "transactionMethod",
+                }}
+                onChange={handleChange}
+                required
+              >
+                <option value = {"none"}> None</option>
+                <option value={"TM11"}>By cheque</option>
+                <option value={"TM22"}>By cash</option>
+              </NativeSelect>
+            </FormControl>
+        
       
       
 
-      <Box sx = {{mt:3}}>
+  
      
-     <TextField sx={{width:"60%"}}
+     <TextField sx={{width:"45%"}}
       label="Transaction Details"
       name="transactionDetail"
       InputLabelProps = {{shrink: true}}
@@ -69,11 +75,12 @@ const {onSubmit, handleChange, errors } = Interest();
           helperText={errors.transactionDetail}
 
      />
+     </Box>
 
-      <Button sx={{ml:3, height:"50px"}} variant="contained" type="submit">
+      <Button sx={{mt:4, height:"50px"}} variant="contained" type="submit">
         Pay Interest
       </Button>
-     </Box>
+     
      </form>
 
       </Box>

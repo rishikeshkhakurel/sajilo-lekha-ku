@@ -19,25 +19,29 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 const drawerWidth = 240;
 
 const menu = [
-  {
-    name: "hi",
-    subcategoty: [
-      { name: "Add hi", link: "/addproduct" },
-      { name: "Edit hi", link: "/editproduct" },
-      { name: "Delete hi", link: "/deleteproduct" },
-    ],
-  },
+ 
+
+
   {
     name: "Customer",
-    link: "/customer",
-  },
+    subcategoty: [
+      { name: "Add customer", link: "/addCustomer" },
+      { name: "Customer Detail", link: "/customerDetail" }]
+
+    },
+
   {
     name:" Customer Invoice",
     link: "/CustomerInvoice"
   },
   {
     name: "Product",
-    link: "/product",
+    subcategoty: [
+      { name: "Add product", link: "/addProduct" },
+      { name: "Product Detail", link: "/productDetail" },
+
+      
+    ]
   },
   {
     name:"Tax",
@@ -59,6 +63,8 @@ const menu = [
       { name: "Add loan", link: "/addLoan" },
       { name: "Pay principle", link: "/payPrinciple" },
       { name: "Pay interest", link: "/payInterest" },
+      { name: "Loan Detail", link: "/loanDetail" },
+     
      
     ]
   },

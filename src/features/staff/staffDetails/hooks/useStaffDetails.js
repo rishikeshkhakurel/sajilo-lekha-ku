@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import axiosInstance from "../../../../common/helper/axiosInterceptor.js";
 import http_config from "../../../../common/config/httpconfig/http_config";
 import { useDispatch } from "react-redux";
 import staffSlice from "../../../../redux/slice/staffSlice.js";
+import { useEffect } from "react";
 
 const useStaffDetails = () => {
   const dispatch = useDispatch();

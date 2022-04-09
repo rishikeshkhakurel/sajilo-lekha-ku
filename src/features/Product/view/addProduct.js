@@ -1,110 +1,196 @@
 import {
   Button,
   Paper,
+  Box,
   TextField,
+  
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import useProduct from "../hooks/useProduct";
 
-function AddProduct() {
+export default function AddProduct(){
   const {
-    handleProductAdd,
-    handleProductEdit,
     handleOnChange,
-    formvalue,
-    setformvalue,
+    handleSubmit,
+    errors
   } = useProduct();
 
-  // const editdata = useSelector((state) => state.editSlice.data);
-  // useEffect(() => {
-  //   if (editdata.id === "product") {
-  //     console.log(editdata);
-  //     setformvalue(editdata.data);
-  //   }
-  // }, [editdata, setformvalue]);
+  
   return (
-    <Paper sx={{ mt: 2, mb: 2 }}>
-      {/* <form onSubmit={!editdata.id==='product'? handleProductAdd : handleProductEdit}> */}
-        <Paper
-          container="div"
-          sx={{ display: "flex", justifyContent: "space-between", flex: 1 }}
-        >
-          <TextField
-            sx={{ ml: 1, flex: 1 }}
-            id="filled-name"
-            label="Name"
-            name="CustomerName"
-            required
-            value={formvalue.CustomerName}
-            InputLabelProps={{ shrink: true }}
-            onChange={handleOnChange}
-          />
-          <TextField
-            sx={{ ml: 1, flex: 1 }}
-            id="filled-name"
-            label="Phone Number"
-            name="Contact_No"
-            value={formvalue.Contact_No}
-            InputLabelProps={{ shrink: true }}
-            required
-            onChange={handleOnChange}
-          />
-          <TextField
-            sx={{ ml: 1, flex: 1 }}
-            id="filled-name"
-            label="Address"
-            name="Address"
-            value={formvalue.Address}
-            InputLabelProps={{ shrink: true }}
-            required
-            onChange={handleOnChange}
-          />
-          <TextField
-            sx={{ ml: 1, flex: 1 }}
-            id="filled-name"
-            label="Contractor_Name"
-            name="Contractor_Name"
-            value={formvalue.Contractor_Name}
-            InputLabelProps={{ shrink: true }}
-            required
-            onChange={handleOnChange}
-          />
-        </Paper>
-        <Paper
-          container="div"
-          sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}
-        >
-          <TextField
-            sx={{ ml: 1, flex: 1 }}
-            id="filled-name"
-            label="Contractor Number"
-            name="Contractor_ContactNo"
-            value={formvalue.Contractor_ContactNo}
-            InputLabelProps={{ shrink: true }}
-            required
-            onChange={handleOnChange}
-          />
+    <React.Fragment>
+
+<form onSubmit={handleSubmit}>
+<Box sx={{m:3, p:3}}>
+     
+      <Box sx={{display:"flex" ,justifyContent:"space-between", }}>
+      
+
+      
+      <TextField
+              sx={{ width:"45%"  }}
+              label="Product Name"
+              name="productName"
+              onChange={handleOnChange}
+              required
+              fullWidth
+              InputLabelProps={{ shrink: true }}
+              error={Boolean(errors.productName)}
+              helperText={errors.productName}
+            />
           
-          <TextField
-            sx={{ ml: 1, flex: 1 }}
-            id="filled-name"
-            label="Remark"
-            name="Remarks"
-            value={formvalue.Remarks}
-            InputLabelProps={{ shrink: true }}
-            required
-            onChange={handleOnChange}
-          />
-        </Paper>
-        <Paper container="div" sx={{ mt: 2, ml: 1 }}>
-          <Button type="submit" variant="contained">
-            {/* {editdata.id === "product" ? "Update" : "Submit"} */}
-          </Button>
-        </Paper>
-      {/* </form> */}
-    </Paper>
+
+          
+
+<TextField
+              sx={{  width:"45%"}}
+              label="Company Name"
+              name="companyName"
+              onChange={handleOnChange}
+              required              InputLabelProps={{ shrink: true }}
+              error={Boolean(errors.companyName)}
+              helperText={errors.companyName}
+            />
+
+            
+
+            </Box>
+
+            <Box sx={{mt:4, display:'flex', justifyContent: "space-between"}}>
+
+<TextField
+              sx={{ width:"45%" }}
+              label="Size"
+              name="size"
+              onChange={handleOnChange}
+              required
+              InputLabelProps={{ shrink: true }}
+              error={Boolean(errors.size)}
+              helperText={errors.size}
+            />
+           
+           <TextField
+              sx={{ width:"45%"}}
+              label="Colour"
+              name="colour"
+              onChange={handleOnChange}
+              required
+              InputLabelProps={{ shrink: true }}
+              error={Boolean(errors.colour)}
+              helperText={errors.colour}
+            /> 
+
+            </Box>
+
+          
+
+
+<Box sx={{mt:4, display:"flex", justifyContent: "space-between"}}>
+
+<TextField
+              sx={{ width:"45%" }}
+              label="Expiry Date"
+              name="expireyDate"
+              type="date"
+              onChange={handleOnChange}
+              required
+              InputLabelProps={{ shrink: true }}
+              error={Boolean(errors.expireyDate)}
+              helperText={errors.expireyDate}
+            />
+
+<TextField
+              sx={{ width:"45%" }}
+              label="Unit"
+              name="unit"
+              onChange={handleOnChange}
+              required
+              InputLabelProps={{ shrink: true }}
+              error={Boolean(errors.unit)}
+              helperText={errors.unit}
+            />
+
+            </Box>
+
+           
+<Box sx={{mt:4, display:"flex", justifyContent: "space-between"}}>
+<TextField
+              sx={{ width:"45%"}}
+              label="Equivalent SI Value"
+              name="equivalent_SI_Value"
+              onChange={handleOnChange}
+              required
+              InputLabelProps={{ shrink: true }}
+              error={Boolean(errors.equivalent_SI_Value)}
+              helperText={errors.equivalent_SI_Value}
+              type="number"
+            />
+
+<TextField
+              sx={{ width:"45%"}}
+              label="Cost Price"
+              name="costPrice"
+              onChange={handleOnChange}
+              required
+              InputLabelProps={{ shrink: true }}
+              error={Boolean(errors.costPrice)}
+              helperText={errors.costPrice}
+              type="number"
+            />
+
+</Box>
+
+
+         
+<Box sx={{mt:4, display:"flex", justifyContent: "space-between"}}>
+<TextField
+              sx={{ width:"45%"}}
+              label="Selling Price"
+              name="sellingPrice"
+              onChange={handleOnChange}
+              required
+              InputLabelProps={{ shrink: true }}
+              error={Boolean(errors.sellingPrice)}
+              helperText={errors.sellingPrice}
+              type="number"
+            />
+
+<TextField
+              sx={{ width:"45%"}}
+              label="Minimum Stock Quantity"
+              name="minimum_Stock_Quantity"
+              onChange={handleOnChange}
+              required
+              InputLabelProps={{ shrink: true }}
+              error={Boolean(errors.minimum_Stock_Quantity)}
+              helperText={errors.minimum_Stock_Quantity}
+              type="number"
+            />
+
+</Box>
+
+<Box>
+<TextField
+              sx={{ width:"45%", mt:4}}
+              label="stock_Quaity_In_SI_Value"
+              name="Stock Quantity In SI Value"
+              onChange={handleOnChange}
+              required
+              type="number"
+              InputLabelProps={{ shrink: true }}
+              error={Boolean(errors.stock_Quality_In_SI_Value)}
+              helperText={errors.stock_Quality_In_SI_Value}
+            />
+</Box>
+
+
+
+            <Button sx={{mt:4, height:"50px", }} type="submit" variant="contained">Add product</Button>
+           
+            </Box>
+            </form>
+    </React.Fragment>
   );
 }
 
-export default AddProduct;
+

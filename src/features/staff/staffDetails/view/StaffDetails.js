@@ -46,7 +46,7 @@ export default function StaffDetails() {
     },
   ];
 
-  const num = [2, 3, 4, 5];
+  const num = [2, 3, 4, 5,];
 
   return (
     <React.Fragment>

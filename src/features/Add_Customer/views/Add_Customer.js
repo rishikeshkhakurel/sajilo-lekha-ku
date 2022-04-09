@@ -8,9 +8,8 @@ import {
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useCustomer from "../hooks/useCustomer";
-import Validate from "../hooks/validate.js";
 
-function AddCustomer() {
+ export default function AddCustomer() {
   const {
     handleCustomerAdd,
     handleCustomerEdit,
@@ -167,4 +166,3 @@ function AddCustomer() {
   );
 }
 
-export default AddCustomer;
