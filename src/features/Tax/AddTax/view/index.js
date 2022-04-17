@@ -1,15 +1,11 @@
-import React from "react";
-import {
-  Box,
-  TextField,
-  Button,
-  FormControl,
-  InputLabel,
-  NativeSelect,
-} from "@mui/material";
-import Loan from "../hooks/index";
-export default function AddLoan() {
-  const { onSubmit, handleChange, errors } = Loan();
+import { Button, FormControl, InputLabel, NativeSelect, TextField } from '@mui/material';
+import { Box } from '@mui/system';
+import React from 'react'
+import Tax from '../hooks/Tax';
+
+export default function AddTax() {
+
+const {handleChange,errors, onSubmit}=Tax();
 
   return (
     <React.Fragment>
@@ -30,14 +26,14 @@ export default function AddLoan() {
 
             <TextField
               sx={{ width: "45%" }}
-              name="loanAmount"
-              label="Loan Amount"
+              name="taxAmount"
+              label="Tax Amount"
               type="number"
               InputLabelProps={{ shrink: true }}
               required
               onChange={handleChange}
-              error={Boolean(errors.loanAmount)}
-              helperText={errors.loanAmount}
+              error={Boolean(errors.taxAmount)}
+              helperText={errors.taxAmount}
             />
           </Box>
 
@@ -59,7 +55,7 @@ export default function AddLoan() {
 
             <TextField
               sx={{ width: "45%" }}
-              label="Transaction Details"
+              label="Transaction Detail"
               name="transactionDetail"
               InputLabelProps={{ shrink: true }}
               required
@@ -79,5 +75,5 @@ export default function AddLoan() {
         </form>
       </Box>
     </React.Fragment>
-  );
+  )
 }

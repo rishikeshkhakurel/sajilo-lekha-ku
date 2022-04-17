@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import userSlice from "../../redux/slice/User.Slice";
 import Dashboard from "../Dashboard/view/index";
 import AuthElement from "../Element/AuthElement";
 import Login from "../login/Login";
 import Register from "../Register/Register";
-import Tax from "../Tax/index";
-import Invoice from "../Cutomer_invoice/invoice";
 import AddStaff from "../staff/addStaff/view/addStaff";
 import StaffLedger from "../staff/staffLedger/staffLedger";
 import StaffDetails from "../staff/staffDetails/view/StaffDetails.js";
@@ -19,6 +16,14 @@ import ProductDetail from "../ProductDetail/view/ProductDetail";
 import AddCustomer from "../Add_Customer/views/Add_Customer";
 import CustomerDetail from "../CustomerDetail/views/CustomerDetail";
 import LoanDetail from "../Loan/LoanDetail/view/LoanDetail";
+import AddGoodsSupplier from "../Supplier/AddGoodsSupplier/view/AddGoodsSupplier";
+import InterestDetail from "../Loan/DisplayInterest/views";
+import CustomerLedger from "../CustomerLedger/view/index";
+import ServiceSupplier from "../Supplier/AddServiceSupplier/view/index";
+import TaxDetail from "../Tax/TaxDetail/view";
+import AddTax from "../Tax/AddTax/view";
+import PayTax from "../Tax/PayTax/view";
+import PersonalAccount from "../PersonalAccount/PersonalAccount";
 
 
 const AppRoutes = () => {
@@ -42,9 +47,8 @@ const AppRoutes = () => {
 
             <Route path="*" element={<Navigate to="/" />} />
 
-            <Route path="tax" element={<Tax />} />
-            <Route path="CustomerInvoice" element={<Invoice />} />
-
+            <Route path="taxDetail" element={<TaxDetail />} />
+           
             <Route path="addStaff" element={<AddStaff />} />
 
             <Route path="staffLedger" element={<StaffLedger />} />
@@ -58,6 +62,23 @@ const AppRoutes = () => {
             <Route path="payInterest" element={<PayInterest />} />
 
             <Route path="loanDetail" element={<LoanDetail />} />
+
+            <Route path="interestDetail" element={<InterestDetail />} />
+            
+
+            <Route path="addGoodsSupplier" element={<AddGoodsSupplier />} />
+
+            <Route path="addServiceSupplier" element={<ServiceSupplier />} />
+
+            <Route path="addTax" element={<AddTax />} />
+
+            <Route path="payTax" element={<PayTax />} />
+            
+            <Route path= "customerLedger" element={<CustomerLedger/>} />
+
+            <Route path= "personalAccount" element={<PersonalAccount />} />
+
+
 
           </Route>
         )}

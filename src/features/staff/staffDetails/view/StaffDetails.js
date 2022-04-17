@@ -4,11 +4,10 @@ import staffSlice from "../../../../redux/slice/staffSlice.js";
 import Tables from "../../../table/view/index.js";
 import useStaffDetails from "../hooks/useStaffDetails.js";
 
-
-export default function StaffDetails() {  
-  useStaffDetails()
-  const data=useSelector((state)=>state.staffSlice.data)
-  console.log(data)
+export default function StaffDetails() {
+  useStaffDetails();
+  const data = useSelector((state) => state.staffSlice.data);
+  console.log(data);
 
   const headCells = [
     {
@@ -38,6 +37,7 @@ export default function StaffDetails() {
       label: "Status",
       id: "Status",
     },
+    
     {
       numeric: true,
       disablePadding: false,
@@ -46,11 +46,16 @@ export default function StaffDetails() {
     },
   ];
 
-  const num = [2, 3, 4, 5,];
+  const num = [2, 3, 4, 5];
 
   return (
     <React.Fragment>
-      <Tables headCells={headCells} rows={data} num={num} />
+      <Tables
+        headCells={headCells}
+        rows={data}
+        num={num}
+        deleteurl="/api/deleteStaff"
+      />
     </React.Fragment>
   );
 }

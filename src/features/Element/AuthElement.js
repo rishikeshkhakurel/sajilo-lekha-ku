@@ -26,26 +26,41 @@ const menu = [
     name: "Customer",
     subcategoty: [
       { name: "Add customer", link: "/addCustomer" },
-      { name: "Customer Detail", link: "/customerDetail" }]
+      { name: "Customer Detail", link: "/customerDetail" },
+      { name: "Customer Ledger", link: "/customerLedger" },
+      
+      
+      
+    ]
 
     },
 
-  {
-    name:" Customer Invoice",
-    link: "/CustomerInvoice"
+  { 
+
+    name:"Personal Account", link:"/personalAccount"
   },
+
+ 
+
   {
     name: "Product",
     subcategoty: [
       { name: "Add product", link: "/addProduct" },
-      { name: "Product Detail", link: "/productDetail" },
-
-      
+      { name: "Product Detail", link: "/productDetail" },      
     ]
   },
+
   {
     name:"Tax",
-    link:"/tax",
+    subcategoty : [
+     {name:"Tax Detail", link:"/taxDetail"},
+     {name:"Add Tax", link:"/addTax"},
+     {name:"Pay Tax", link:"/payTax"},
+
+
+
+    ]
+    
   },
   {
     name: "Staff",
@@ -64,6 +79,19 @@ const menu = [
       { name: "Pay principle", link: "/payPrinciple" },
       { name: "Pay interest", link: "/payInterest" },
       { name: "Loan Detail", link: "/loanDetail" },
+       {name:"Interest Detail", link: "/interestDetail"}
+     
+    ]
+  },
+
+
+  {
+    name: "Supplier",
+    subcategoty: [
+      { name: "Add goods supplier", link: "/addGoodsSupplier" },
+      { name: "Goods supplier detail", link: "/goodSupplierDetail" },
+      { name: "Add service supplier", link: "/addServiceSupplier" },
+      { name: "Service supplier detail", link: "/serviceSupplierDetail" },
      
      
     ]

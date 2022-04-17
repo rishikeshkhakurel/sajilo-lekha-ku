@@ -1,18 +1,17 @@
-import axios from 'axios';
-import React, {useState} from 'react'
-import http_config from '../../../../common/config/httpconfig/http_config';
+import { useState } from "react";
+import http_config from "../../../../common/config/httpconfig/http_config";
+import axiosInstance from "../../../../common/helper/axiosInterceptor";
 import Validate from "../hooks/validate";
 
-export default function Principle() {
+
+export default function Tax() {
 
     const [formvalue, setformvalue] = useState({
         transactionDate:"",
-        principleAmount:"",
+        taxAmount:"",
         transactionMethod:"",
         transactionDetail:"" 
      })
-
-     const [method, setMethod] = useState()
  
  
      const [errors, setErrors] = useState({});
@@ -21,7 +20,6 @@ export default function Principle() {
        e.preventDefault();
        setformvalue({...formvalue, [e.target.name]:e.target.value})
        setErrors(Validate(formvalue));
-       setMethod(e.target.name)
        
      }
  
@@ -29,9 +27,9 @@ export default function Principle() {
          e.preventDefault();
          console.log(formvalue);
  
-         if(!errors.transactionDate && !errors.principleAmount && !errors.transactionMethod && !errors.transactionDetail) {
+         if(!errors.transactionDate && !errors.taxAmount  && !errors.transactionDetail) {
        
-         axios.post(http_config.BASE_URL + "/api/payPrinciple", formvalue ).then((res)=>{
+         axiosInstance.post(http_config.BASE_URL + "/api/addTax", formvalue ).then((res)=>{
            console.log(res);
          })
        
@@ -43,7 +41,7 @@ export default function Principle() {
     
     
  {
-     formvalue, setformvalue, handleChange, onSubmit, errors, method
+     formvalue, setformvalue, handleChange, onSubmit, errors
  }
      
    );
