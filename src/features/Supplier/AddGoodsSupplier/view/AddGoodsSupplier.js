@@ -54,6 +54,7 @@ const{ handleSubmit, handleChange, errors} = GoodSupplier();
               sx={{ width: "45%" }}
               label="Credit Limit"
               name="credit_Limit"
+              type="number"
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}

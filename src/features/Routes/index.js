@@ -24,6 +24,8 @@ import TaxDetail from "../Tax/TaxDetail/view";
 import AddTax from "../Tax/AddTax/view";
 import PayTax from "../Tax/PayTax/view";
 import PersonalAccount from "../PersonalAccount/PersonalAccount";
+import GoodsSupplierDetail from "../Supplier/GoodsSupplierDetails/view";
+import ServiceSupplierDetail from "../Supplier/ServiceSupplierDetail/view";
 
 
 const AppRoutes = () => {
@@ -78,7 +80,15 @@ const AppRoutes = () => {
 
             <Route path= "personalAccount" element={<PersonalAccount />} />
 
+            <Route path = "personalAccount/:id" element={<PersonalAccount />} />
 
+            <Route path="goodsSupplierDetail" element={<GoodsSupplierDetail />} />
+
+             
+            <Route path="serviceSupplierDetail" element={<ServiceSupplierDetail />} />
+            
+
+            
 
           </Route>
         )}

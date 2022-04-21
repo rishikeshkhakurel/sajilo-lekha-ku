@@ -35,10 +35,7 @@ const menu = [
 
     },
 
-  { 
-
-    name:"Personal Account", link:"/personalAccount"
-  },
+  
 
  
 
@@ -89,7 +86,7 @@ const menu = [
     name: "Supplier",
     subcategoty: [
       { name: "Add goods supplier", link: "/addGoodsSupplier" },
-      { name: "Goods supplier detail", link: "/goodSupplierDetail" },
+      { name: "Goods supplier detail", link: "/goodsSupplierDetail" },
       { name: "Add service supplier", link: "/addServiceSupplier" },
       { name: "Service supplier detail", link: "/serviceSupplierDetail" },
      

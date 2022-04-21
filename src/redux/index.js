@@ -9,6 +9,8 @@ import interestDetailSlice from "./slice/interestDetailSlice";
 import taxSlice from "./slice/tax";
 import customerLedgerSlice from "./slice/CustomerLedgerSlice";
 import personalSlice from "./slice/personalAccountSlice";
+import goodsSupplierDetail from "./slice/GoodsSupplierDetail";
+import serviceSupplierSlice from "./slice/ServiceSupplierSlice";
 
 const store = configureStore({
     reducer:{
@@ -21,8 +23,10 @@ const store = configureStore({
         interestDetailSlice:interestDetailSlice.reducer,
         taxSlice:taxSlice.reducer,
         customerLedgSlice:customerLedgerSlice.reducer,
-        personalAccountSlice: personalSlice.reducer
-    }
+        personalAccountSlice: personalSlice.reducer,
+        goodsSupplierDetail:goodsSupplierDetail.reducer,
+        serviceSupplierSlice: serviceSupplierSlice.reducer
+    }  
 })
 
 export default store;

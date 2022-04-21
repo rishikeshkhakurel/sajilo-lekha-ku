@@ -12,8 +12,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
-import Link from '@mui/material/Link';
 import { TablePagination } from '@mui/material';
+import PersonalAccount from '../../PersonalAccount/PersonalAccount';
+import { Link } from 'react-router-dom';
+import { Box } from '@mui/system';
+
 
 
 export default function CustomerLedger() {
@@ -21,101 +24,56 @@ export default function CustomerLedger() {
 Ledger();
 
 
+
+const [popValue, setPopValue] = useState(false);
+
+
 const data = useSelector(state => state.customerLedgSlice.data);
 
 console.log(data)
 
 
-const {handleChangeRowsPerPage, rowsPerPage, page, handleChangePage} = Ledger();
+const {handleChangeRowsPerPage, rowsPerPage, page,handleChangePage,} = Ledger();
 
-// const [ data, setData] = useState([]);
+const style = {
+  color:"white",
+  fontWeight:"600"
+}
 
-//  useEffect(() => axiosInstance.get(http_config.BASE_URL + "/api/customerLedger").then(res => setData(res.Ledger)), [])
-
-// const headCells = [
-
-//   {
-//     numeric: false,
-//     id: "customerName",
-//     disablePadding: true,
-//     label: "Customer Name",
-//     minWidth: 170,
-//   },
-//   {
-//     numeric: true,
-//     id: "customerAddress",
-//     disablePadding: false,
-//     label: "Address",
-//     minWidth: 170,
-//   },
-//   {
-//     numeric: true,
-//     id: "customerContact",
-//     disablePadding: false,
-//     label: "Contact No",
-//     minWidth: 170,
-//   },
-
-//   {
-//     numeric: true,
-//     id: "customerBalance",
-//     disablePadding: false,
-//     label: "Customer Balance",
-//     minWidth: 170,
-//   },
-
-//   {
-//     numeric: true,
-//     id: "status",
-//     disablePadding: false,
-//     label: "Status",
-//     minWidth: 170,
-//   },
-
-  
-
-
-// ];
-
-
-
-// const num = [2,3,4,5,6]
 
   return (
   <React.Fragment>
-{/* 
-<MuiTable
-headCells= {headCells}
-rows={data}
-num={num}
-title="Customer Ledger"
-/> */}
+
+
+
+<Box sx={{m:3, mt:10}}>
 
 <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Customer Name</TableCell>
-            <TableCell align="right">Address</TableCell>
-            <TableCell align="right">Contact No</TableCell>
-            <TableCell align="right">Customer Balanace</TableCell>
-            <TableCell align="right">Status</TableCell>
+        <TableHead >
+          <TableRow sx={{backgroundColor:"#2196f3"}}>
+            <TableCell sx={style} >Customer Name</TableCell>
+            <TableCell sx={style}>Address</TableCell>
+            <TableCell sx={style}>Contact No</TableCell>
+            <TableCell sx={style}>Customer Balanace</TableCell>
+            <TableCell sx={style}>Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((data) => (
             <TableRow
             key = {data.id}
+            
               
-           sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+           sx={{ '&:last-child td, &:last-child th': { border: 0 }, backgroundColor:"#ede7f6" }}
             >
              
-              <TableCell><Link href={"localhost:3000"}>{data.customerName}</Link></TableCell>
-              <TableCell align="right">{data.customerAddress}</TableCell>
-              <TableCell align="right">{data.customerContact}</TableCell>
-              <TableCell align="right">{data.customerBalance}</TableCell>
+              <TableCell><Link to ={`/personalAccount`} state={data.customerId}>{data.customerName}</Link></TableCell>
+              <TableCell >{data.customerAddress}</TableCell>
+              <TableCell >{data.customerContact}</TableCell>
+              <TableCell >{data.customerBalance}</TableCell>
 
-              <TableCell align="right">{data.status}</TableCell>
+              <TableCell >{data.status}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -131,7 +89,10 @@ title="Customer Ledger"
     onRowsPerPageChange={handleChangeRowsPerPage}
     component="div"
     />
+  
 
+
+</Box>
 
 
   </React.Fragment>

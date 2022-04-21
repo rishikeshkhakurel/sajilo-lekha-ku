@@ -5,14 +5,7 @@ import axiosInstance from "../../../common/helper/axiosInterceptor";
 import customerLedgerSlice from "../../../redux/slice/CustomerLedgerSlice";
 
 const Ledger = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    axiosInstance
-      .get(http_config.BASE_URL + "/api/customerLedger")
-      .then((response) => {
-        dispatch(customerLedgerSlice.actions.setData(response.Ledger));
-      });
-    }, [] );
+  
 
 
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -29,13 +22,23 @@ const Ledger = () => {
       setPage(newPage);
     };
   
-   
+    const dispatch = useDispatch();
+    useEffect(() => {
+      axiosInstance
+        .get(http_config.BASE_URL + "/api/customerLedger")
+        .then((response) => {
+          dispatch(customerLedgerSlice.actions.setData(response.Ledger));
+        });
+      }, [] );
+
+
+      
 
     return {
 rowsPerPage,
 page,
 handleChangeRowsPerPage,
-handleChangePage
+handleChangePage,
     }
 
 
