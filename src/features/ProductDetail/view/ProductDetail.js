@@ -1,33 +1,33 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 // import Table from "../../table/view";
-import {Product, Pagination }from "../hooks/Product";
+import { Product, Pagination } from "../hooks/Product";
 
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 import { Box, TablePagination } from "@mui/material";
-
+import EditIcon from "@mui/icons-material/Edit";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ProductDetail() {
   Product();
 
-  const {rowsPerPage,
-    page,
-    handleChangeRowsPerPage,
-    handleChangePage } = Pagination()
+  const { rowsPerPage, page, handleChangeRowsPerPage, handleChangePage } =
+    Pagination();
 
-  const data = useSelector((state) =>state.productSlice.data);
-
+  const data = useSelector((state) => state.productSlice.data);
 
   console.log(data, "hello world");
 
   const unit = data.Unit;
   console.log(unit, "hi");
+
+  const navigate = useNavigate();
 
   // const headCells = [
   //   {
@@ -108,68 +108,69 @@ export default function ProductDetail() {
 
   // new table
   const style = {
-    color:"white",
-    fontWeight:"600"
-  }
+    color: "white",
+    fontWeight: "600",
+  };
 
   return (
-
-
-     <Box sx={{m:3, mt:4}}>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} >
-        <TableHead>
-          <TableRow sx={{ backgroundColor:"#2196f3"}}> 
-            <TableCell sx={style}>Product Name</TableCell>
-            <TableCell sx={style}>Company Name</TableCell>
-            <TableCell sx={style}>Size</TableCell>
-            <TableCell sx={style}>Color</TableCell>
-            <TableCell sx={style}>Expirey Date</TableCell>
-            <TableCell sx={style}>Unit</TableCell>
-            <TableCell sx={style}>Equivalent_SI unit</TableCell>
-            <TableCell sx={style}>Cost Price</TableCell>
-            <TableCell sx={style}>Selling Price</TableCell>
-            <TableCell sx={style}>Minimum Stock Quantity</TableCell>
-            <TableCell sx={style}>Stock Quantity in SI value</TableCell>
-
-
-
-
-
-
-
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((data) => (
-            <TableRow
-              sx={{ "&:last-child td, &:last-child th": { border: 0 }, backgroundColor:"#ede7f6" }}
-            >
-               <TableCell >{data.ProductName}</TableCell>
-              <TableCell >{data.CompanyName}</TableCell>
-              <TableCell >{data.Size}</TableCell>
-              <TableCell >{data.Colour}</TableCell>
-              <TableCell >{data.ExpireyDate}</TableCell>
-             <TableCell  >{data.Unit[0]} , {data.Unit[1]}, {data.Unit[2]}</TableCell>
-             <TableCell >{data.Equivalent_SI_Value}</TableCell>
-             <TableCell >{data.CostPrice}</TableCell>
-             <TableCell >{data.SellingPrice}</TableCell>
-             <TableCell align="center" >{data.Minimum_Stock_Quantity}</TableCell>
-             <TableCell align="center" >{data.Stock_Quality_In_SI_Value}</TableCell>
-
-
-
-
-
+    <Box sx={{ m: 3, mt: 4 }}>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }}>
+          <TableHead>
+            <TableRow sx={{ backgroundColor: "#2196f3" }}>
+              <TableCell sx={style}>Product Name</TableCell>
+              <TableCell sx={style}>Company Name</TableCell>
+              <TableCell sx={style}>Size</TableCell>
+              <TableCell sx={style}>Color</TableCell>
+              <TableCell sx={style}>Expirey Date</TableCell>
+              <TableCell sx={style}>Unit</TableCell>
+              <TableCell sx={style}>Equivalent_SI unit</TableCell>
+              <TableCell sx={style}>Cost Price</TableCell>
+              <TableCell sx={style}>Selling Price</TableCell>
+              <TableCell sx={style}>Minimum Stock Quantity</TableCell>
+              <TableCell sx={style}>Stock Quantity in SI value</TableCell>
+              <TableCell sx={style}>Edit</TableCell>
             </TableRow>
-            
-            
-           
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    <TablePagination
+          </TableHead>
+          <TableBody>
+            {data.map((data) => (
+              <TableRow
+                sx={{
+                  "&:last-child td, &:last-child th": { border: 0 },
+                  backgroundColor: "#ede7f6",
+                }}
+              >
+                <TableCell>{data.ProductName}</TableCell>
+                <TableCell>{data.CompanyName}</TableCell>
+                <TableCell>{data.Size}</TableCell>
+                <TableCell>{data.Colour}</TableCell>
+                <TableCell>{data.ExpireyDate}</TableCell>
+                <TableCell>
+                  {data.Unit[0]} , {data.Unit[1]}, {data.Unit[2]}
+                </TableCell>
+                <TableCell>{data.Equivalent_SI_Value}</TableCell>
+                <TableCell>{data.CostPrice}</TableCell>
+                <TableCell>{data.SellingPrice}</TableCell>
+                <TableCell align="center">
+                  {data.Minimum_Stock_Quantity}
+                </TableCell>
+                <TableCell align="center">
+                  {data.Stock_Quality_In_SI_Value}
+                </TableCell>
+
+                <TableCell>
+                  
+                  <Link to="/updateProduct">
+                    
+                    <EditIcon sx={{ cursor: "pointer" }} />
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
         rowsPerPageOptions={[5, 10, 15]}
         count={data?.length}
         component="div"
@@ -180,7 +181,4 @@ export default function ProductDetail() {
       />
     </Box>
   );
-
-
-  
 }

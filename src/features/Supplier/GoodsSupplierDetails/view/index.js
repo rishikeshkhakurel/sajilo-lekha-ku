@@ -1,75 +1,94 @@
-import React from 'react'
-import GoodsSupplierDet from '../hooks/GoodsSupplier';
-import MuiTable from "../../../table/view/index";
-import { useSelector } from 'react-redux';
+import React from "react";
+import GoodsSupplierDet from "../hooks/GoodsSupplier";
+import { useSelector } from "react-redux";
+import {PageSelect} from "../hooks/GoodsSupplier";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { Box, TablePagination } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import { Link } from "react-router-dom";
+
+
+
 export default function GoodsSupplierDetail() {
+  GoodsSupplierDet();
 
-    GoodsSupplierDet();
 
-    
-  const data = useSelector((state) =>state.goodsSupplierDetail.data);
-    
+  const data = useSelector((state) => state.goodsSupplierDetail.data);
 
-    const headCells=[
-        {
-            numeric: false,
-            disablePadding: false,
-            label: "Goods Supplier Name",
-            id: "GoodsSupplierName",
-        },
-        
-        {
-          numeric: true,
-          disablePadding: false,
-          label: "Contact",
-          id: "Contact_No",
-        },
-    
-        {
-          numeric: true,
-          disablePadding: false,
-          label: "Credit Limit",
-          id: "Credit_Limit",
-      },
-        {
-            numeric: true,
-            disablePadding: false,
-            label: "Address",
-            id: "Address",
-          },
-         
-    
-         
-          {
-            numeric: true,
-            disablePadding: false,
-            label: "Status",
-            id: "Status",
-          },
-          {
-            numeric: true,
-            disablePadding: false,
-            label: "Remarks",
-            id: "Remarks",
-          },
-        ]
-    
-      const  num = [2,3,4,5,6];
+  const { rowsPerPage, page, handleChangeRowsPerPage, handleChangePage } =
+  PageSelect();
 
+  
+
+  
+
+  const style = {
+    color: "white",
+    fontWeight: "600",
+  };
 
   return (
-
-
     <React.Fragment>
-    
-    <MuiTable
-    title="Goods Supplier Detail"
-    headCells = {headCells}
-    rows = {data ? data : ""}
+      
+      <React.Fragment>
+        <Box sx={{ m: 3, mt: 4 }}>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }}>
+              <TableHead>
+                <TableRow sx={{ backgroundColor: "#2196f3" }}>
+                  <TableCell sx={style}>Good Supplier Name</TableCell>
+                  <TableCell sx={style}>Contact</TableCell>
+                  <TableCell sx={style}>Credit Limit</TableCell>
+                  <TableCell sx={style}>Address</TableCell>
+                  <TableCell sx={style}>Status</TableCell>
+                  <TableCell sx={style}>Remarks</TableCell>
+                  <TableCell sx={style}>Edit</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data?.map((data) => (
+                  <TableRow
+                    sx={{
+                      "&:last-child td, &:last-child th": { border: 0 },
+                      backgroundColor: "#ede7f6",
+                    }}
+                  >
+                    <TableCell>{data.GoodsSupplierName}</TableCell>
+                    <TableCell>{data.Contact_No}</TableCell>
+                    <TableCell>{data.Credit_Limit}</TableCell>
 
-    num = {num}
-    />
+                    <TableCell>{data.Address}</TableCell>
 
+                    <TableCell>{data.Status}</TableCell>
+                    <TableCell>{data.Remarks}</TableCell>
+
+                    <TableCell>
+                      <Link to="/updateGoodsSupplier" state={data._id}>
+                        <EditIcon sx={{ cursor: "pointer" }} />
+                      </Link>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 15]}
+            count={data?.length}
+            component="div"
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Box>
+      </React.Fragment>
     </React.Fragment>
-  )
+  );
 }

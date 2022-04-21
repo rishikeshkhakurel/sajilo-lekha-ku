@@ -80,6 +80,8 @@ Customer();
   const customerdata = useSelector((state) => state.customerSlice.data);
   const [rows, setRows] = useState(customerdata);
 
+  console.log(customerdata);
+
   const requestSearch = async (searchedVal) => {
     const filteredRows = await customerdata.filter((row) => {
       return ((row.CustomerName.toLowerCase().includes(searchedVal.toLowerCase())) || (row.Contact_No.toLowerCase().includes(searchedVal.toLowerCase())) );

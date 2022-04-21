@@ -1,10 +1,15 @@
-import { Button, Paper, Box, TextField } from "@mui/material";
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import useProduct from "../hooks/useProduct";
+import { Button, Box, TextField, Autocomplete, Stack } from "@mui/material";
+import React from "react";
+import { Product } from "../../ProductDetail/hooks/Product";
+import useProduct from "../hooks/ProductSave";
 
-export default function AddProduct() {
+
+export default function UpdateProduct() {
   const { handleOnChange, handleSubmit, errors } = useProduct();
+
+  Product();
+
+  
 
   return (
     <React.Fragment>
@@ -26,6 +31,7 @@ export default function AddProduct() {
             <TextField
               sx={{ width: "45%" }}
               label="Company Name"
+
               name="companyName"
               onChange={handleOnChange}
               required
@@ -80,7 +86,8 @@ export default function AddProduct() {
               required
               InputLabelProps={{ shrink: true }}
               error={Boolean(errors.unit)}
-              helperText={errors.unit}
+
+              helperText="kg,gm,bag"
             />
           </Box>
 
@@ -148,16 +155,18 @@ export default function AddProduct() {
               error={Boolean(errors.stock_Quality_In_SI_Value)}
               helperText={errors.stock_Quality_In_SI_Value}
             />
-
-            
           </Box>
+
+          
+
+     
 
           <Button
             sx={{ mt: 4, height: "50px" }}
             type="submit"
             variant="contained"
           >
-            Add product
+            Update Product
           </Button>
         </Box>
       </form>

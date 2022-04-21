@@ -41,10 +41,10 @@ const useProduct = () => {
       !errors.stock_Quality_In_SI_Value
     ) {
       axiosInstance.BASE_URL.post(
-       http_config.BASE_URL + "/api/addProduct",
+        http_config.BASE_URL + "/api/addProduct",
         formvalue
       ).then((response) => {
-        console.log(response, "formvalue");
+        console.log(response);
       });
     }
   };

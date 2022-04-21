@@ -30,7 +30,7 @@ const [popValue, setPopValue] = useState(false);
 
 const data = useSelector(state => state.customerLedgSlice.data);
 
-console.log(data)
+
 
 
 const {handleChangeRowsPerPage, rowsPerPage, page,handleChangePage,} = Ledger();

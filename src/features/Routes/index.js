@@ -26,7 +26,9 @@ import PayTax from "../Tax/PayTax/view";
 import PersonalAccount from "../PersonalAccount/PersonalAccount";
 import GoodsSupplierDetail from "../Supplier/GoodsSupplierDetails/view";
 import ServiceSupplierDetail from "../Supplier/ServiceSupplierDetail/view";
-
+import UpdateProduct from "../ProductSave/view";
+import EditServiceSupplier from "../Supplier/ServiceSupplierDetail/EditSupplier/view/index"
+import EditGoodsSupplier from "../Supplier/GoodsSupplierDetails/EditGoodsSupplier/view";
 
 const AppRoutes = () => {
   const login = useSelector((state) => state.userSlice);
@@ -86,6 +88,17 @@ const AppRoutes = () => {
 
              
             <Route path="serviceSupplierDetail" element={<ServiceSupplierDetail />} />
+
+            <Route path="updateProduct" element={<UpdateProduct />} />
+
+            <Route path="updateServiceSupplier" element={<EditServiceSupplier />} />
+          
+
+            <Route path="updateGoodsSupplier" element={<EditGoodsSupplier />} />
+
+
+            
+            
             
 
             

@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import Principle from "../hooks/Principle.js";
 export default function PayPrinciple() {
-  const { handleChange, onSubmit, errors,method } = Principle();
+  const { handleChange, onSubmit, errors, method } = Principle();
 
   return (
     <React.Fragment>
@@ -45,10 +45,8 @@ export default function PayPrinciple() {
           </Box>
 
           <Box sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}>
-          <FormControl sx={{ width: "45%" }}>
-              <InputLabel variant="standard" >
-                Transaction Method
-              </InputLabel>
+            <FormControl sx={{ width: "45%" }}>
+              <InputLabel variant="standard">Transaction Method</InputLabel>
               <NativeSelect
                 inputProps={{
                   name: "transactionMethod",
@@ -56,14 +54,11 @@ export default function PayPrinciple() {
                 onChange={handleChange}
                 required
               >
-                <option value = {"none"}> None</option>
+                <option value={"none"}> None</option>
                 <option value={"TM11"}>By cheque</option>
                 <option value={"TM22"}>By cash</option>
               </NativeSelect>
             </FormControl>
-        
-            
-
 
             <TextField
               sx={{ width: "45%" }}
@@ -74,6 +69,19 @@ export default function PayPrinciple() {
               onChange={handleChange}
               error={Boolean(errors.transactionDetail)}
               helperText={errors.transactionDetail}
+            />
+          </Box>
+
+          <Box sx={{ mt: 4, display: "flex" }}>
+            <TextField
+              sx={{ width: "45%" }}
+              label="Remarks"
+              name="remarks"
+              InputLabelProps={{ shrink: true }}
+              required
+              onChange={handleChange}
+              error={Boolean(errors.remarks)}
+              helperText={errors.remarks}
             />
           </Box>
 

@@ -9,7 +9,8 @@ export default function Principle() {
         transactionDate:"",
         principleAmount:"",
         transactionMethod:"",
-        transactionDetail:"" 
+        transactionDetail:"" ,
+        remarks:""
      })
 
      const [method, setMethod] = useState()

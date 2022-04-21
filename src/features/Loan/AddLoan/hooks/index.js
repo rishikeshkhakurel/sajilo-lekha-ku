@@ -10,6 +10,7 @@ export default function Loan() {
     loanAmount: "",
     transactionMethod: "",
     transactionDetail: "",
+    remarks:""
   });
 
   const [errors, setErrors] = useState({});

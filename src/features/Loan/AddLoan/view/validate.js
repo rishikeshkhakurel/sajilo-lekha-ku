@@ -20,6 +20,10 @@ if (!formvalue.transactionDetail){
     errors.transactionDetail = "Enter transaction details";
 }
 
+if (!formvalue.remarks){
+    errors.remarks = "Remarks is required";
+}
+
 return errors;
 
 }
