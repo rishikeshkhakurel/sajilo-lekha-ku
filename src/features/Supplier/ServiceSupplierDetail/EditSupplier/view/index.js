@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import EditSupplier from "../hooks/EditSupplier";
 
 export default function EditServiceSupplier() {
-  const { handleSubmit, handleChange, errors, fetchData } = EditSupplier();
+  const { handleSubmit, handleChange, errors, fetchData, formvalue } = EditSupplier();
 
   console.log(fetchData, "hello world");
 
@@ -18,8 +18,8 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Servie Supplier Name"
-              value={fetchData[0]?.ServiceSupplierName}
-              name="serviceSupplierName"
+              value={formvalue?.ServiceSupplierName}
+              name="ServiceSupplierName"
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -30,8 +30,8 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Address"
-              name="address"
-              value={fetchData[0]?.Address}
+              name="Address"
+              value={formvalue?.Address}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -45,8 +45,8 @@ export default function EditServiceSupplier() {
               sx={{ width: "45%" }}
               label="Contact No"
               type="number"
-              name="contact_No"
-              value={fetchData[0]?.Contact_No}
+              name="Contact_No"
+              value={formvalue?.Contact_No}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -57,8 +57,8 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Credit Limit"
-              name="credit_Limit"
-              value={fetchData[0]?.Credit_Limit}
+              name="Credit_Limit"
+              value={formvalue?.Credit_Limit}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -71,8 +71,8 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Status"
-              name="status"
-              value={fetchData[0]?.Status}
+              name="Status"
+              value={formvalue?.Status}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -83,8 +83,8 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Remarks"
-              name="remarks"
-              value={fetchData[0]?.Remarks}
+              name="Remarks"
+              value={formvalue?.Remarks}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -96,8 +96,8 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Category"
-              name="category"
-              value={fetchData[0]?.Category}
+              name="Category"
+              value={formvalue?.Category}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -108,7 +108,7 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Sub category"
-              name="sub_Category"
+              name="Sub_Category"
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}

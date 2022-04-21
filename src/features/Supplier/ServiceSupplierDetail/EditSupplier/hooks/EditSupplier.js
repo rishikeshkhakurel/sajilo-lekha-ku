@@ -16,17 +16,7 @@ export default function EditSupplier() {
   
 
  
-  const [formvalue, setformvalue] = useState({
-    serviceSupplierName: "",
-    address: "",
-    contact_No: "",
-    credit_Limit: "",
-    status:"",
-    remarks:"",
-    category:"",
-    sub_Category:""
-
-  });
+  const [formvalue, setformvalue] = useState();
 
   const [errors, setErrors] = useState({});
 
@@ -37,7 +27,7 @@ export default function EditSupplier() {
   };
 
   useEffect(()=> {
-    axiosInstance.get(http_config.BASE_URL + `/api/getServiceSuppliers?id=${data}`).then(res => setFetchData(res.serviceSuppliers)
+    axiosInstance.get(http_config.BASE_URL + `/api/getServiceSuppliers?id=${data}`).then(res => setformvalue(res.serviceSuppliers[0])
     );
     console.log("hll")
    } , []);
