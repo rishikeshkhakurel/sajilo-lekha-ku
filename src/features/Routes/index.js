@@ -7,7 +7,6 @@ import AuthElement from "../Element/AuthElement";
 import Login from "../login/Login";
 import Register from "../Register/Register";
 import Tax from "../Tax/index";
-import Invoice from "../Cutomer_invoice/invoice";
 import AddStaff from "../staff/addStaff/view/addStaff";
 import StaffLedger from "../staff/staffLedger/staffLedger";
 import StaffDetails from "../staff/staffDetails/view/StaffDetails.js";
@@ -19,7 +18,7 @@ import ProductDetail from "../ProductDetail/view/ProductDetail";
 import AddCustomer from "../Add_Customer/views/Add_Customer";
 import CustomerDetail from "../CustomerDetail/views/CustomerDetail";
 import LoanDetail from "../Loan/LoanDetail/view/LoanDetail";
-
+import CustomerInvoice from "../Cutomer_invoice/view";
 
 const AppRoutes = () => {
   const login = useSelector((state) => state.userSlice);
@@ -43,7 +42,8 @@ const AppRoutes = () => {
             <Route path="*" element={<Navigate to="/" />} />
 
             <Route path="tax" element={<Tax />} />
-            <Route path="CustomerInvoice" element={<Invoice />} />
+            
+            <Route path="CustomerInvoice" element={<CustomerInvoice />} />
 
             <Route path="addStaff" element={<AddStaff />} />
 
