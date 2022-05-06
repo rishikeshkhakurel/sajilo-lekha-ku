@@ -12,6 +12,7 @@ import Paper from "@mui/material/Paper";
 import { Box, TablePagination } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
@@ -49,6 +50,8 @@ export default function GoodsSupplierDetail() {
                   <TableCell sx={style}>Status</TableCell>
                   <TableCell sx={style}>Remarks</TableCell>
                   <TableCell sx={style}>Edit</TableCell>
+                  <TableCell sx={style}>Delete</TableCell>
+
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -73,6 +76,13 @@ export default function GoodsSupplierDetail() {
                         <EditIcon sx={{ cursor: "pointer" }} />
                       </Link>
                     </TableCell>
+                   
+                    <TableCell><DeleteIcon 
+                    sx={{cursor:"pointer"}}
+                    /></TableCell>
+
+
+
                   </TableRow>
                 ))}
               </TableBody>

@@ -14,6 +14,8 @@ import { Box, TablePagination } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
 import { Link } from "react-router-dom";
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 
 export default function LoanDetail() {
@@ -77,7 +79,6 @@ const style = {
   return(
 // 
 
-<React.Fragment>
       
       <React.Fragment>
         <Box sx={{ m: 3, mt: 4 }}>
@@ -85,14 +86,17 @@ const style = {
             <Table sx={{ minWidth: 650 }}>
               <TableHead>
                 <TableRow sx={{ backgroundColor: "#2196f3" }}>
+                <TableCell sx={style}>SN</TableCell>
                   <TableCell sx={style}>Transaction Date</TableCell>
                   <TableCell sx={style}>Transaction Detail</TableCell>
                   <TableCell sx={style}>Credit Amount</TableCell>
                   <TableCell sx={style}>Debit Amount</TableCell>
-                  <TableCell sx={style}>Remarks</TableCell>
+                  <TableCell sx={style}>Balance</TableCell>
 
-                  <TableCell sx={style}>Transaction Method</TableCell>
+                  <TableCell sx={style}>Status</TableCell>
                   <TableCell sx={style}>Edit</TableCell>
+                  <TableCell sx={style}>Delete</TableCell>
+
 
                   
                 </TableRow>
@@ -105,20 +109,26 @@ const style = {
                       backgroundColor: "#ede7f6",
                     }}
                   >
-                    <TableCell>{data.TransactionDate}</TableCell>
-                    <TableCell>{data.TransactionDetail}</TableCell>
-                    <TableCell>{data.CreditAmount}</TableCell>
+                    <TableCell>{data.sn}</TableCell>
+                    <TableCell>{data.transactionDate}</TableCell>
+                    <TableCell>{data.transactionDetail}</TableCell>
+                    <TableCell>{data.credit}</TableCell>
 
-                    <TableCell>{data.DebitAmount}</TableCell>
+                    <TableCell>{data.debit}</TableCell>
 
-                    <TableCell>{data.TransactionDetail}</TableCell>
-                    <TableCell>{data.TransactionMethod}</TableCell>
+                    <TableCell>{data.balance}</TableCell>
+                    <TableCell>{data.status}</TableCell>
 
                     <TableCell>
-                      <Link to="/updateLoan" state={data._id}>
+                      <Link to="/updateLoan" state={data.id}>
                         <EditIcon sx={{ cursor: "pointer" }} />
                       </Link>
                     </TableCell>
+                    <TableCell>
+                <DeleteIcon 
+                    sx={{cursor:"pointer"}}
+                    /></TableCell>
+
                   </TableRow>
                 ))}
               </TableBody>
@@ -135,6 +145,6 @@ const style = {
           />
         </Box>
       </React.Fragment>
-    </React.Fragment>
+    
   );
 }

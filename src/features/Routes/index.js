@@ -30,6 +30,9 @@ import EditServiceSupplier from "../Supplier/ServiceSupplierDetail/EditSupplier/
 import EditGoodsSupplier from "../Supplier/GoodsSupplierDetails/EditGoodsSupplier/view";
 import LoanEdit from "../Loan/LoanDetail/Edit Loan/view";
 import LoanDetail from "../Loan/LoanDetail/view/LoanDetail";
+import UpdateStaff from "../staff/updateStaff/view";
+import UpdateTax from "../Tax/UpdateTax/view";
+import UpdateInterest from "../UpdateInterest/view";
 
 const AppRoutes = () => {
   const login = useSelector((state) => state.userSlice);
@@ -99,7 +102,12 @@ const AppRoutes = () => {
 
 
             <Route path="updateLoan" element={<LoanEdit />} />
-            
+
+            <Route path="updateStaff" element={<UpdateStaff />} />
+
+            <Route path="updateTax" element={<UpdateTax />} />
+
+            <Route path="updateInterest" element={<UpdateInterest />} />
             
 
             

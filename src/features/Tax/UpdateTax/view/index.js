@@ -1,12 +1,11 @@
-
 import { Button, FormControl, InputLabel, NativeSelect, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react'
-import Tax from "../hooks/Tax"
+import TaxUpdate from '../hooks/UpdateTax';
 
-export default function PayTax() {
+export default function UpdateTax() {
 
-const {handleChange,errors, onSubmit}=Tax();
+const {handleChange,errors, onSubmit}=TaxUpdate();
 
   return (
     <React.Fragment>
@@ -65,19 +64,6 @@ const {handleChange,errors, onSubmit}=Tax();
               helperText={errors.transactionDetail}
             />
           </Box>
-
-          <Box sx={{ display: "flex", justifyContent: "space-between", mt:4 }}>
-            <TextField
-              sx={{ width: "45%" }}
-              name="remarks"
-              label="Remarks"
-              InputLabelProps={{ shrink: true }}
-              required
-              onChange={handleChange}
-              error={Boolean(errors.transactionDate)}
-              helperText={errors.transactionDate}
-            />
-           </Box>
 
           <Button
             sx={{ mt: 4, height: "50px" }}

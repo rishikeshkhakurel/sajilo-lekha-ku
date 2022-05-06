@@ -1,14 +1,15 @@
 import axios from 'axios';
 import React, {useState} from 'react'
 import http_config from '../../../../common/config/httpconfig/http_config';
+import axiosInstance from '../../../../common/helper/axiosInterceptor';
 import Validate from "../hooks/validate";
 
 export default function Principle() {
 
     const [formvalue, setformvalue] = useState({
-        transactionDate:"",
-        principleAmount:"",
-        transactionMethod:"",
+      transactionDate:"",
+      principleAmount:"",
+      transactionMethod:"",
         transactionDetail:"" ,
         remarks:""
      })
@@ -32,7 +33,7 @@ export default function Principle() {
  
          if(!errors.transactionDate && !errors.principleAmount && !errors.transactionMethod && !errors.transactionDetail) {
        
-         axios.post(http_config.BASE_URL + "/api/payPrinciple", formvalue ).then((res)=>{
+         axiosInstance.post(http_config.BASE_URL + "/api/payPrinciple", formvalue ).then((res)=>{
            console.log(res);
          })
        

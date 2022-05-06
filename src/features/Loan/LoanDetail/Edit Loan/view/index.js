@@ -9,7 +9,9 @@ import {
 } from "@mui/material";
 import EditLoan from "../hooks/EditLoan";
 export default function LoanEdit() {
-  const { onSubmit, handleChange, errors } = EditLoan();
+  const { onSubmit, handleChange, errors, formvalue } = EditLoan();
+
+  const date= formvalue.transactionDate.split("T")
 
   return (
     <React.Fragment>
@@ -20,6 +22,7 @@ export default function LoanEdit() {
               sx={{ width: "45%" }}
               type="date"
               name="transactionDate"
+              value={date[0]}
               label="Transaction Date"
               InputLabelProps={{ shrink: true }}
               required
@@ -34,6 +37,7 @@ export default function LoanEdit() {
               label="Loan Amount"
               type="number"
               InputLabelProps={{ shrink: true }}
+              value={formvalue.loanAmount}
               required
               onChange={handleChange}
               error={Boolean(errors.loanAmount)}
@@ -51,7 +55,7 @@ export default function LoanEdit() {
                 onChange={handleChange}
                 required
               >
-                <option value={"none"}> None</option>
+               
                 <option value={"TM11"}>By cheque</option>
                 <option value={"TM22"}>By cash</option>
               </NativeSelect>
@@ -63,6 +67,7 @@ export default function LoanEdit() {
               name="transactionDetail"
               InputLabelProps={{ shrink: true }}
               required
+              value={formvalue.transactionDetail}
               onChange={handleChange}
               error={Boolean(errors.transactionDetail)}
               helperText={errors.transactionDetail}
@@ -76,6 +81,7 @@ export default function LoanEdit() {
               sx={{ width: "45%" }}
               label="Remarks"
               name="remarks"
+              value={formvalue.remarks}
               InputLabelProps={{ shrink: true }}
               required
               onChange={handleChange}
@@ -90,7 +96,7 @@ export default function LoanEdit() {
             variant="contained"
             type="submit"
           >
-            Add Loan
+            Update Loan
           </Button>
         </form>
       </Box>

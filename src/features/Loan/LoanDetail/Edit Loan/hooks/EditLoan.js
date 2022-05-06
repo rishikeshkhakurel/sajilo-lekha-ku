@@ -24,9 +24,25 @@ export default function EditLoan() {
 
   useEffect(() => {
     axiosInstance
-      .get(http_config.BASE_URL + `/api/updateAddLoan?id=${data}`)
+      .get(http_config.BASE_URL + `/api/getLoan?id=${data}`)
       .then((res) => {
         console.log("********",res);
+
+        setformvalue({...formvalue, 
+          
+          transactionDetail : res.loan[0].TransactionDetail ,
+
+          remarks : res.loan[0].Remarks, 
+
+          transactionMethod: res.loan[0].TransactionMethod, 
+
+          loanAmount: res.loan[0].CreditAmount,
+
+          transactionDate: res.loan[0].TransactionDate, 
+
+          _id : res.loan[0]._id
+
+        })
         
       });
   }, []);
@@ -39,8 +55,14 @@ export default function EditLoan() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(formvalue);
+    console.log(formvalue, "$$$");
 
+    axiosInstance
+    .post(http_config.BASE_URL + `/api/updateAddLoan`, formvalue)
+    .then((res) => {
+      console.log("*****",res); });
+
+    
  
   };
 

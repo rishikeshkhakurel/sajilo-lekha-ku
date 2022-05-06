@@ -13,7 +13,7 @@ import { Box, TablePagination } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import {PageSelect, ServiceSupplierDetails }from "../hooks/ServiceSupplier";
 import { Link } from "react-router-dom";
-
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function ServiceSupplierDetail() {
   ServiceSupplierDetails();
@@ -112,6 +112,8 @@ export default function ServiceSupplierDetail() {
               <TableCell sx={style}>Sub Category</TableCell>
               <TableCell sx={style}>Remarks</TableCell>
               <TableCell sx={style}>Edit</TableCell>
+              <TableCell sx={style}>Delete</TableCell>
+
 
               
             </TableRow>
@@ -143,6 +145,11 @@ export default function ServiceSupplierDetail() {
                     <EditIcon sx={{ cursor: "pointer" }} />
                   </Link>
                 </TableCell>
+             <TableCell> 
+               <DeleteIcon sx={{cursor:"pointer"}} />
+               
+                </TableCell>
+
               </TableRow>
             ))}
           </TableBody>
