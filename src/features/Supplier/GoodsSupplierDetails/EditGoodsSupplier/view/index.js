@@ -6,7 +6,7 @@ import GoodsSupplier from '../hooks/EditGoodsSupplier';
 export default function EditGoodsSupplier() {
 
 
-const{ handleSubmit, handleChange, errors} = GoodsSupplier();
+const{ handleSubmit,formvalue, handleChange, errors} = GoodsSupplier();
 
   return (
     <React.Fragment>
@@ -18,6 +18,7 @@ const{ handleSubmit, handleChange, errors} = GoodsSupplier();
               sx={{ width: "45%" }}
               label="GoodsSupplierName"
               name="goodsSupplierName"
+              value={formvalue.goodsSupplierName}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -29,6 +30,7 @@ const{ handleSubmit, handleChange, errors} = GoodsSupplier();
               sx={{ width: "45%" }}
               label="Address"
               name="address"
+              value={formvalue.address}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -43,11 +45,11 @@ const{ handleSubmit, handleChange, errors} = GoodsSupplier();
               label="Contact No"
               type="number"
               name="contact_No"
+              value={formvalue.contact_No}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
-              error={Boolean(errors.contact_No)}
-              helperText={errors.contact_No}
+            
             />
 
             <TextField
@@ -55,6 +57,7 @@ const{ handleSubmit, handleChange, errors} = GoodsSupplier();
               label="Credit Limit"
               name="credit_Limit"
               type="number"
+              value={formvalue.credit_Limit}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -69,6 +72,7 @@ const{ handleSubmit, handleChange, errors} = GoodsSupplier();
               sx={{ width: "45%" }}
               label="Status"
               name="status"
+              value={formvalue.status}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -80,6 +84,7 @@ const{ handleSubmit, handleChange, errors} = GoodsSupplier();
               sx={{ width: "45%" }}
               label="Remarks"
               name="remarks"
+              value={formvalue.remarks}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}

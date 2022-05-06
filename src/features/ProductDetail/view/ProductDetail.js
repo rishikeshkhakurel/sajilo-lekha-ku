@@ -148,9 +148,9 @@ export default function ProductDetail() {
                 <TableCell>
                   {data.Unit[0]} , {data.Unit[1]}, {data.Unit[2]}
                 </TableCell>
-                <TableCell>{data.Equivalent_SI_Value}</TableCell>
-                <TableCell>{data.CostPrice}</TableCell>
-                <TableCell>{data.SellingPrice}</TableCell>
+                <TableCell>{data.Equivalent_SI_Value[0]}, {data.Equivalent_SI_Value[1]}, {data.Equivalent_SI_Value[2]}</TableCell>
+                <TableCell>{data.CostPrice[0]}, {data.CostPrice[1]}, {data.CostPrice[2]}</TableCell>
+                <TableCell>{data.SellingPrice[0]}, {data.SellingPrice[1]}, {data.SellingPrice[2]}</TableCell>
                 <TableCell align="center">
                   {data.Minimum_Stock_Quantity}
                 </TableCell>
@@ -160,7 +160,9 @@ export default function ProductDetail() {
 
                 <TableCell>
                   
-                  <Link to="/updateProduct">
+                  <Link to="/updateProduct"
+                  state = {data?._id}
+                  >
                     
                     <EditIcon sx={{ cursor: "pointer" }} />
                   </Link>

@@ -1,11 +1,17 @@
-import { Button, Paper, Box, TextField } from "@mui/material";
-import React, { useEffect } from "react";
+import {
+  Button,
+  Paper,
+  Box,
+  TextField,
+  Autocomplete,
+  Chip,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useProduct from "../hooks/useProduct";
 
 export default function AddProduct() {
-  const { handleOnChange, handleSubmit, errors } = useProduct();
-
+  const { handleOnChange, handleSubmit, errors, setUnit, setEquivalent_SI_Value, setCostPrice, setSellingPrice } = useProduct();
   return (
     <React.Fragment>
       <form onSubmit={handleSubmit}>
@@ -76,7 +82,7 @@ export default function AddProduct() {
               sx={{ width: "45%" }}
               label="Unit"
               name="unit"
-              onChange={handleOnChange}
+              onChange={(e)=>setUnit(e.target.value)}
               required
               InputLabelProps={{ shrink: true }}
               error={Boolean(errors.unit)}
@@ -89,24 +95,22 @@ export default function AddProduct() {
               sx={{ width: "45%" }}
               label="Equivalent SI Value"
               name="equivalent_SI_Value"
-              onChange={handleOnChange}
+              onChange={ (e) => setEquivalent_SI_Value(e.target.value)}
               required
               InputLabelProps={{ shrink: true }}
               error={Boolean(errors.equivalent_SI_Value)}
               helperText={errors.equivalent_SI_Value}
-              type="number"
             />
 
             <TextField
               sx={{ width: "45%" }}
               label="Cost Price"
               name="costPrice"
-              onChange={handleOnChange}
+              onChange={(e) => setCostPrice(e.target.value)}
               required
               InputLabelProps={{ shrink: true }}
               error={Boolean(errors.costPrice)}
               helperText={errors.costPrice}
-              type="number"
             />
           </Box>
 
@@ -115,12 +119,11 @@ export default function AddProduct() {
               sx={{ width: "45%" }}
               label="Selling Price"
               name="sellingPrice"
-              onChange={handleOnChange}
+              onChange={(e) => setSellingPrice(e.target.value)}
               required
               InputLabelProps={{ shrink: true }}
               error={Boolean(errors.sellingPrice)}
               helperText={errors.sellingPrice}
-              type="number"
             />
 
             <TextField
@@ -143,13 +146,10 @@ export default function AddProduct() {
               label="Stock Quantity In SI Value"
               onChange={handleOnChange}
               required
-              type="number"
               InputLabelProps={{ shrink: true }}
               error={Boolean(errors.stock_Quality_In_SI_Value)}
               helperText={errors.stock_Quality_In_SI_Value}
             />
-
-            
           </Box>
 
           <Button

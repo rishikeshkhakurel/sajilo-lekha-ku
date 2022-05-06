@@ -20,11 +20,11 @@ if(!formvalue.colour){
 }
 
 if(!formvalue.expireyDate){
-    errors.expireyDate="expirey date is required"
+    errors.expireyDate="Expirey date is required"
 }
 
 if(!formvalue.unit){
-    errors.unit="unit is required"
+    errors.unit="Unit is required"
 }
 
 if(!formvalue.equivalent_SI_Value){

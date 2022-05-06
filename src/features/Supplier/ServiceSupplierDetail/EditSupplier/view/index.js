@@ -1,14 +1,13 @@
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
-import React, {useState} from "react";
-import EditSupplier from "../hooks/EditSupplier";
+import React, { useState } from "react";
+import useEditSupplier from "../hooks/EditSupplier";
 
 export default function EditServiceSupplier() {
-  const { handleSubmit, handleChange, errors, fetchData } = EditSupplier();
+  const { formvalue, handleSubmit, handleChange, errors, fetchData } =
+    useEditSupplier();
 
   console.log(fetchData, "hello world");
-
-
 
   return (
     <React.Fragment>
@@ -18,20 +17,19 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Servie Supplier Name"
-              value={fetchData[0]?.ServiceSupplierName}
               name="serviceSupplierName"
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
-              error={Boolean(errors.serviceSupplierName)}
-              helperText={errors.serviceSupplierName}
+              value={formvalue.serviceSupplierName}
+             
             />
 
             <TextField
               sx={{ width: "45%" }}
               label="Address"
               name="address"
-              value={fetchData[0]?.Address}
+              value={formvalue.address}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -46,7 +44,8 @@ export default function EditServiceSupplier() {
               label="Contact No"
               type="number"
               name="contact_No"
-              value={fetchData[0]?.Contact_No}
+              value={formvalue.contact_No}
+
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -58,7 +57,8 @@ export default function EditServiceSupplier() {
               sx={{ width: "45%" }}
               label="Credit Limit"
               name="credit_Limit"
-              value={fetchData[0]?.Credit_Limit}
+              value={formvalue.credit_Limit}
+
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -72,7 +72,8 @@ export default function EditServiceSupplier() {
               sx={{ width: "45%" }}
               label="Status"
               name="status"
-              value={fetchData[0]?.Status}
+              value={formvalue.status}
+
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -84,7 +85,8 @@ export default function EditServiceSupplier() {
               sx={{ width: "45%" }}
               label="Remarks"
               name="remarks"
-              value={fetchData[0]?.Remarks}
+              value={formvalue.remarks}
+
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -97,7 +99,8 @@ export default function EditServiceSupplier() {
               sx={{ width: "45%" }}
               label="Category"
               name="category"
-              value={fetchData[0]?.Category}
+              value={formvalue.category}
+
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -105,16 +108,7 @@ export default function EditServiceSupplier() {
               helperText={errors.category}
             />
 
-            <TextField
-              sx={{ width: "45%" }}
-              label="Sub category"
-              name="sub_Category"
-              onChange={handleChange}
-              required
-              InputLabelProps={{ shrink: true }}
-              error={Boolean(errors.sub_Category)}
-              helperText={errors.sub_Category}
-            />
+           
           </Box>
 
           <Button
