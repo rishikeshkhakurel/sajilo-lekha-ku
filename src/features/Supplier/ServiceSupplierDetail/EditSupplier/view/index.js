@@ -4,8 +4,12 @@ import React, { useState } from "react";
 import useEditSupplier from "../hooks/EditSupplier";
 
 export default function EditServiceSupplier() {
+<<<<<<< HEAD
   const { formvalue, handleSubmit, handleChange, errors, fetchData } =
     useEditSupplier();
+=======
+  const { handleSubmit, handleChange, errors, fetchData, formvalue } = EditSupplier();
+>>>>>>> e37e9332fb0fb2a28622506817bd1fb6e8b71c92
 
   console.log(fetchData, "hello world");
 
@@ -17,7 +21,12 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Servie Supplier Name"
+<<<<<<< HEAD
               name="serviceSupplierName"
+=======
+              value={formvalue?.ServiceSupplierName}
+              name="ServiceSupplierName"
+>>>>>>> e37e9332fb0fb2a28622506817bd1fb6e8b71c92
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -28,8 +37,13 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Address"
+<<<<<<< HEAD
               name="address"
               value={formvalue.address}
+=======
+              name="Address"
+              value={formvalue?.Address}
+>>>>>>> e37e9332fb0fb2a28622506817bd1fb6e8b71c92
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -43,9 +57,14 @@ export default function EditServiceSupplier() {
               sx={{ width: "45%" }}
               label="Contact No"
               type="number"
+<<<<<<< HEAD
               name="contact_No"
               value={formvalue.contact_No}
 
+=======
+              name="Contact_No"
+              value={formvalue?.Contact_No}
+>>>>>>> e37e9332fb0fb2a28622506817bd1fb6e8b71c92
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -56,9 +75,14 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Credit Limit"
+<<<<<<< HEAD
               name="credit_Limit"
               value={formvalue.credit_Limit}
 
+=======
+              name="Credit_Limit"
+              value={formvalue?.Credit_Limit}
+>>>>>>> e37e9332fb0fb2a28622506817bd1fb6e8b71c92
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -71,9 +95,14 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Status"
+<<<<<<< HEAD
               name="status"
               value={formvalue.status}
 
+=======
+              name="Status"
+              value={formvalue?.Status}
+>>>>>>> e37e9332fb0fb2a28622506817bd1fb6e8b71c92
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -84,9 +113,14 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Remarks"
+<<<<<<< HEAD
               name="remarks"
               value={formvalue.remarks}
 
+=======
+              name="Remarks"
+              value={formvalue?.Remarks}
+>>>>>>> e37e9332fb0fb2a28622506817bd1fb6e8b71c92
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -98,9 +132,14 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Category"
+<<<<<<< HEAD
               name="category"
               value={formvalue.category}
 
+=======
+              name="Category"
+              value={formvalue?.Category}
+>>>>>>> e37e9332fb0fb2a28622506817bd1fb6e8b71c92
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -108,7 +147,20 @@ export default function EditServiceSupplier() {
               helperText={errors.category}
             />
 
+<<<<<<< HEAD
            
+=======
+            <TextField
+              sx={{ width: "45%" }}
+              label="Sub category"
+              name="Sub_Category"
+              onChange={handleChange}
+              required
+              InputLabelProps={{ shrink: true }}
+              error={Boolean(errors.sub_Category)}
+              helperText={errors.sub_Category}
+            />
+>>>>>>> e37e9332fb0fb2a28622506817bd1fb6e8b71c92
           </Box>
 
           <Button

@@ -13,6 +13,7 @@ export default function EditSupplier() {
 
   console.log(data);
 
+<<<<<<< HEAD
   const [formvalue, setformvalue] = useState({
     serviceSupplierName: "",
     address: "",
@@ -24,6 +25,10 @@ export default function EditSupplier() {
     _id:""
     // Sub_Category: "",
   });
+=======
+ 
+  const [formvalue, setformvalue] = useState();
+>>>>>>> e37e9332fb0fb2a28622506817bd1fb6e8b71c92
 
   const [errors, setErrors] = useState({});
 
@@ -33,6 +38,7 @@ export default function EditSupplier() {
     setErrors(Validate(formvalue));
   };
 
+<<<<<<< HEAD
   useEffect(() => {
     axiosInstance
       .get(http_config.BASE_URL + `/api/getServiceSuppliers?id=${data}`)
@@ -52,6 +58,17 @@ export default function EditSupplier() {
         });
       });
   }, []);
+=======
+  useEffect(()=> {
+    axiosInstance.get(http_config.BASE_URL + `/api/getServiceSuppliers?id=${data}`).then(res => setformvalue(res.serviceSuppliers[0])
+    );
+    console.log("hll")
+   } , []);
+   
+
+
+
+>>>>>>> e37e9332fb0fb2a28622506817bd1fb6e8b71c92
 
   const handleSubmit = (e) => {
     
