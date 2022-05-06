@@ -65,6 +65,7 @@ const useProduct = () => {
     setErrors(Validate(formvalue));
 
     console.log("hello world");
+    console.log(formvalue,"23232332")
 
     const unitString = formvalue.unit.toString();
 
@@ -92,6 +93,7 @@ const useProduct = () => {
   unit : unitArray
 
 })
+
 
 };
   const handleSubmit = (e) => {

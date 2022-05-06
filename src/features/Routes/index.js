@@ -15,7 +15,6 @@ import AddProduct from "../Product/view/addProduct";
 import ProductDetail from "../ProductDetail/view/ProductDetail";
 import AddCustomer from "../Add_Customer/views/Add_Customer";
 import CustomerDetail from "../CustomerDetail/views/CustomerDetail";
-import LoanDetail from "../Loan/LoanDetail/view/LoanDetail";
 import AddGoodsSupplier from "../Supplier/AddGoodsSupplier/view/AddGoodsSupplier";
 import InterestDetail from "../Loan/DisplayInterest/views";
 import CustomerLedger from "../CustomerLedger/view/index";
@@ -29,6 +28,8 @@ import ServiceSupplierDetail from "../Supplier/ServiceSupplierDetail/view";
 import UpdateProduct from "../ProductSave/view";
 import EditServiceSupplier from "../Supplier/ServiceSupplierDetail/EditSupplier/view/index"
 import EditGoodsSupplier from "../Supplier/GoodsSupplierDetails/EditGoodsSupplier/view";
+import LoanEdit from "../Loan/LoanDetail/Edit Loan/view";
+import LoanDetail from "../Loan/LoanDetail/view/LoanDetail";
 
 const AppRoutes = () => {
   const login = useSelector((state) => state.userSlice);
@@ -97,7 +98,7 @@ const AppRoutes = () => {
             <Route path="updateGoodsSupplier" element={<EditGoodsSupplier />} />
 
 
-            
+            <Route path="updateLoan" element={<LoanEdit />} />
             
             
 

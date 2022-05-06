@@ -48,9 +48,10 @@ const style = {
 
 <Box sx={{m:3, mt:10}}>
 
-<TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead >
+<TableContainer component={Paper} >
+      <Table sx={{ minWidth: 650 }} 
+      >
+        <TableHead>
           <TableRow sx={{backgroundColor:"#2196f3"}}>
             <TableCell sx={style} >Customer Name</TableCell>
             <TableCell sx={style}>Address</TableCell>
