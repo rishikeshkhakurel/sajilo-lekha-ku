@@ -6,14 +6,37 @@ import interestDetailSlice from '../../../../redux/slice/interestDetailSlice';
 
 const Interest = () => {
     const dispatch = useDispatch();
-    useEffect(() => {
+    const fetchData=() => {
        axiosInstance
         .get(http_config.BASE_URL + "/api/displayInterest")
         .then((response) => {
           dispatch(interestDetailSlice.actions.setData(response.interests));
           console.log(response.interests);  
         });
+    }
+
+    const deleteHandler = (id) => {
+      console.log(id);
+      console.log("called");
+      axiosInstance
+        .post(http_config.BASE_URL + "/api/deletePayInterest", {
+          _id: [id],
+        })
+        .then(() => {
+          fetchData();
+          alert("Delete Successful")
+        });
+    };
+  
+    useEffect(() => {
+      fetchData();
     }, []);
+
+return {
+
+  deleteHandler
+}
+
   };
 
   const PageSelect = () => {

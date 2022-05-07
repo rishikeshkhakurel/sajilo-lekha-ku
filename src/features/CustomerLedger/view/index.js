@@ -25,11 +25,9 @@ Ledger();
 
 
 
-const [popValue, setPopValue] = useState(false);
 
 
 const data = useSelector(state => state.customerLedgSlice.data);
-
 
 
 

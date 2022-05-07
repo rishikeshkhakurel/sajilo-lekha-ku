@@ -6,14 +6,39 @@ import taxSlice from '../../../../redux/slice/tax';
 
 const Tax = () => {
     const dispatch = useDispatch();
-    useEffect(() => {
+    const fetchData= () => {
        axiosInstance
         .get(http_config.BASE_URL + "/api/displayTax")
         .then((response) => {
           dispatch(taxSlice.actions.setData(response.taxs));
           console.log(response.taxs);
         });
-    }, []);
+    }
+
+
+  const deleteHandler = (id) => {
+
+    console.log(id);
+    axiosInstance
+      .post(http_config.BASE_URL + "/api/deleteTax", {
+        _id: [id],
+      })
+      .then(() => {
+        alert("Tax deleted")
+        fetchData();
+
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return{
+    deleteHandler
+  }
+
+
   };
 
   const PageSelect = () => {

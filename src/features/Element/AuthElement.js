@@ -53,8 +53,14 @@ const menu = [
     subcategoty: [
       { name: "Add Salary", link: "/addSalary" },
       { name: "Pay Salary", link: "/paySalary" },
-      { name: "Staff Salary Detail", link: "/staffSalaryDetail" },
-    ],
+
+      { name: "Add Staff", link: "/AddStaff" },
+
+      { name: "Staff Detail", link: "/staffDetails" },
+
+      { name: "Staff Ledger", link: "/staffLedger" },
+      
+    ]
   },
 
   {
@@ -72,8 +78,15 @@ const menu = [
     name: "Service Supplier",
     subcategoty: [
       { name: "Add service supplier", link: "/addServiceSupplier" },
-      { name: "Service supplier detail", link: "/serviceSupplierDetail" },
-    ],
+      { name: "Service supplier Detail", link: "/serviceSupplierDetail" },
+      { name: "Service supplier Ledger", link: "/serviceSupplierLedger" },
+
+      { name: "Goods supplier Ledger", link: "/goodsSupplierLedger" },
+      
+     
+     
+    ]
+  
   },
 
   {

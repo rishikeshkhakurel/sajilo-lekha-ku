@@ -47,6 +47,7 @@ export default function Salary() {
         .post(http_config.BASE_URL + "/api/payStaffSalary", formvalue)
         .then((res) => {
           console.log(res);
+          alert("Paid Successfully")
         });
     }
   };

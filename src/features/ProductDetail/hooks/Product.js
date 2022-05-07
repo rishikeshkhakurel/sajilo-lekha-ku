@@ -6,14 +6,38 @@ import productSlice from "../../../redux/slice/ProductSlice";
 
 const Product = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
+  const fetchData=() => {
     axiosInstance
       .get(http_config.BASE_URL + "/api/displayProduct")
       .then((response) => {
         dispatch(productSlice.actions.setData(response.products));
         console.log(response.products);
       });
-  }, []);
+    }
+
+      const deleteHandler = (id) => {
+
+        console.log(id);
+        axiosInstance
+          .post(http_config.BASE_URL + "/api/deleteProduct", {
+            _id: [id],
+          })
+          .then(() => {
+            alert("Tax deleted")
+            fetchData();
+    
+          });
+      };
+    
+      useEffect(() => {
+        fetchData();
+      }, []);
+
+      return{
+        deleteHandler
+      }
+
+  
 };
 
 const Pagination = () => {

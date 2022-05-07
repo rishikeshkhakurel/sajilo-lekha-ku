@@ -16,7 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function ProductDetail() {
-  Product();
+ const{deleteHandler} = Product();
 
   const { rowsPerPage, page, handleChangeRowsPerPage, handleChangePage } =
     Pagination();
@@ -28,7 +28,6 @@ export default function ProductDetail() {
   const unit = data.Unit;
   console.log(unit, "hi");
 
-  const navigate = useNavigate();
 
   // const headCells = [
   //   {
@@ -152,7 +151,9 @@ export default function ProductDetail() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((data) => (
+            {data
+                ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                ?.map((data) => (
               <TableRow
                 sx={{
                   "&:last-child td, &:last-child th": { border: 0 },
@@ -191,7 +192,7 @@ export default function ProductDetail() {
                   </Link>
                 </TableCell>
                 <TableCell>
-                  <DeleteIcon sx={{ cursor: "pointer" }} />
+                  <DeleteIcon onClick={()=>{deleteHandler(data._id)}} sx={{ cursor: "pointer" }} />
                 </TableCell>
               </TableRow>
             ))}

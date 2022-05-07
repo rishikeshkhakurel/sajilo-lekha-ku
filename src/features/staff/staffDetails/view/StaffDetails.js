@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function StaffDetails() {
-  useStaffDetails();
+  const {deleteHandler}=useStaffDetails();
   const data = useSelector((state) => state.staffSlice.data);
   console.log(data);
 
@@ -124,7 +124,9 @@ export default function StaffDetails() {
                       </Link>
                     </TableCell>
                     <TableCell>
-                      <DeleteIcon sx={{ cursor: "pointer" }} />
+                      <DeleteIcon 
+                      onClick={()=>deleteHandler(data._id)}
+                      sx={{ cursor: "pointer" }} />
                     </TableCell>
                   </TableRow>
                 ))}

@@ -42,10 +42,14 @@ export default function Salary() {
       !errors.transactionDate &&
       !errors.staffAddress
     ) {
+
+     
       axiosInstance
         .post(http_config.BASE_URL + "/api/addStaffSalary", formvalue)
         .then((res) => {
+          alert("Successfully Added");
           console.log(res);
+         
         });
     }
   };

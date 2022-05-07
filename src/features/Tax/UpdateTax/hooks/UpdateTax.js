@@ -24,6 +24,7 @@ export default function TaxUpdate() {
   
     axiosInstance.get(http_config.BASE_URL + `/api/`, formvalue ).then((res)=>{
         console.log(res);
+        alert("Update Tax Successful")
       })
 
 

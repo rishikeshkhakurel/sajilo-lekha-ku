@@ -1,32 +1,25 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import http_config from "../../../../common/config/httpconfig/http_config";
 import axiosInstance from "../../../../common/helper/axiosInterceptor";
 
+const ServiceAccount = () => {
+  const [fetchData, setFetchData] = useState({});
 
-const StaffSalary = () => {
+  const location = useLocation();
 
-    const [data, setData] = useState();
+  const data = location.state;
 
+  console.log(data);
 
   useEffect(() => {
     axiosInstance
-      .get(http_config.BASE_URL + "/api/getStaffSalary")
-      .then((response) => {
-        setData(response);
-        console.log(response, "sfasdfsd"); 
-      });
+      .get(http_config.BASE_URL + `/api/serviceSuppliersPersonalAccount?id=${data}`)
+      .then((res) => setFetchData(res));
   }, []);
 
+  console.log(fetchData, "hello");
 
-return {
-
-    data
-}
-
-
-};
-
-const Pagination = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [page, setPage] = useState(0);
 
@@ -39,13 +32,13 @@ const Pagination = () => {
     setPage(newPage);
   };
 
-
   return {
+    fetchData,
     rowsPerPage,
     page,
     handleChangeRowsPerPage,
     handleChangePage,
-    
   };
 };
-export { StaffSalary, Pagination };
+
+export default ServiceAccount;

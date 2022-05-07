@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material';
+import { Button, FormControl, InputLabel, NativeSelect, TextField } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react'
 import Supplier from '../hooks/Supplier';
@@ -90,27 +90,21 @@ const {handleSubmit, handleChange, errors, } = Supplier();
           </Box>
           <Box sx={{ display: "flex", justifyContent: "space-between", mt:4 }}>
 
-<TextField
-    sx={{ width: "45%" }}
-    label="Category"
-    name="category"
-    onChange={handleChange}
-    required
-    InputLabelProps={{ shrink: true }}
-    error={Boolean(errors.category)}
-    helperText={errors.category}
-  />
-
-  <TextField
-    sx={{ width: "45%" }}
-    label="Sub category"
-    name="sub_Category"
-    onChange={handleChange}
-    required
-    InputLabelProps={{ shrink: true }}
-    error={Boolean(errors.sub_Category)}
-    helperText={errors.sub_Category}
-  />
+          <FormControl sx={{ width: "45%" }}>
+              <InputLabel variant="standard">Category</InputLabel>
+              <NativeSelect
+                inputProps={{
+                  name: "category",
+                }}
+                onChange={handleChange}
+                required
+              >
+                <option value={"none"}> None</option>
+                <option value={"AC-GAAE"}>General and Administrative</option>
+                <option value={"TM22"}>By cash</option>
+              </NativeSelect>
+            </FormControl>
+  
 
  
 </Box>
