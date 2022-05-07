@@ -3,7 +3,9 @@ import {
   Button,
   Divider,
   FormControl,
+  MenuItem,
   Paper,
+  Select,
   Table,
   TableBody,
   TableCell,
@@ -22,16 +24,19 @@ import http_config from "../../../common/config/httpconfig/http_config";
 
 const CustomerInvoice = () => {
   const [CustomerName, setCustomerName] = useState("");
+  const [CustomerId, setCustomerId] = useState("");
   const [Address, setAddress] = useState("");
   const [Contact, setContact] = useState("");
   const [CustomerPopup, setCustomerPopup] = useState(false);
-  const [TotalAmount, setTotalAmount] = useState();  
-  const [COGS, setCOGS] = useState();  
-  const [Discount, setDiscount] = useState();  
-  const [PaidAmount, setPaidAmount  ] = useState();  
-  const [AmountNeedtoPay, setAmountNeedtoPay  ] = useState();  
-  const [DueAmount, setDueAmount  ] = useState();  
-  const [Remark, setRemark  ] = useState("");  
+  const [TotalAmount, setTotalAmount] = useState();
+  const [COGS, setCOGS] = useState();
+  const [Discount, setDiscount] = useState();
+  const [PaidAmount, setPaidAmount] = useState();
+  const [AmountNeedtoPay, setAmountNeedtoPay] = useState();
+  const [DueAmount, setDueAmount] = useState();
+  const [Remark, setRemark] = useState("");
+  const [date, setDate] = useState("");
+  const [transctionMethod, settransctionMethod] = useState("TM11");
   const [invoice, setInvoice] = useState([
     {
       ProductName: "",
@@ -61,10 +66,9 @@ const CustomerInvoice = () => {
     },
   ]);
   useEffect(() => {
-    setDueAmount(TotalAmount-PaidAmount-Discount)
-    setAmountNeedtoPay(TotalAmount-Discount)
-    
-  },[Discount,PaidAmount,TotalAmount]);
+    setDueAmount(TotalAmount - PaidAmount - Discount);
+    setAmountNeedtoPay(TotalAmount - Discount);
+  }, [Discount, PaidAmount, TotalAmount]);
   const setInvoiceHandler = (index, value) => {
     const state = invoice;
     const updatedInvoice = invoiceData;
@@ -169,18 +173,16 @@ const CustomerInvoice = () => {
     ]);
   };
 
-  useEffect(()=>{
-    let Amount=0;
-    let cogs=0;
-    invoiceData.map((value)=>{
-      Amount=Amount+value.SubTotal;
-      cogs=cogs+value.COGS;
-
-    })
-    setTotalAmount(Amount)
-    setCOGS(cogs)
-
-  },[invoiceData])
+  useEffect(() => {
+    let Amount = 0;
+    let cogs = 0;
+    invoiceData.map((value) => {
+      Amount = Amount + value.SubTotal;
+      cogs = cogs + value.COGS;
+    });
+    setTotalAmount(Amount);
+    setCOGS(cogs);
+  }, [invoiceData]);
 
   const DeleteRow = (index) => {
     const state = invoice;
@@ -191,23 +193,74 @@ const CustomerInvoice = () => {
     setInvoiceData((prevState) => [...prevState], updatedInvoice);
   };
 
-  const onSubmit=()=>{
-    console.log("data")
-    const data={
+  //   {
+  //     "transactionCategory": "TC-CI",
+  //     "agent_Name": "Rishikesh Khakurel",
+  //     "agent_id": "6251b203fb32511842b98958",
+  //     "agent_Contact_No": "9827168380",
+  //     "agent_Address": "Pokhara-25",
+  //     "receiptNo": "118",
+  //     "transactionDate": "2020/010/12",
+  //     "transactionDetail": [
+  //         {
+  //             "ProductID": "620639faca87e68b78b91435",
+  //             "Sold_Equivalent_SI_Value": "5",
+  //             "ProductName": "Cat",
+  //             "CompanyName": "Tata",
+  //             "Size": "M",
+  //             "Colour": "red",
+  //             "Quality": "Heavy",
+  //             "Unit": "Kg",
+  //             "Rate": "600",
+  //             "Quantity": "20",
+  //             "SubTotal": "200"
+  //         },
+  //         {
+  //             "ProductID": "62063a0dca87e68b78b91438",
+  //             "Sold_Equivalent_SI_Value": "10",
+  //             "ProductName": "mat",
+  //             "CompanyName": "Bolan",
+  //             "Size": "L",
+  //             "Colour": "black",
+  //             "Quality": "Heavy",
+  //             "Unit": "Piece",
+  //             "Rate": "600",
+  //             "Quantity": "20",
+  //             "SubTotal": "200"
+  //         }
+  //     ],
+  //     "totalAmount": "10",
+  //     "discountedAmount": "10",
+  //     "paidAmount": "2500.333",
+  //     "dueAmount": "90",
+  //     "COGS": "1000",
+  //     "transactionMethod": "TM22",
+  //     "remarks": "Verry good customer"
+  // }
+  const onSubmit = () => {
+    console.log("data");
+    const data = {
+      agent_Name: CustomerName,
+      agent_Address: Address,
+      agent_Contact_No: Contact,
       totalAmount: TotalAmount,
+      agent_id: CustomerId,
+      transactionDate: date,
       discountedAmount: Discount,
       paidAmount: PaidAmount,
       dueAmount: DueAmount,
       COGS: COGS,
-      transactionMethod: "TM22",
-      remarks:Remark,
-      transactionDetail:invoiceData
-    }
-    axiosInstance.post(http_config.BASE_URL + `/api/createInvoice`,data).then((res)=>{
-      console.log(res)
-    })
-
-  }
+      transactionCategory: "TC-CI",
+      remarks: Remark,
+      transactionMethod: transctionMethod,
+      transactionDetail: invoiceData,
+    };
+    axiosInstance
+      .post(http_config.BASE_URL + `/api/createInvoice`, data)
+      .then((res) => {
+        console.log(res);
+      });
+  };
   const { Customer, Product } = useCustomer();
 
   return (
@@ -226,6 +279,7 @@ const CustomerInvoice = () => {
             setCustomerName(value?.CustomerName);
             setAddress(value.Address);
             setContact(value.Contact_No);
+            setCustomerId(value._id);
             setCustomerPopup(false);
           }}
           getOptionLabel={(option) =>
@@ -265,8 +319,8 @@ const CustomerInvoice = () => {
             <Typography variant="body1">Contact: {Contact} </Typography>
           </Paper>
           <Paper>
-            <Typography variant="h4">INVOICE DATE {Address} </Typography>
-            <TextField type="date" />
+            <Typography variant="h4">INVOICE DATE</Typography>
+            <TextField type="date" onChange={(e) => setDate(e.target.value)} />
           </Paper>
         </Paper>
         <TableContainer
@@ -438,7 +492,9 @@ const CustomerInvoice = () => {
             </Button>
           </Paper>
           <Paper>
-            <Typography varient="body1">Total Amount : {TotalAmount ? TotalAmount : 0}</Typography>
+            <Typography varient="body1">
+              Total Amount : {TotalAmount ? TotalAmount : 0}
+            </Typography>
             <Paper sx={{ display: "flex", mt: 2 }}>
               <TextField
                 id="standard-basic"
@@ -447,12 +503,29 @@ const CustomerInvoice = () => {
                 variant="standard"
                 InputLabelProps={{ shrink: true }}
                 value={Discount}
-                onChange={(e)=>setDiscount(e.target.value)}
+                onChange={(e) => setDiscount(e.target.value)}
               />
             </Paper>
 
             <Typography varient="body1" mt={2}>
-              Amount to Pay : {AmountNeedtoPay? AmountNeedtoPay : 0}
+              Transction Method:
+            </Typography>
+            <Paper sx={{ display: "flex", mt: 2 }}>
+              <Select
+                fullWidth
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={transctionMethod}
+                defaultValue="TM11"
+                onChange={(e) => settransctionMethod(e.target.value)}
+              >
+                <MenuItem value="TM11">Cash</MenuItem>
+                <MenuItem value="TM22">Bank Deposite</MenuItem>
+              </Select>
+            </Paper>
+
+            <Typography varient="body1" mt={2}>
+              Amount to Pay : {AmountNeedtoPay ? AmountNeedtoPay : 0}
             </Typography>
 
             <Paper sx={{ display: "flex", mt: 2 }}>
@@ -463,7 +536,7 @@ const CustomerInvoice = () => {
                 variant="standard"
                 InputLabelProps={{ shrink: true }}
                 value={PaidAmount}
-                onChange={(e)=>setPaidAmount(e.target.value)}
+                onChange={(e) => setPaidAmount(e.target.value)}
               />
             </Paper>
             <Typography varient="body1" mt={2}>
@@ -477,15 +550,14 @@ const CustomerInvoice = () => {
                 variant="standard"
                 InputLabelProps={{ shrink: true }}
                 value={Remark}
-                onChange={(e)=>setRemark(e.target.value)}
-
+                onChange={(e) => setRemark(e.target.value)}
               />
             </Paper>
             <Button
               color="secondary"
               variant="contained"
               sx={{ mt: 2 }}
-              onClick={()=>onSubmit()}
+              onClick={() => onSubmit()}
             >
               Submit
             </Button>

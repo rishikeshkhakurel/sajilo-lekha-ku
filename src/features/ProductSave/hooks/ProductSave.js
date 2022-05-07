@@ -20,8 +20,6 @@ const useProduct = () => {
     _id: "",
   });
 
-  
-
   const [errors, setErrors] = useState({});
 
   const location = useLocation();
@@ -49,7 +47,7 @@ const useProduct = () => {
 
           stock_Quality_In_SI_Value: res.product.Stock_Quality_In_SI_Value,
 
-          "unit": res.product.Unit,
+          unit: res.product.Unit,
 
           minimum_Stock_Quantity: res.product.Minimum_Stock_Quantity,
 
@@ -65,7 +63,7 @@ const useProduct = () => {
     setErrors(Validate(formvalue));
 
     console.log("hello world");
-    console.log(formvalue,"23232332")
+    console.log(formvalue, "23232332");
 
     const unitString = formvalue.unit.toString();
 
@@ -82,20 +80,17 @@ const useProduct = () => {
     const equivalentString = formvalue.equivalent_SI_Value.toString();
 
     const equivalentArray = equivalentString.split(",");
- 
 
-  const sellingPriceString = formvalue.sellingPrice.toString();
+    const sellingPriceString = formvalue.sellingPrice.toString();
 
-  const sellingPriceArray = sellingPriceString.split(",");
+    const sellingPriceArray = sellingPriceString.split(",");
 
- setformvalue({ ...formvalue, 
+    setformvalue({
+      ...formvalue,
 
-  unit : unitArray
-
-})
-
-
-};
+      unit: unitArray,
+    });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -127,7 +122,6 @@ const useProduct = () => {
     formvalue,
     errors,
     handleSubmit,
-    
   };
 };
 
