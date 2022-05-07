@@ -33,63 +33,68 @@ const useProduct = () => {
         setformvalue({
           ...formvalue,
 
-          productName: res.product.ProductName,
+          productName: res.product[0].ProductName,
 
-          companyName: res.product.CompanyName,
+          companyName: res.product[0].CompanyName,
 
-          size: res.product.Size,
+          size: res.product[0].Size,
 
-          colour: res.product.Colour,
+          colour: res.product[0].Colour,
 
-          costPrice: res.product.CostPrice,
+          costPrice: res.product[0].CostPrice,
 
-          expireyDate: res.product.ExpireyDate,
+          expireyDate: res.product[0].ExpireyDate,
 
-          stock_Quality_In_SI_Value: res.product.Stock_Quality_In_SI_Value,
+          stock_Quality_In_SI_Value: res.product[0].Stock_Quality_In_SI_Value,
 
-          unit: res.product.Unit,
+          unit: res.product[0].Unit,
 
-          minimum_Stock_Quantity: res.product.Minimum_Stock_Quantity,
+          minimum_Stock_Quantity: res.product[0].Minimum_Stock_Quantity,
 
-          sellingPrice: res.product.SellingPrice,
+          sellingPrice: res.product[0].SellingPrice,
 
-          equivalent_SI_Value: res.product.Equivalent_SI_Value,
+          equivalent_SI_Value: res.product[0].Equivalent_SI_Value,
         });
       });
   }, []);
 
+  console.log(formvalue)
+
   const handleOnChange = (e) => {
-    setformvalue({ ...formvalue, [e.target.name]: e.target.value });
-    setErrors(Validate(formvalue));
+    if (
+      e.target.name === "unit" ||
+      e.target.name === "equivalent_SI_Value" ||
+      e.target.name === "costPrice" ||
+      e.target.name === "sellingPrice"
+    ) {
+      const arr = e.target.value.split(",");
+      setformvalue({ ...formvalue, [e.target.name]: arr });
+    } else {
+      setformvalue({ ...formvalue, [e.target.name]: e.target.value });
+      setErrors(Validate(formvalue));
+    }
 
-    console.log("hello world");
-    console.log(formvalue, "23232332");
+    // const unitString = formvalue.unit.toString();
 
-    const unitString = formvalue.unit.toString();
+    // const unitArray = unitString.split(",");
 
-    console.log(unitString);
+    // const costString = formvalue.costPrice.toString();
 
-    const unitArray = unitString.split(",");
+    // const costArray = costString.split(",");
 
-    console.log(unitArray);
+    // const equivalentString = formvalue.equivalent_SI_Value.toString();
 
-    const costString = formvalue.costPrice.toString();
+    // const equivalentArray = equivalentString.split(",");
 
-    const costArray = costString.split(",");
+    // const sellingPriceString = formvalue.sellingPrice.toString();
 
-    const equivalentString = formvalue.equivalent_SI_Value.toString();
+    // const sellingPriceArray = sellingPriceString.split(",");
 
-    const equivalentArray = equivalentString.split(",");
+    // setformvalue({
+    //   ...formvalue,
 
-    const sellingPriceString = formvalue.sellingPrice.toString();
-
-    const sellingPriceArray = sellingPriceString.split(",");
-
-    setformvalue({
-      ...formvalue,
-
-      unit: unitArray,
-    });
+    //   unit: unitArray,
+    // });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
