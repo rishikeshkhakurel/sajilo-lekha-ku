@@ -107,9 +107,7 @@ const AppRoutes = () => {
 
             <Route path="updateServiceSupplier" element={<EditServiceSupplier />} />
           
-
             <Route path="updateGoodsSupplier" element={<EditGoodsSupplier />} />
-
 
             <Route path="updateLoan" element={<LoanEdit />} />
 
@@ -124,15 +122,6 @@ const AppRoutes = () => {
             <Route path="paySalary" element={<PaySalary />} />
 
             <Route path="staffSalaryDetail" element={<StaffSalaryDetail />} />
-
-
-            
-
-
-
-            
-
-            
 
           </Route>
         )}
