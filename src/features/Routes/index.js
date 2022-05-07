@@ -47,7 +47,7 @@ const AppRoutes = () => {
       <Routes>
         {login.data.login && (
           <Route path="/" element={<AuthElement />}>
-            <Route path="/" element={<Dashboard />} />
+            <Route index element={<Dashboard />} />
             
 
             <Route path="customerDetail" element={<CustomerDetail />} />
@@ -127,7 +127,7 @@ const AppRoutes = () => {
         )}
         {!login.data.login && (
           <React.Fragment>
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="*" element={<Navigate to="/" />} />
           </React.Fragment>

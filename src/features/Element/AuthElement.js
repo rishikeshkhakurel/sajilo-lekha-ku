@@ -1,6 +1,7 @@
 import {
   AppBar,
   Box,
+  Button,
   Collapse,
   Divider,
   Drawer,
@@ -13,8 +14,10 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useDispatch } from "react-redux";
+import userSlice from "../../redux/slice/User.Slice";
 
 const drawerWidth = 240;
 
@@ -25,7 +28,7 @@ const menu = [
       { name: "Add customer", link: "/addCustomer" },
       { name: "Customer Detail", link: "/customerDetail" },
       { name: "Customer Ledger", link: "/customerLedger" },
-      {name: "Customer Invoice", link: "/CustomerInvoice",}
+      { name: "Customer Invoice", link: "/CustomerInvoice" },
     ],
   },
 
@@ -69,7 +72,7 @@ const menu = [
     name: "Service Supplier",
     subcategoty: [
       { name: "Add service supplier", link: "/addServiceSupplier" },
-      { name: "Service supplier detail", link: "/serviceSupplierDetail" }
+      { name: "Service supplier detail", link: "/serviceSupplierDetail" },
     ],
   },
 
@@ -77,7 +80,7 @@ const menu = [
     name: "Goods Supplier",
     subcategoty: [
       { name: "Add goods supplier", link: "/addGoodsSupplier" },
-      { name: "Goods supplier detail", link: "/goodsSupplierDetail" }
+      { name: "Goods supplier detail", link: "/goodsSupplierDetail" },
     ],
   },
 ];
@@ -86,19 +89,31 @@ const AuthElement = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [collapse, setcollapse] = useState("");
+  const dispatch=useDispatch()
+
+  const logoutHandler=()=>{
+    localStorage.clear()
+    dispatch(userSlice.actions.setData({ login: false }));
+
+  }
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
   const drawer = (
     <div>
-      <Toolbar>
-        <Typography variant="h2" sx={{ color: "white" }}>
-          SajiloLekha
-        </Typography>{" "}
-      </Toolbar>
+      <AppBar>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Typography variant="h2" sx={{ color: "white" }}>
+            SajiloLekha
+          </Typography>
+          <Button color="secondary" sx={{ color: "white" }} onClick={()=>logoutHandler()}>
+            Log Out
+          </Button>
+        </Toolbar>
+      </AppBar>
       <Divider />
-      <List>
+      <List sx={{marginTop:"80px"}}>
         {menu.map((category) => (
           <React.Fragment key={category.name}>
             {category.link ? (
@@ -227,8 +242,8 @@ const AuthElement = (props) => {
   const container =
     window !== undefined ? () => window().document.body : undefined;
   return (
-    <Box sx={{ display: "flex" }}>
-      <AppBar
+    <Box sx={{ display: "flex", marginTop:"20px" }}>
+      {/* <AppBar
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
@@ -251,10 +266,10 @@ const AuthElement = (props) => {
             component="div"
             sx={{ color: "white" }}
           >
-            Sajilo Lekha
+            
           </Typography>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
