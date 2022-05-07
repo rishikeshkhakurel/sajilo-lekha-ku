@@ -13,16 +13,25 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useCustomer from "../hooks/useCustomer";
 import DialogComp from "../../../common/component/Dialog";
+import axiosInstance from "../../../common/helper/axiosInterceptor";
+import http_config from "../../../common/config/httpconfig/http_config";
 
 const CustomerInvoice = () => {
   const [CustomerName, setCustomerName] = useState("");
   const [Address, setAddress] = useState("");
   const [Contact, setContact] = useState("");
   const [CustomerPopup, setCustomerPopup] = useState(false);
+  const [TotalAmount, setTotalAmount] = useState();  
+  const [COGS, setCOGS] = useState();  
+  const [Discount, setDiscount] = useState();  
+  const [PaidAmount, setPaidAmount  ] = useState();  
+  const [AmountNeedtoPay, setAmountNeedtoPay  ] = useState();  
+  const [DueAmount, setDueAmount  ] = useState();  
+  const [Remark, setRemark  ] = useState("");  
   const [invoice, setInvoice] = useState([
     {
       ProductName: "",
@@ -31,30 +40,31 @@ const CustomerInvoice = () => {
       Size: "",
       Quality: "",
       Unit: [],
-      Sold_Equivalent_SI_Value:[],
+      Sold_Equivalent_SI_Value: [],
       Rate: [],
       CostPrice: [],
     },
   ]);
-  
+
   const [invoiceData, setInvoiceData] = useState([
     {
       ProductName: "",
-      Sold_Equivalent_SI_Value:"",
+      Sold_Equivalent_SI_Value: "",
       CompanyName: "",
       Colour: "",
       Size: "",
       Quality: "",
-      Unit: "" ,
-      Rate: "" ,
+      Unit: "",
+      Rate: "",
       CostPrice: "",
-      COGS:"",
+      COGS: "",
     },
   ]);
-  React.useEffect(() => {
-    console.log("*******88", invoice);
-    console.log("*******99", invoiceData);
-  });
+  useEffect(() => {
+    setDueAmount(TotalAmount-PaidAmount-Discount)
+    setAmountNeedtoPay(TotalAmount-Discount)
+    
+  },[Discount,PaidAmount,TotalAmount]);
   const setInvoiceHandler = (index, value) => {
     const state = invoice;
     const updatedInvoice = invoiceData;
@@ -100,11 +110,11 @@ const CustomerInvoice = () => {
       updatedInvoice[index].CostPrice = value?.CostPrice[0];
     }
 
-    setInvoice((prevState) => [...prevState],state);
-    setInvoiceData((prevState) => [...prevState],updatedInvoice);
+    setInvoice((prevState) => [...prevState], state);
+    setInvoiceData((prevState) => [...prevState], updatedInvoice);
   };
 
-  const setInvoiceDataHandler = (index, value,i) => {
+  const setInvoiceDataHandler = (index, value, i) => {
     const state = invoiceData;
     if (value.Unit) {
       state[index].Unit = value?.Unit;
@@ -112,21 +122,25 @@ const CustomerInvoice = () => {
       state[index].CostPrice = invoice[index]?.CostPrice[i];
     }
     if (value.Quantity) {
-      console.log(invoice[index].Rate.indexOf(invoiceData[index]?.Rate))
+      console.log(invoice[index].Rate.indexOf(invoiceData[index]?.Rate));
       state[index].Quantity = value?.Quantity;
-      state[index].SubTotal = value?.Quantity*invoiceData[index]?.Rate; 
-      state[index].Sold_Equivalent_SI_Value = value?.Quality*invoice[index]?.Sold_Equivalent_SI_Value[invoice[index].Rate.indexOf(invoiceData[index]?.Rate)];
-      state[index].COGS = value?.Quantity*invoiceData[index]?.CostPrice;
+      state[index].SubTotal = value?.Quantity * invoiceData[index]?.Rate;
+      state[index].Sold_Equivalent_SI_Value =
+        value?.Quality *
+        invoice[index]?.Sold_Equivalent_SI_Value[
+          invoice[index].Rate.indexOf(invoiceData[index]?.Rate)
+        ];
+      state[index].COGS = value?.Quantity * invoiceData[index]?.CostPrice;
     }
-    setInvoiceData((prevState) => [...prevState],state);
+    setInvoiceData((prevState) => [...prevState], state);
   };
 
   const handleRow = () => {
     setInvoice((prevState) => [
       ...prevState,
       {
-        ProductID:"",
-        Sold_Equivalent_SI_Value:[],
+        ProductID: "",
+        Sold_Equivalent_SI_Value: [],
         ProductName: "",
         CompanyName: "",
         Colour: "",
@@ -140,8 +154,8 @@ const CustomerInvoice = () => {
     setInvoiceData((prevState) => [
       ...prevState,
       {
-        ProductID:"",
-        Sold_Equivalent_SI_Value:"",
+        ProductID: "",
+        Sold_Equivalent_SI_Value: "",
         ProductName: "",
         CompanyName: "",
         Colour: "",
@@ -150,11 +164,50 @@ const CustomerInvoice = () => {
         Unit: "",
         Rate: "",
         Quantity: "",
-        SubTotal:""
+        SubTotal: "",
       },
     ]);
   };
 
+  useEffect(()=>{
+    let Amount=0;
+    let cogs=0;
+    invoiceData.map((value)=>{
+      Amount=Amount+value.SubTotal;
+      cogs=cogs+value.COGS;
+
+    })
+    setTotalAmount(Amount)
+    setCOGS(cogs)
+
+  },[invoiceData])
+
+  const DeleteRow = (index) => {
+    const state = invoice;
+    const updatedInvoice = invoiceData;
+    state.pop(index);
+    updatedInvoice.pop(index);
+    setInvoice((prevState) => [...prevState], state);
+    setInvoiceData((prevState) => [...prevState], updatedInvoice);
+  };
+
+  const onSubmit=()=>{
+    console.log("data")
+    const data={
+      totalAmount: TotalAmount,
+      discountedAmount: Discount,
+      paidAmount: PaidAmount,
+      dueAmount: DueAmount,
+      COGS: COGS,
+      transactionMethod: "TM22",
+      remarks:Remark,
+      transactionDetail:invoiceData
+    }
+    axiosInstance.post(http_config.BASE_URL + `/api/createInvoice`,data).then((res)=>{
+      console.log(res)
+    })
+
+  }
   const { Customer, Product } = useCustomer();
 
   return (
@@ -218,7 +271,7 @@ const CustomerInvoice = () => {
         </Paper>
         <TableContainer
           component={Paper}
-          sx={{ maxHeight: "600px", minHeight: "300px" }}
+          sx={{ maxHeight: "350px", minHeight: "350px" }}
         >
           <Table aria-label="simple table">
             <TableHead>
@@ -261,7 +314,6 @@ const CustomerInvoice = () => {
                           options={Product}
                           onChange={(e, value) => {
                             setInvoiceHandler(index, {
-
                               ProductID: value?._id,
                               CompanyName: value?.CompanyName,
                               ProductName: value?.ProductName,
@@ -269,7 +321,8 @@ const CustomerInvoice = () => {
                               Size: value?.Size,
                               Unit: value?.Unit,
                               Rate: value?.SellingPrice,
-                              Sold_Equivalent_SI_Value: value?.Equivalent_SI_Value,
+                              Sold_Equivalent_SI_Value:
+                                value?.Equivalent_SI_Value,
                               CostPrice: value?.CostPrice,
                             });
                           }}
@@ -309,33 +362,33 @@ const CustomerInvoice = () => {
                     </TableCell>
 
                     <TableCell component="th" scope="row">
-                    <Autocomplete
-                          disablePortal
-                          id="combo-box-demo"
-                          options={value.Unit}
-                          onChange={(e,unit)=>{
-                            setInvoiceDataHandler(index,{
-                              Unit:unit,
-                            },value.Unit.indexOf(unit))
-                          }}
-                          getOptionLabel={(option) =>
-                            option
-                          }
-                          sx={{ width: 150, p: 1 }}
-                          renderInput={(params) => (
-                            <TextField
-                              {...params}
-                              autocomplete="off"
-                              label="Unit"
-                            />
-                          )}
-                        />
+                      <Autocomplete
+                        disablePortal
+                        id="combo-box-demo"
+                        options={value.Unit}
+                        onChange={(e, unit) => {
+                          setInvoiceDataHandler(
+                            index,
+                            {
+                              Unit: unit,
+                            },
+                            value.Unit.indexOf(unit)
+                          );
+                        }}
+                        getOptionLabel={(option) => option}
+                        sx={{ width: 150, p: 1 }}
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            autocomplete="off"
+                            label="Unit"
+                          />
+                        )}
+                      />
                     </TableCell>
 
                     <TableCell component="th" scope="row">
-                    <Typography variant="body1">
-                        {value.Size}
-                      </Typography>
+                      <Typography variant="body1">{value.Size}</Typography>
                     </TableCell>
 
                     <TableCell component="th" scope="row">
@@ -343,26 +396,28 @@ const CustomerInvoice = () => {
                         id="standard-basic"
                         placeholder="10"
                         variant="standard"
-                        onChange={(e)=>setInvoiceDataHandler(index,{
-                          Quantity:e.target.value,
-                        })}
+                        onChange={(e) =>
+                          setInvoiceDataHandler(index, {
+                            Quantity: e.target.value,
+                          })
+                        }
                       />
                     </TableCell>
 
                     <TableCell component="th" scope="row">
-                    <Typography variant="body1">
-                      {invoiceData[index]?.Rate}
+                      <Typography variant="body1">
+                        {invoiceData[index]?.Rate}
                       </Typography>
                     </TableCell>
 
                     <TableCell component="th" scope="row">
-                    <Typography variant="body1">
-                      {invoiceData[index]?.SubTotal}
+                      <Typography variant="body1">
+                        {invoiceData[index]?.SubTotal}
                       </Typography>
                     </TableCell>
 
                     <TableCell component="th" scope="row">
-                      <DeleteIcon />
+                      <DeleteIcon onClick={(e) => DeleteRow(index)} />
                     </TableCell>
                   </TableRow>
                 );
@@ -370,9 +425,72 @@ const CustomerInvoice = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <Button variant="contained" sx={{ mt: 2 }} onClick={handleRow}>
-          Add Row
-        </Button>
+        <Paper
+          sx={{
+            padding: "0 40px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Paper>
+            <Button variant="contained" sx={{ mt: 2 }} onClick={handleRow}>
+              Add Row
+            </Button>
+          </Paper>
+          <Paper>
+            <Typography varient="body1">Total Amount : {TotalAmount ? TotalAmount : 0}</Typography>
+            <Paper sx={{ display: "flex", mt: 2 }}>
+              <TextField
+                id="standard-basic"
+                placeholder=" 100"
+                label="Discount Amount"
+                variant="standard"
+                InputLabelProps={{ shrink: true }}
+                value={Discount}
+                onChange={(e)=>setDiscount(e.target.value)}
+              />
+            </Paper>
+
+            <Typography varient="body1" mt={2}>
+              Amount to Pay : {AmountNeedtoPay? AmountNeedtoPay : 0}
+            </Typography>
+
+            <Paper sx={{ display: "flex", mt: 2 }}>
+              <TextField
+                id="standard-basic"
+                placeholder=" 100"
+                label="Paid Amount"
+                variant="standard"
+                InputLabelProps={{ shrink: true }}
+                value={PaidAmount}
+                onChange={(e)=>setPaidAmount(e.target.value)}
+              />
+            </Paper>
+            <Typography varient="body1" mt={2}>
+              Due Amount : {DueAmount ? DueAmount : 0}
+            </Typography>
+            <Paper sx={{ display: "flex", mt: 2 }}>
+              <TextField
+                id="standard-basic"
+                placeholder=" Good"
+                label="Remark"
+                variant="standard"
+                InputLabelProps={{ shrink: true }}
+                value={Remark}
+                onChange={(e)=>setRemark(e.target.value)}
+
+              />
+            </Paper>
+            <Button
+              color="secondary"
+              variant="contained"
+              sx={{ mt: 2 }}
+              onClick={()=>onSubmit()}
+            >
+              Submit
+            </Button>
+          </Paper>
+        </Paper>
       </Paper>
     </>
   );
