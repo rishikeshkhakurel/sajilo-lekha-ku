@@ -66,6 +66,19 @@ const {handleChange,errors, onSubmit}=Tax();
             />
           </Box>
 
+          <Box sx={{ display: "flex", justifyContent: "space-between", mt:4 }}>
+            <TextField
+              sx={{ width: "45%" }}
+              name="remarks"
+              label="Remarks"
+              InputLabelProps={{ shrink: true }}
+              required
+              onChange={handleChange}
+              error={Boolean(errors.transactionDate)}
+              helperText={errors.transactionDate}
+            />
+           </Box>
+
           <Button
             sx={{ mt: 4, height: "50px" }}
             variant="contained"

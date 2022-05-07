@@ -31,6 +31,13 @@ import ServiceSupplierDetail from "../Supplier/ServiceSupplierDetail/view";
 import UpdateProduct from "../ProductSave/view";
 import EditServiceSupplier from "../Supplier/ServiceSupplierDetail/EditSupplier/view/index"
 import EditGoodsSupplier from "../Supplier/GoodsSupplierDetails/EditGoodsSupplier/view";
+import LoanEdit from "../Loan/LoanDetail/Edit Loan/view";
+import UpdateStaff from "../staff/updateStaff/view";
+import UpdateTax from "../Tax/UpdateTax/view";
+import UpdateInterest from "../UpdateInterest/view";
+import AddSalary from "../staff/AddSalary/view";
+import PaySalary from "../staff/PaySalary/view";
+import StaffSalaryDetail from "../staff/staffSalaryDetail/view";
 
 const AppRoutes = () => {
   const login = useSelector((state) => state.userSlice);
@@ -104,8 +111,25 @@ const AppRoutes = () => {
             <Route path="updateGoodsSupplier" element={<EditGoodsSupplier />} />
 
 
+            <Route path="updateLoan" element={<LoanEdit />} />
+
+            <Route path="updateStaff" element={<UpdateStaff />} />
+
+            <Route path="updateTax" element={<UpdateTax />} />
+
+            <Route path="updateInterest" element={<UpdateInterest />} />
+
+            <Route path="addSalary" element={<AddSalary />} />
+
+            <Route path="paySalary" element={<PaySalary />} />
+
+            <Route path="staffSalaryDetail" element={<StaffSalaryDetail />} />
+
+
             
-            
+
+
+
             
 
             

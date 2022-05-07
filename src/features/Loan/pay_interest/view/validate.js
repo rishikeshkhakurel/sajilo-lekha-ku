@@ -17,6 +17,12 @@ const Validate = (formvalue) => {
     errors.transactionDetail = "Enter transaction details";
   }
 
+  
+  if (!formvalue.remarks) {
+    errors.remarks = "Enter remarks";
+  }
+
+
   return errors;
 };
 

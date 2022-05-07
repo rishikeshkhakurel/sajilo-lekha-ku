@@ -77,6 +77,21 @@ const {onSubmit, handleChange, errors } = Interest();
      />
      </Box>
 
+     <Box sx={{display:"flex", justifyContent:"space-between", mt:4}}>  
+  
+
+  <TextField
+  sx={{width:"45%"}}
+    name="remarks"
+    label="Remarks"
+    InputLabelProps={{ shrink: true }}
+    required
+    onChange={handleChange}
+    error={Boolean(errors.remarks)}
+    helperText={errors.remarks}
+  />
+  </Box>
+
       <Button sx={{mt:4, height:"50px"}} variant="contained" type="submit">
         Pay Interest
       </Button>

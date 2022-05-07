@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react'
 import http_config from '../../../../common/config/httpconfig/http_config';
+import axiosInstance from '../../../../common/helper/axiosInterceptor';
 import Validate from "../view/validate";
 
 
@@ -10,7 +11,8 @@ export default function Principle() {
         transactionDate:"",
         interestAmount:"",
         transactionMethod:"",
-        transactionDetail:"" 
+        transactionDetail:"" ,
+        remarks: ""
      })
  
  
@@ -27,13 +29,12 @@ export default function Principle() {
          e.preventDefault();
          console.log(formvalue);
  
-         if(!errors.transactionDate && !errors.interestAmount && !errors.transactionMethod && !errors.transactionDetail) {
        
-         axios.post(http_config.BASE_URL + "/api/payInterest", formvalue ).then((res)=>{
+         axiosInstance.post(http_config.BASE_URL + "/api/payInterest", formvalue ).then((res)=>{
            console.log(res);
          })
        
-         }
+         
  
      }
  

@@ -1,14 +1,14 @@
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
-import React, {useState} from "react";
-import EditSupplier from "../hooks/EditSupplier";
+import React, { useState } from "react";
+import useEditSupplier from "../hooks/EditSupplier";
 
 export default function EditServiceSupplier() {
-  const { handleSubmit, handleChange, errors, fetchData, formvalue } = EditSupplier();
+  const { formvalue, handleSubmit, handleChange, errors, fetchData } =
+    useEditSupplier();
+ 
 
   console.log(fetchData, "hello world");
-
-
 
   return (
     <React.Fragment>
@@ -18,20 +18,21 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Servie Supplier Name"
-              value={formvalue?.ServiceSupplierName}
-              name="ServiceSupplierName"
+              name="serviceSupplierName"
+
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
-              error={Boolean(errors.serviceSupplierName)}
-              helperText={errors.serviceSupplierName}
+              value={formvalue.serviceSupplierName}
+             
             />
 
             <TextField
               sx={{ width: "45%" }}
               label="Address"
-              name="Address"
-              value={formvalue?.Address}
+              name="address"
+              value={formvalue.address}
+
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -45,8 +46,10 @@ export default function EditServiceSupplier() {
               sx={{ width: "45%" }}
               label="Contact No"
               type="number"
-              name="Contact_No"
-              value={formvalue?.Contact_No}
+              name="contact_No"
+              value={formvalue.contact_No}
+
+
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -57,8 +60,10 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Credit Limit"
-              name="Credit_Limit"
-              value={formvalue?.Credit_Limit}
+              name="credit_Limit"
+              value={formvalue.credit_Limit}
+
+
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -71,8 +76,10 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Status"
-              name="Status"
-              value={formvalue?.Status}
+              name="status"
+              value={formvalue.status}
+
+
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -83,8 +90,10 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Remarks"
-              name="Remarks"
-              value={formvalue?.Remarks}
+              name="remarks"
+              value={formvalue.remarks}
+
+  
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -96,8 +105,10 @@ export default function EditServiceSupplier() {
             <TextField
               sx={{ width: "45%" }}
               label="Category"
-              name="Category"
-              value={formvalue?.Category}
+              name="category"
+              value={formvalue.category}
+
+
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -105,16 +116,8 @@ export default function EditServiceSupplier() {
               helperText={errors.category}
             />
 
-            <TextField
-              sx={{ width: "45%" }}
-              label="Sub category"
-              name="Sub_Category"
-              onChange={handleChange}
-              required
-              InputLabelProps={{ shrink: true }}
-              error={Boolean(errors.sub_Category)}
-              helperText={errors.sub_Category}
-            />
+           
+
           </Box>
 
           <Button

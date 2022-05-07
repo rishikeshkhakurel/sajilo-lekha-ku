@@ -52,10 +52,10 @@ const menu = [
   {
     name: "Staff",
     subcategoty: [
-      { name: "Add staff", link: "/addStaff" },
-      { name: "Staff Ledger", link: "/StaffLedger" },
-      { name: "Staff Details", link: "/StaffDetails" },
-    ],
+      { name: "Add Salary", link: "/addSalary" },
+      { name: "Pay Salary", link: "/paySalary" },
+      { name: "Staff Salary Detail", link: "/staffSalaryDetail" },
+    ]
   },
 
   {

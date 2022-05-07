@@ -10,44 +10,69 @@ const useProduct = () => {
     size: "",
     colour: "",
     expireyDate: "",
-    unit: "",
-    equivalent_SI_Value: "",
-    costPrice: "",
-    sellingPrice: "",
+    unit: [],
+    equivalent_SI_Value: [],
+    costPrice: [],
+    sellingPrice: [],
     minimum_Stock_Quantity: "",
     stock_Quality_In_SI_Value: "",
   });
+
+ 
+
+  const [unit,setUnit]=useState("");
+
+  const [equivalent_SI_Value, setEquivalent_SI_Value] = useState("");
+
+  const[costPrice, setCostPrice] = useState("");
+
+  const [sellingPrice, setSellingPrice] = useState("");
+
+
+
+  useEffect(()=>{
+    const unitarray = unit.split(","); 
+
+    const equivalent_SI_ValueArray = equivalent_SI_Value.split(",");
+    
+    const costPriceArray = costPrice.split(",");
+
+    const sellingPriceArray = sellingPrice.split(",");
+
+  
+    setformvalue({...formvalue,"unit":unitarray,
+     "equivalent_SI_Value":equivalent_SI_ValueArray,
+     "costPrice": costPriceArray,
+     "sellingPrice" : sellingPriceArray,
+
+  })
+  },[unit, equivalent_SI_Value, costPrice, sellingPrice])
 
   const [errors, setErrors] = useState({});
 
   const handleOnChange = (e) => {
     setformvalue({ ...formvalue, [e.target.name]: e.target.value });
     setErrors(Validate(formvalue));
+
+
+  
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formvalue);
 
-    if (
-      !errors.size &&
-      !errors.colour &&
-      !errors.expireyDate &&
-      !errors.unit &&
-      !errors.equivalent_SI_Value &&
-      !errors.costPrice &&
-      !errors.sellingPrice &&
-      !errors.minimum_Stock_Quantity &&
-      !errors.stock_Quality_In_SI_Value
-    ) {
-      axiosInstance.BASE_URL.post(
-       http_config.BASE_URL + "/api/addProduct",
+console.log("fomrvalue", formvalue)
+
+    e.preventDefault();
+
+    
+ axiosInstance.post(
+ http_config.BASE_URL + "/api/addProduct",
         formvalue
       ).then((response) => {
         console.log(response, "formvalue");
       });
     }
-  };
+
 
   return {
     handleOnChange,
@@ -55,6 +80,10 @@ const useProduct = () => {
     formvalue,
     errors,
     handleSubmit,
+    setUnit,
+    setEquivalent_SI_Value,
+    setCostPrice,
+    setSellingPrice
   };
 };
 

@@ -10,7 +10,8 @@ export default function Tax() {
         transactionDate:"",
         taxAmount:"",
         transactionMethod:"",
-        transactionDetail:"" 
+        transactionDetail:"" ,
+        remarks: ""
      })
  
  
