@@ -52,6 +52,8 @@ const CustomerInvoice = () => {
     },
   ]);
 
+  const { Customer, Product } = useCustomer();
+
   const [invoiceData, setInvoiceData] = useState([
     {
       ProductName: "",
@@ -268,13 +270,12 @@ const CustomerInvoice = () => {
     axiosInstance
       .get(
         http_config.BASE_URL +
-          `/api/getReceiptNo?id=${localStorage.getItem("id")}`
+          `/api/getReceiptNo?id=${CustomerId}`
       )
       .then((res) => {
         setReceiptNumber(res.receiptNo);
       });
-  }, []);
-  const { Customer, Product } = useCustomer();
+  }, [CustomerId]);
 
   return (
     <>
