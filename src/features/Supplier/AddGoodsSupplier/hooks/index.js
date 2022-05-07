@@ -32,6 +32,7 @@ export default function GoodSupplier() {
      if(!errors.goodsSupplierName || errors.address || errors.contact_NO || errors.credit_Limit ||errors.status || errors.remarks){
     axiosInstance.post(http_config.BASE_URL + "/api/addGoodsSuppliers", formvalue).then(res => {
   console.log(res, "post");
+  alert("Successfully Added")
   
     });
   }

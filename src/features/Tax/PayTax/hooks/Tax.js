@@ -32,6 +32,7 @@ export default function Tax() {
        
          axiosInstance.post(http_config.BASE_URL + "/api/payTax", formvalue ).then((res)=>{
            console.log(res);
+           alert("Pay Tax Successful")
          })
        
          }

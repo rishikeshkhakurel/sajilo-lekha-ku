@@ -12,6 +12,8 @@ import personalSlice from "./slice/personalAccountSlice";
 import goodsSupplierDetail from "./slice/GoodsSupplierDetail";
 import serviceSupplierSlice from "./slice/ServiceSupplierSlice";
 import staffLedgerSlice from "./slice/staffLedgerSlice";
+import serviceSupplierLedgerSlice from "./slice/serviceSupplierLedger";
+import goodsSupplierLedger from "./slice/goodsSupplierLedgerSlice";
 
 const store = configureStore({
     reducer:{
@@ -27,7 +29,9 @@ const store = configureStore({
         personalAccountSlice: personalSlice.reducer,
         goodsSupplierDetail:goodsSupplierDetail.reducer,
         serviceSupplierSlice: serviceSupplierSlice.reducer,
-        staffLedgerSlice: staffLedgerSlice.reducer
+        staffLedgerSlice: staffLedgerSlice.reducer,
+        serviceSupplierSlice: serviceSupplierLedgerSlice.reducer,
+        goodsSupplierLedger:goodsSupplierLedger.reducer
     }  
 })
 

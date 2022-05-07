@@ -10,17 +10,17 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import Personal from "../hooks/StaffPersonalAccount";
 import React from "react";
+import GoodsAccount from "../hooks/goodsSupplierAccount";
 
-export default function StaffPersonalAccount() {
+export default function GoodsSupplierAccount() {
   const {
     fetchData,
     rowsPerPage,
     page,
     handleChangeRowsPerPage,
     handleChangePage,
-  } = Personal();
+  } =  GoodsAccount();
 
   // transaction detail of staff
 
@@ -77,7 +77,7 @@ export default function StaffPersonalAccount() {
             alignItems: "center",
           }}
         >
-        Staff Personal Account
+        Goods Supplier Personal Account
         </Typography>
       </Box>
       <TableContainer component={Paper}>

@@ -25,6 +25,7 @@ export default function InterestUpdate() {
       .get(http_config.BASE_URL + `/api/getInterest?id=${data}`)
       .then((res) => {
         console.log("********", res);
+        alert("Update Interest Successful")
 
         setformvalue({
           ...formvalue,

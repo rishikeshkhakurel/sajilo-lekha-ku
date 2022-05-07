@@ -41,6 +41,7 @@ export default function Staff() {
         .post(http_config.BASE_URL + "/api/addStaff", formvalue)
         .then((res) => {
           console.log(res);
+          alert("Successfully Added")
         });
     }
   };

@@ -43,10 +43,7 @@ const Validate = (formvalue)=>{
         errors.category="Category is required";
     }
 
-    if(!formvalue.sub_Category){
     
-        errors.sub_Category="Sub Catergory is required";
-    }
     
     return errors;
     

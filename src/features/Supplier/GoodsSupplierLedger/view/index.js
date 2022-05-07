@@ -8,23 +8,21 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Box, TablePagination, Typography } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import {PageSelect,StaffLedgerHook }from "./hooks/index";
 import { Link } from "react-router-dom";
-import DeleteIcon from '@mui/icons-material/Delete';
+import { GoodsSupplier, PageSelect } from "../hooks/GoodsSupplierLedger";
 
-export default function StaffLedger() {
+export default function GoodsSupplierLedger() {
 
-  StaffLedgerHook();
+  GoodsSupplier();
 
 
 
   const { rowsPerPage, page, handleChangeRowsPerPage, handleChangePage } =
   PageSelect();
 
-  const data = useSelector((state) => state.staffLedgerSlice.data);
+  const data = useSelector((state) => state.goodsSupplierLedger.data);
 
-  console.log(data, "formvalue");
+  console.log(data, "formvaluem asdfsdf");
 
 
   
@@ -39,9 +37,8 @@ export default function StaffLedger() {
   return (
     <React.Fragment>
 
-
+    
       
-
 <Box sx={{ m: 3, mt: 4 }}>
 
 <Box>
@@ -57,7 +54,7 @@ export default function StaffLedger() {
             alignItems: "center",
           }}
         >
-          Staff Ledger
+          Goods Supplier Ledger
         </Typography>
 
         </Box>
@@ -68,11 +65,11 @@ export default function StaffLedger() {
           <TableHead>
             <TableRow sx={{ backgroundColor: "#2196f3" }}>
               <TableCell sx={style}>SN</TableCell>
-              <TableCell sx={style}>Staff Name</TableCell>
+              <TableCell sx={style}>Goods Supplier Name</TableCell>
 
-              <TableCell sx={style}>Staff Contact No</TableCell>
+              <TableCell sx={style}> Address</TableCell>
 
-              <TableCell sx={style}>Staff Address</TableCell>
+              <TableCell sx={style}>Contact No</TableCell>
               <TableCell sx={style}>Balance</TableCell>
 
               <TableCell sx={style}>Status</TableCell>
@@ -92,10 +89,14 @@ export default function StaffLedger() {
                 }}
               >
                 <TableCell>{data.sn}</TableCell>
-                <TableCell><Link to ={`/staffPersonalAccount`} state={data.staffId}>{data.staffName}</Link></TableCell>
-                <TableCell>{data.staffContact}</TableCell>
-                <TableCell>{data.staffAddress}</TableCell>
-                <TableCell>{data.staffSalaryBalance}</TableCell>
+                <TableCell><Link to ={`/serviceSupplierAccount`} state={data.staffId}>{data.goodsSuppliersName}</Link></TableCell>
+                <TableCell>{data.goodsSuppliersAddress}</TableCell>
+                  
+                <TableCell>{data.goodsSuppliersContact}</TableCell>
+
+
+                <TableCell>{data.goodsSuppliersBalance}</TableCell>
+               
                 <TableCell>{data.status}</TableCell>
 
                
@@ -116,8 +117,8 @@ export default function StaffLedger() {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Box>
+      /> 
+     </Box>  
       
     </React.Fragment>
   );

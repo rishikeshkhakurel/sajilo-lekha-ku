@@ -20,7 +20,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function LoanDetail() {
 
-  Loan();
+ const {deleteHandler} =Loan();
 
   const data = useSelector((state) =>state.loanSlice.data);
 
@@ -142,6 +142,8 @@ const style = {
                     </TableCell>
                     <TableCell>
                 <DeleteIcon 
+
+                onClick={()=>{deleteHandler(data.id)}}
                     sx={{cursor:"pointer"}}
                     /></TableCell>
 

@@ -7,16 +7,38 @@ import loanSlice from "../../../../redux/slice/loanSlice.js";
 
     const Loan = () => {
         const dispatch = useDispatch();
-        useEffect(() => {
+        const fetchData= () => {
            axiosInstance
             .get(http_config.BASE_URL + "/api/displayLoan")
             .then((response) => {
               dispatch(loanSlice.actions.setData(response.loans));
               console.log(response.loans);  
             });
-        }, []);
+        }
 
+   
+  const deleteHandler = (id) => {
 
+    console.log(id);
+    axiosInstance
+      .post(http_config.BASE_URL + "/api/deleteLoan", {
+        _id: [id],
+      })
+      .then(() => {
+        alert("Loan Deleted")
+        fetchData();
+        
+
+      });
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return{
+    deleteHandler
+  }
         
       };
       

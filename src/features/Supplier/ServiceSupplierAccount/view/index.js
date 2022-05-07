@@ -10,17 +10,17 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import Personal from "../hooks/StaffPersonalAccount";
 import React from "react";
+import ServiceAccount from "../hooks/ServiceSupplierAccount";
 
-export default function StaffPersonalAccount() {
+export default function ServiceSupplierAccount() {
   const {
     fetchData,
     rowsPerPage,
     page,
     handleChangeRowsPerPage,
     handleChangePage,
-  } = Personal();
+  } =  ServiceAccount();
 
   // transaction detail of staff
 

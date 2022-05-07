@@ -16,7 +16,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function TaxDetail() {
 
-Tax();
+const{deleteHandler}=Tax();
 
 const data = useSelector(state=>(state.taxSlice.data))
 
@@ -139,7 +139,9 @@ const style = {
                   </Link>
                 </TableCell>
              <TableCell> 
-               <DeleteIcon sx={{cursor:"pointer"}} />
+               <DeleteIcon
+               onClick={()=>{deleteHandler(data._id)}}
+               sx={{cursor:"pointer"}} />
                
                 </TableCell>
 

@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import http_config from '../../../../common/config/httpconfig/http_config';
+import axiosInstance from '../../../../common/helper/axiosInterceptor';
 import Validate from './validate';
 
 export default function Supplier() {
@@ -12,7 +14,7 @@ export default function Supplier() {
     status:"",
     remarks:"",
     category:"",
-    sub_Category:""
+    // sub_Category:""
 
   });
 
@@ -27,7 +29,12 @@ export default function Supplier() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formvalue);
+    
 
+    axiosInstance.post(http_config.BASE_URL + "/api/addServiceSuppliers", formvalue ).then((res)=>{
+      console.log(res);
+      alert("Successfully Added")
+    })
    
   };
 

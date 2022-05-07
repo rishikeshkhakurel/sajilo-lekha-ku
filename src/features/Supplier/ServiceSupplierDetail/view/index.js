@@ -16,9 +16,9 @@ import { Link } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function ServiceSupplierDetail() {
-  ServiceSupplierDetails();
+    const{deleteHandler}= ServiceSupplierDetails();
 
-  const { rowsPerPage, page, handleChangeRowsPerPage, handleChangePage } =
+  const { rowsPerPage, page, handleChangeRowsPerPage, handleChangePage,  } =
     PageSelect();
 
   const data = useSelector((state) => state.serviceSupplierSlice.data);
@@ -106,7 +106,8 @@ export default function ServiceSupplierDetail() {
               alignItems: "center",
             }}
           >
-            Product Detail
+         Service Supplier Detail
+
           </Typography>
         </Box>
         <TableContainer component={Paper}>
@@ -119,7 +120,7 @@ export default function ServiceSupplierDetail() {
                 <TableCell sx={style}>Credit Limit</TableCell>
                 <TableCell sx={style}>Status</TableCell>
                 <TableCell sx={style}>Category</TableCell>
-                <TableCell sx={style}>Sub Category</TableCell>
+                
                 <TableCell sx={style}>Remarks</TableCell>
                 <TableCell sx={style}>Edit</TableCell>
                 <TableCell sx={style}>Delete</TableCell>
@@ -139,7 +140,7 @@ export default function ServiceSupplierDetail() {
                   <TableCell>{data.Credit_Limit}</TableCell>
                   <TableCell>{data.Status}</TableCell>
                   <TableCell>{data.Category}</TableCell>
-                  <TableCell>{data.Sub_Category}</TableCell>
+                  
                   <TableCell>{data.Remarks}</TableCell>
 
                   <TableCell>
@@ -148,7 +149,7 @@ export default function ServiceSupplierDetail() {
                     </Link>
                   </TableCell>
                   <TableCell>
-                    <DeleteIcon sx={{ cursor: "pointer" }} />
+                    <DeleteIcon  onClick={()=>deleteHandler(data._id)} sx={{ cursor: "pointer" }} />
                   </TableCell>
                 </TableRow>
               ))}

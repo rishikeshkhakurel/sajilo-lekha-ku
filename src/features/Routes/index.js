@@ -37,6 +37,10 @@ import UpdateTax from "../Tax/UpdateTax/view";
 import UpdateInterest from "../UpdateInterest/view";
 import AddSalary from "../staff/AddSalary/view";
 import PaySalary from "../staff/PaySalary/view";
+import StaffPersonalAccount from "../staff/staffPersonalAccount/view";
+import ServiceSupplierLedger from "../Supplier/ServiceSupplierLedger/view";
+import GoodsSupplierLedger from "../Supplier/GoodsSupplierLedger/view";
+import ServiceSupplierAccount from "../Supplier/ServiceSupplierAccount/view";
 
 const AppRoutes = () => {
   const login = useSelector((state) => state.userSlice);
@@ -120,8 +124,21 @@ const AppRoutes = () => {
 
             <Route path="paySalary" element={<PaySalary />} />
 
-            {/* <Route path="staffPersonalAccount" element={<StaffPersonalAccount />} />
-             */}
+             <Route path="staffPersonalAccount" element={<StaffPersonalAccount />} />
+
+             <Route path="serviceSupplierLedger" element={<ServiceSupplierLedger />} />
+
+             <Route path="goodsSupplierLedger" element={<GoodsSupplierLedger />} />
+
+             <Route path="serviceSupplierAccount" element={<ServiceSupplierAccount />} />
+
+
+
+            
+            
+            
+
+             
 
 
              
