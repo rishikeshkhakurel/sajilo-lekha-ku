@@ -12,27 +12,33 @@ export default function StaffUpdate() {
     contact_No: "",
     status: "",
     remarks: "",
+    _id: "",
   });
 
   const location = useLocation();
 
   const data = location.state;
 
-  console.log(data, "honey");
-
-
   const [errors, setErrors] = useState({});
 
   const [status, setStatus] = useState();
 
-
   useEffect(() => {
     axiosInstance
-    .get(http_config.BASE_URL + `/api/displayStaff?id=${data}`)
-    .then((res) => {
-      console.log("********", res)})}, []
-
-  )
+      .get(http_config.BASE_URL + `/api/displayStaff?id=${data}`)
+      .then((res) => {
+        console.log("********", res);
+        setformvalue({
+          ...formvalue,
+          staffName: res.staffs[0].StaffName,
+          address: res.staffs[0].Address,
+          contact_No: res.staffs[0].Contact_No,
+          status: res.staffs[0].Status,
+          remarks: res.staffs[0].Remarks,
+          _id: res.staffs[0]._id,
+        });
+      });
+  }, []);
 
   const handleChange = (e) => {
     setformvalue({ ...formvalue, [e.target.name]: e.target.value });
@@ -55,7 +61,7 @@ export default function StaffUpdate() {
       !errors.remarks
     ) {
       axiosInstance
-        .post(http_config.BASE_URL + "/api/addStaff", formvalue)
+        .post(http_config.BASE_URL + "/api/updateStaff", formvalue)
         .then((res) => {
           console.log(res);
         });

@@ -8,18 +8,19 @@ import InputLabel from "@mui/material/InputLabel";
 import FormHelperText from "@mui/material/FormHelperText";
 
 export default function UpdateStaff() {
-  const { handleSubmit, handleChange, errors, status } = StaffUpdate();
+  const { handleSubmit, handleChange, errors, status, formvalue } =
+    StaffUpdate();
 
   return (
     <React.Fragment>
       <Box sx={{ m: 3, p: 3 }}>
         <form onSubmit={handleSubmit}>
-         
-         <Box sx={{display:"flex", justifyContent:"space-between"}}>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <TextField
-              sx={{ width:"45%" }}
+              sx={{ width: "45%" }}
               label="Name"
               name="staffName"
+              value={formvalue.staffName}
               onChange={handleChange}
               required
               InputLabelProps={{ shrink: true }}
@@ -28,77 +29,74 @@ export default function UpdateStaff() {
             />
 
             <TextField
-              sx={{ width:"45%" }}
+              sx={{ width: "45%" }}
               label="Address"
               name="address"
               onChange={handleChange}
+              value={formvalue.address}
               required
               InputLabelProps={{ shrink: true }}
               error={Boolean(errors.address)}
               helperText={errors.address}
             />
+          </Box>
 
-            </Box>
-
-            <Box sx={{display:"flex", justifyContent:"space-between", mt:4}}>
-
+          <Box sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}>
             <TextField
-              sx={{ width:"45%" }}
+              sx={{ width: "45%" }}
               onChange={handleChange}
               label="Contact"
               type="number"
               name="contact_No"
+              value={formvalue.contact_No}
               required
               InputLabelProps={{ shrink: true }}
               error={Boolean(errors.contact_No)}
               helperText={errors.contact_No}
             />
 
-        
-              <FormControl
-                sx={{ width: "45%" }}
-                error={Boolean(errors.status)}
+            <FormControl sx={{ width: "45%" }} error={Boolean(errors.status)}>
+              <InputLabel id="status">
+                Status
+              </InputLabel>
+
+              <Select
+                sx={{ marginTop: "10px" }}
+                inputProps={{ name: "status" }}
+                value={formvalue.status}
+                onChange={handleChange}
+                displayEmpty
+                InputLabelProps={{ shrink: true }}
               >
-                <InputLabel id="status">Status</InputLabel>
+                <MenuItem value={"Good"}>Good</MenuItem>
+                <MenuItem value={"Bad"}>Bad</MenuItem>
+                <MenuItem value={"Intermediate"}>Intermediate</MenuItem>
+              </Select>
 
-                <Select
-                  inputProps={{ name: "status" }}
-                  value={status}
-                  onChange={handleChange}
-                  displayEmpty
-                >
-                  <MenuItem value={"Good"}>Good</MenuItem>
-                  <MenuItem value={"Bad"}>Bad</MenuItem>
-                  <MenuItem value={"Intermediate"}>Intermediate</MenuItem>
-                </Select>
+              <FormHelperText>{errors.status}</FormHelperText>
+            </FormControl>
+          </Box>
 
-                <FormHelperText>{errors.status}</FormHelperText>
-              </FormControl>
-            
-
-            </Box>
-          
-
-          <Box sx={{ display: "flex", mt:4 }}>
+          <Box sx={{ display: "flex", mt: 4 }}>
             <TextField
-              sx={{  width: "45%" }}
+              sx={{ width: "45%" }}
               label="Remarks"
               name="remarks"
+              value={formvalue.remarks}
               required
               InputLabelProps={{ shrink: true }}
               error={Boolean(errors.remarks)}
               helperText={errors.remarks}
               onChange={handleChange}
             />
-           </Box>
-            <Button
-              sx={{ height: "50px", mt:4 }}
-              type="submit"
-              variant="contained"
-            >
-              Submit
-            </Button>
-          
+          </Box>
+          <Button
+            sx={{ height: "50px", mt: 4 }}
+            type="submit"
+            variant="contained"
+          >
+            Submit
+          </Button>
         </form>
       </Box>
     </React.Fragment>
