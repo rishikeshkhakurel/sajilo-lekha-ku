@@ -38,6 +38,7 @@ import UpdateInterest from "../UpdateInterest/view";
 import AddSalary from "../staff/AddSalary/view";
 import PaySalary from "../staff/PaySalary/view";
 import StaffSalaryDetail from "../staff/staffSalaryDetail/view";
+import BalanceSheet from "../Balance_Sheet/view";
 
 const AppRoutes = () => {
   const login = useSelector((state) => state.userSlice);
@@ -122,6 +123,10 @@ const AppRoutes = () => {
             <Route path="paySalary" element={<PaySalary />} />
 
             <Route path="staffSalaryDetail" element={<StaffSalaryDetail />} />
+
+            {/* BalanceSheet */}
+
+            <Route path="BalanceSheet" element={<BalanceSheet/>}/>
 
           </Route>
         )}

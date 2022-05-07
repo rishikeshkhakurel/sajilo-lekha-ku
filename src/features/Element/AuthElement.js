@@ -83,6 +83,11 @@ const menu = [
       { name: "Goods supplier detail", link: "/goodsSupplierDetail" },
     ],
   },
+
+  {
+    name: "Balance Sheet",
+    link: "/BalanceSheet"
+  },
 ];
 
 const AuthElement = (props) => {
