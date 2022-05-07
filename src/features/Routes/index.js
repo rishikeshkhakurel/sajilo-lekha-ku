@@ -44,6 +44,9 @@ import GoodsSupplierLedger from "../Supplier/GoodsSupplierLedger/view";
 import ServiceSupplierAccount from "../Supplier/ServiceSupplierAccount/view";
 import StockDetail from "../StockDetails/view";
 import IncomeStatement from "../IncomeStatement/view";
+import ServiceSupplierInvoice from "../ServiceSupplierInvoice/view";
+import GoodsSupplierInvoice from "../GoodsSupplierInvoice/view";
+import BillPayment from "../CustomerBillPayment/view";
 
 const AppRoutes = () => {
   const login = useSelector((state) => state.userSlice);
@@ -70,6 +73,12 @@ const AppRoutes = () => {
             {/* <Route path="tax" element={<Tax />} /> */}
 
             <Route path="CustomerInvoice" element={<CustomerInvoice />} />
+
+            <Route path="ServiceSupplierInvoice" element={<ServiceSupplierInvoice />} />
+
+            <Route path="GoodsSupplierInvoice" element={<GoodsSupplierInvoice />} />
+
+            <Route path="CustomerBillPayment" element={<BillPayment />} />
 
             <Route path="taxDetail" element={<TaxDetail />} />
 

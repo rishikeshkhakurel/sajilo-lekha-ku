@@ -29,6 +29,7 @@ const menu = [
       { name: "Customer Detail", link: "/customerDetail" },
       { name: "Customer Ledger", link: "/customerLedger" },
       { name: "Customer Invoice", link: "/CustomerInvoice" },
+      { name: "Customer Bill Payment", link: "/CustomerBillPayment" },
     ],
   },
 
@@ -80,8 +81,7 @@ const menu = [
       { name: "Add service supplier", link: "/addServiceSupplier" },
       { name: "Service supplier Detail", link: "/serviceSupplierDetail" },
       { name: "Service supplier Ledger", link: "/serviceSupplierLedger" },
-
-      { name: "Goods supplier Ledger", link: "/goodsSupplierLedger" },
+      { name: "Service supplier Invoice", link: "/serviceSupplierinvoice" },
     ],
   },
 
@@ -90,6 +90,8 @@ const menu = [
     subcategoty: [
       { name: "Add goods supplier", link: "/addGoodsSupplier" },
       { name: "Goods supplier detail", link: "/goodsSupplierDetail" },
+      { name: "Goods supplier Ledger", link: "/goodsSupplierLedger" },
+      { name: "Goods supplier Invoice", link: "/goodsSupplierinvoice" },
     ],
   },
 
