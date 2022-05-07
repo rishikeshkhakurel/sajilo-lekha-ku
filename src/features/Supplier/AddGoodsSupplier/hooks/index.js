@@ -27,10 +27,12 @@ export default function GoodSupplier() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formvalue);
+    
 
      if(!errors.goodsSupplierName || errors.address || errors.contact_NO || errors.credit_Limit ||errors.status || errors.remarks){
     axiosInstance.post(http_config.BASE_URL + "/api/addGoodsSuppliers", formvalue).then(res => {
-  console.log(res, "post")
+  console.log(res, "post");
+  
     });
   }
    

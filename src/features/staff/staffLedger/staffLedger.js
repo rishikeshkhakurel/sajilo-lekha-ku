@@ -61,58 +61,42 @@ export default function StaffLedger() {
         </Typography>
 
         </Box>
-      {/* 
+      
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }}>
           <TableHead>
             <TableRow sx={{ backgroundColor: "#2196f3" }}>
-              <TableCell sx={style}>Service Supplier Name</TableCell>
-              <TableCell sx={style}>Address</TableCell>
-              <TableCell sx={style}>Contact No</TableCell>
-              <TableCell sx={style}>Credit Limit</TableCell>
-              <TableCell sx={style}>Status</TableCell>
-              <TableCell sx={style}>Category</TableCell>
-              <TableCell sx={style}>Sub Category</TableCell>
-              <TableCell sx={style}>Remarks</TableCell>
-              <TableCell sx={style}>Edit</TableCell>
-              <TableCell sx={style}>Delete</TableCell>
+              <TableCell sx={style}>SN</TableCell>
+              <TableCell sx={style}>Staff Name</TableCell>
 
+              <TableCell sx={style}>Staff Contact No</TableCell>
 
+              <TableCell sx={style}>Staff Address</TableCell>
+              <TableCell sx={style}>Balance</TableCell>
+              
+             
+             
               
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((data) => (
+            {data?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)?.map((data) => (
               <TableRow
                 sx={{
                   "&:last-child td, &:last-child th": { border: 0 },
                   backgroundColor: "#ede7f6",
                 }}
               >
-                <TableCell>{data.ServiceSupplierName}</TableCell>
-                <TableCell>{data.Address}</TableCell>
-                <TableCell>{data.Contact_No}</TableCell>
-                <TableCell>{data.Credit_Limit}</TableCell>
-                <TableCell>{data.Status}</TableCell>
-                <TableCell>
-                  {data.Category}
-                </TableCell>
-                <TableCell>{data.Sub_Category}</TableCell>
-                <TableCell>{data.Remarks}</TableCell>
+                <TableCell>{data.sn}</TableCell>
+                <TableCell><Link to ={`/staffPersonalAccount`} state={data.staffId}>{data.staffName}</Link></TableCell>
+                <TableCell>{data.staffContact}</TableCell>
+                <TableCell>{data.staffAddress}</TableCell>
+                <TableCell>{data.staffSalaryBalance}</TableCell>
+               
               
 
-                <TableCell>
-                  
-                  <Link to="/updateServiceSupplier" state={data._id}>
-                    
-                    <EditIcon sx={{ cursor: "pointer" }} />
-                  </Link>
-                </TableCell>
-             <TableCell> 
-               <DeleteIcon sx={{cursor:"pointer"}} />
                
-                </TableCell>
 
               </TableRow>
             ))}
@@ -127,7 +111,7 @@ export default function StaffLedger() {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
-      /> */}
+      />
     </Box>
       
     </React.Fragment>

@@ -68,7 +68,6 @@ const menu = [
       { name: "Add Salary", link: "/addSalary" },
       { name: "Pay Salary", link: "/paySalary" },
 
-      { name: "Staff Salary Detail", link: "/staffSalaryDetail" },
 
 
     ]
@@ -94,7 +93,11 @@ const menu = [
       { name: "Add goods supplier", link: "/addGoodsSupplier" },
       { name: "Goods supplier detail", link: "/goodsSupplierDetail" },
       { name: "Add service supplier", link: "/addServiceSupplier" },
-      { name: "Service supplier detail", link: "/serviceSupplierDetail" },
+      { name: "Service supplier Detail", link: "/serviceSupplierDetail" },
+      { name: "Service supplier Ledger", link: "/serviceSupplierLedger" },
+
+      { name: "Goods supplier Ledger", link: "/serviceSupplierLedger" },
+      
      
      
     ]
