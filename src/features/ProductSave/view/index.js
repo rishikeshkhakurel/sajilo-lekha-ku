@@ -7,7 +7,7 @@ export default function UpdateProduct() {
   const { handleOnChange, handleSubmit, errors, formvalue, setUnit,setEquivalent_SI_Value, setCostPrice, setSellingPrice } = useProduct();
 
   Product();
-  const date=formvalue.expireyDate.split("T")
+  const date=formvalue?.expireyDate?.split("T")
   return (
     <React.Fragment>
       <form onSubmit={handleSubmit}>
@@ -71,7 +71,7 @@ export default function UpdateProduct() {
               label="Expirey Date"
               name="expireyDate"
               type="date"
-              value={date[0]}
+              value={date && date[0]}
               onChange={handleOnChange}
               required
               InputLabelProps={{ shrink: true }}

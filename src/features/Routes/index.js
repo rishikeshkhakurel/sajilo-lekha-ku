@@ -5,6 +5,7 @@ import Dashboard from "../Dashboard/view/index";
 import AuthElement from "../Element/AuthElement";
 import Login from "../login/Login";
 import Register from "../Register/Register";
+// import Tax from "../Tax/index";
 import AddStaff from "../staff/addStaff/view/addStaff";
 import StaffLedger from "../staff/staffLedger/staffLedger";
 import StaffDetails from "../staff/staffDetails/view/StaffDetails.js";
@@ -15,6 +16,8 @@ import AddProduct from "../Product/view/addProduct";
 import ProductDetail from "../ProductDetail/view/ProductDetail";
 import AddCustomer from "../Add_Customer/views/Add_Customer";
 import CustomerDetail from "../CustomerDetail/views/CustomerDetail";
+import LoanDetail from "../Loan/LoanDetail/view/LoanDetail";
+import CustomerInvoice from "../Cutomer_invoice/view";
 import AddGoodsSupplier from "../Supplier/AddGoodsSupplier/view/AddGoodsSupplier";
 import InterestDetail from "../Loan/DisplayInterest/views";
 import CustomerLedger from "../CustomerLedger/view/index";
@@ -29,7 +32,6 @@ import UpdateProduct from "../ProductSave/view";
 import EditServiceSupplier from "../Supplier/ServiceSupplierDetail/EditSupplier/view/index"
 import EditGoodsSupplier from "../Supplier/GoodsSupplierDetails/EditGoodsSupplier/view";
 import LoanEdit from "../Loan/LoanDetail/Edit Loan/view";
-import LoanDetail from "../Loan/LoanDetail/view/LoanDetail";
 import UpdateStaff from "../staff/updateStaff/view";
 import UpdateTax from "../Tax/UpdateTax/view";
 import UpdateInterest from "../UpdateInterest/view";
@@ -56,6 +58,11 @@ const AppRoutes = () => {
              <Route path="productDetail" element={<ProductDetail/>} />
 
             <Route path="*" element={<Navigate to="/" />} />
+
+
+            {/* <Route path="tax" element={<Tax />} /> */}
+            
+            <Route path="CustomerInvoice" element={<CustomerInvoice />} />
 
             <Route path="taxDetail" element={<TaxDetail />} />
            
@@ -99,9 +106,7 @@ const AppRoutes = () => {
 
             <Route path="updateServiceSupplier" element={<EditServiceSupplier />} />
           
-
             <Route path="updateGoodsSupplier" element={<EditGoodsSupplier />} />
-
 
             <Route path="updateLoan" element={<LoanEdit />} />
 
@@ -124,15 +129,6 @@ const AppRoutes = () => {
 
 
 
-
-
-            
-
-
-
-            
-
-            
 
           </Route>
         )}

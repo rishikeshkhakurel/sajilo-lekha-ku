@@ -19,60 +19,47 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 const drawerWidth = 240;
 
 const menu = [
- 
-
-
   {
     name: "Customer",
     subcategoty: [
       { name: "Add customer", link: "/addCustomer" },
       { name: "Customer Detail", link: "/customerDetail" },
       { name: "Customer Ledger", link: "/customerLedger" },
-      
-      
-      
-    ]
+    ],
+  },
 
-    },
-
-  
-
- 
+  {
+    name: "Customer Invoice",
+    link: "/CustomerInvoice"
+  },
 
   {
     name: "Product",
     subcategoty: [
       { name: "Add product", link: "/addProduct" },
-      { name: "Product Detail", link: "/productDetail" },      
-    ]
+      { name: "Product Detail", link: "/productDetail" },
+    ],
   },
 
   {
-    name:"Tax",
-    subcategoty : [
-     {name:"Tax Detail", link:"/taxDetail"},
-     {name:"Add Tax", link:"/addTax"},
-     {name:"Pay Tax", link:"/payTax"},
-
-
-
-    ]
-    
+    name: "Tax",
+    subcategoty: [
+      { name: "Tax Detail", link: "/taxDetail" },
+      { name: "Add Tax", link: "/addTax" },
+      { name: "Pay Tax", link: "/payTax" },
+    ],
   },
   {
     name: "Staff",
     subcategoty: [
-      { name: "Add staff", link: "/addStaff" },
-      { name: "Staff Ledger", link: "/StaffLedger" },
-      { name: "Staff Details", link: "/StaffDetails" },
       { name: "Add Salary", link: "/addSalary" },
       { name: "Pay Salary", link: "/paySalary" },
 
 
 
+      
     ]
   },
-
 
   {
     name: "Loan",
@@ -81,11 +68,9 @@ const menu = [
       { name: "Pay principle", link: "/payPrinciple" },
       { name: "Pay interest", link: "/payInterest" },
       { name: "Loan Detail", link: "/loanDetail" },
-       {name:"Interest Detail", link: "/interestDetail"}
-     
-    ]
+      { name: "Interest Detail", link: "/interestDetail" },
+    ],
   },
-
 
   {
     name: "Supplier",
@@ -101,9 +86,8 @@ const menu = [
      
      
     ]
-  },
-
   
+  },
 ];
 
 const AuthElement = (props) => {

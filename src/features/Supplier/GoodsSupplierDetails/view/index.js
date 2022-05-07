@@ -1,7 +1,6 @@
 import React from "react";
-import GoodsSupplierDet from "../hooks/GoodsSupplier";
 import { useSelector } from "react-redux";
-import { PageSelect } from "../hooks/GoodsSupplier";
+import PageSelect from "../hooks/GoodsSupplier";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -15,12 +14,12 @@ import { Link } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function GoodsSupplierDetail() {
-  GoodsSupplierDet();
 
   const data = useSelector((state) => state.goodsSupplierDetail.data);
 
-  const { rowsPerPage, page, handleChangeRowsPerPage, handleChangePage } =
+  const { rowsPerPage, page, handleChangeRowsPerPage, handleChangePage, deleteHandler } =
     PageSelect();
+
 
   const style = {
     color: "white",
@@ -85,7 +84,7 @@ export default function GoodsSupplierDetail() {
                     </TableCell>
 
                     <TableCell>
-                      <DeleteIcon sx={{ cursor: "pointer" }} />
+                      <DeleteIcon onClick={()=>deleteHandler(data._id)} sx={{ cursor: "pointer" }} />
                     </TableCell>
                   </TableRow>
                 ))}
