@@ -58,7 +58,7 @@ const useProduct = () => {
       });
   }, []);
 
-  console.log(formvalue)
+  console.log(formvalue);
 
   const handleOnChange = (e) => {
     if (
@@ -73,28 +73,6 @@ const useProduct = () => {
       setformvalue({ ...formvalue, [e.target.name]: e.target.value });
       setErrors(Validate(formvalue));
     }
-
-    // const unitString = formvalue.unit.toString();
-
-    // const unitArray = unitString.split(",");
-
-    // const costString = formvalue.costPrice.toString();
-
-    // const costArray = costString.split(",");
-
-    // const equivalentString = formvalue.equivalent_SI_Value.toString();
-
-    // const equivalentArray = equivalentString.split(",");
-
-    // const sellingPriceString = formvalue.sellingPrice.toString();
-
-    // const sellingPriceArray = sellingPriceString.split(",");
-
-    // setformvalue({
-    //   ...formvalue,
-
-    //   unit: unitArray,
-    // });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
