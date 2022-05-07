@@ -45,6 +45,9 @@ const headCells=[
         label: "Transaction Method",
         id: "transactionMethod",
       },
+     
+
+
     ]
 
   const  num = [2,3,4,5,];

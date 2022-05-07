@@ -49,7 +49,7 @@ import useCustomer from "../hooks/useCustomer";
             value={formvalue.customerName}
             InputLabelProps={{ shrink: true }}
             onChange={handleOnChange}
-            error={Boolean(errors.CutomerName)}
+            error={Boolean(errors.CustomerName)}
             helperText={errors.CutomerName}
           />
           <TextField

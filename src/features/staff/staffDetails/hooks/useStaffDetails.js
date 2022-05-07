@@ -7,9 +7,7 @@ import { useEffect } from "react";
 const useStaffDetails = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    const stafdetail = axiosInstance
-      .get(http_config.BASE_URL + "/api/displayStaff")
-      .then((response) => {
+    axiosInstance.get(http_config.BASE_URL + "/api/displayStaff").then((response) => {
         dispatch(staffSlice.actions.setData(response.staffs));
         console.log(response.staffs);
       });

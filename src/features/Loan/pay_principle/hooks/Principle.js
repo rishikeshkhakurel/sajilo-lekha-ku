@@ -9,8 +9,11 @@ export default function Principle() {
         transactionDate:"",
         principleAmount:"",
         transactionMethod:"",
-        transactionDetail:"" 
+        transactionDetail:"" ,
+        remarks:""
      })
+
+     const [method, setMethod] = useState()
  
  
      const [errors, setErrors] = useState({});
@@ -19,6 +22,7 @@ export default function Principle() {
        e.preventDefault();
        setformvalue({...formvalue, [e.target.name]:e.target.value})
        setErrors(Validate(formvalue));
+       setMethod(e.target.name)
        
      }
  
@@ -40,7 +44,7 @@ export default function Principle() {
     
     
  {
-     formvalue, setformvalue, handleChange, onSubmit, errors
+     formvalue, setformvalue, handleChange, onSubmit, errors, method
  }
      
    );

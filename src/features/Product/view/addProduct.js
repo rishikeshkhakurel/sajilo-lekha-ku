@@ -1,34 +1,18 @@
-import {
-  Button,
-  Paper,
-  Box,
-  TextField,
-  
-} from "@mui/material";
+import { Button, Paper, Box, TextField } from "@mui/material";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import useProduct from "../hooks/useProduct";
 
-export default function AddProduct(){
-  const {
-    handleOnChange,
-    handleSubmit,
-    errors
-  } = useProduct();
+export default function AddProduct() {
+  const { handleOnChange, handleSubmit, errors } = useProduct();
 
-  
   return (
     <React.Fragment>
-
-<form onSubmit={handleSubmit}>
-<Box sx={{m:3, p:3}}>
-     
-      <Box sx={{display:"flex" ,justifyContent:"space-between", }}>
-      
-
-      
-      <TextField
-              sx={{ width:"45%"  }}
+      <form onSubmit={handleSubmit}>
+        <Box sx={{ m: 3, p: 3 }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <TextField
+              sx={{ width: "45%" }}
               label="Product Name"
               name="productName"
               onChange={handleOnChange}
@@ -38,28 +22,22 @@ export default function AddProduct(){
               error={Boolean(errors.productName)}
               helperText={errors.productName}
             />
-          
 
-          
-
-<TextField
-              sx={{  width:"45%"}}
+            <TextField
+              sx={{ width: "45%" }}
               label="Company Name"
               name="companyName"
               onChange={handleOnChange}
-              required              InputLabelProps={{ shrink: true }}
+              required
+              InputLabelProps={{ shrink: true }}
               error={Boolean(errors.companyName)}
               helperText={errors.companyName}
             />
+          </Box>
 
-            
-
-            </Box>
-
-            <Box sx={{mt:4, display:'flex', justifyContent: "space-between"}}>
-
-<TextField
-              sx={{ width:"45%" }}
+          <Box sx={{ mt: 4, display: "flex", justifyContent: "space-between" }}>
+            <TextField
+              sx={{ width: "45%" }}
               label="Size"
               name="size"
               onChange={handleOnChange}
@@ -68,9 +46,9 @@ export default function AddProduct(){
               error={Boolean(errors.size)}
               helperText={errors.size}
             />
-           
-           <TextField
-              sx={{ width:"45%"}}
+
+            <TextField
+              sx={{ width: "45%" }}
               label="Colour"
               name="colour"
               onChange={handleOnChange}
@@ -78,17 +56,12 @@ export default function AddProduct(){
               InputLabelProps={{ shrink: true }}
               error={Boolean(errors.colour)}
               helperText={errors.colour}
-            /> 
+            />
+          </Box>
 
-            </Box>
-
-          
-
-
-<Box sx={{mt:4, display:"flex", justifyContent: "space-between"}}>
-
-<TextField
-              sx={{ width:"45%" }}
+          <Box sx={{ mt: 4, display: "flex", justifyContent: "space-between" }}>
+            <TextField
+              sx={{ width: "45%" }}
               label="Expiry Date"
               name="expireyDate"
               type="date"
@@ -99,8 +72,8 @@ export default function AddProduct(){
               helperText={errors.expireyDate}
             />
 
-<TextField
-              sx={{ width:"45%" }}
+            <TextField
+              sx={{ width: "45%" }}
               label="Unit"
               name="unit"
               onChange={handleOnChange}
@@ -109,13 +82,11 @@ export default function AddProduct(){
               error={Boolean(errors.unit)}
               helperText={errors.unit}
             />
+          </Box>
 
-            </Box>
-
-           
-<Box sx={{mt:4, display:"flex", justifyContent: "space-between"}}>
-<TextField
-              sx={{ width:"45%"}}
+          <Box sx={{ mt: 4, display: "flex", justifyContent: "space-between" }}>
+            <TextField
+              sx={{ width: "45%" }}
               label="Equivalent SI Value"
               name="equivalent_SI_Value"
               onChange={handleOnChange}
@@ -126,8 +97,8 @@ export default function AddProduct(){
               type="number"
             />
 
-<TextField
-              sx={{ width:"45%"}}
+            <TextField
+              sx={{ width: "45%" }}
               label="Cost Price"
               name="costPrice"
               onChange={handleOnChange}
@@ -137,14 +108,11 @@ export default function AddProduct(){
               helperText={errors.costPrice}
               type="number"
             />
+          </Box>
 
-</Box>
-
-
-         
-<Box sx={{mt:4, display:"flex", justifyContent: "space-between"}}>
-<TextField
-              sx={{ width:"45%"}}
+          <Box sx={{ mt: 4, display: "flex", justifyContent: "space-between" }}>
+            <TextField
+              sx={{ width: "45%" }}
               label="Selling Price"
               name="sellingPrice"
               onChange={handleOnChange}
@@ -155,8 +123,8 @@ export default function AddProduct(){
               type="number"
             />
 
-<TextField
-              sx={{ width:"45%"}}
+            <TextField
+              sx={{ width: "45%" }}
               label="Minimum Stock Quantity"
               name="minimum_Stock_Quantity"
               onChange={handleOnChange}
@@ -166,14 +134,13 @@ export default function AddProduct(){
               helperText={errors.minimum_Stock_Quantity}
               type="number"
             />
+          </Box>
 
-</Box>
-
-<Box>
-<TextField
-              sx={{ width:"45%", mt:4}}
-              label="stock_Quaity_In_SI_Value"
-              name="Stock Quantity In SI Value"
+          <Box>
+            <TextField
+              sx={{ width: "45%", mt: 4 }}
+              name="stock_Quality_In_SI_Value"
+              label="Stock Quantity In SI Value"
               onChange={handleOnChange}
               required
               type="number"
@@ -181,16 +148,19 @@ export default function AddProduct(){
               error={Boolean(errors.stock_Quality_In_SI_Value)}
               helperText={errors.stock_Quality_In_SI_Value}
             />
-</Box>
 
+            
+          </Box>
 
-
-            <Button sx={{mt:4, height:"50px", }} type="submit" variant="contained">Add product</Button>
-           
-            </Box>
-            </form>
+          <Button
+            sx={{ mt: 4, height: "50px" }}
+            type="submit"
+            variant="contained"
+          >
+            Add product
+          </Button>
+        </Box>
+      </form>
     </React.Fragment>
   );
 }
-
-

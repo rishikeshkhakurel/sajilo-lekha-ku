@@ -4,6 +4,7 @@ import http_config from "../../../common/config/httpconfig/http_config";
 import axiosInstance from "../../../common/helper/axiosInterceptor";
 import useDecodeApiMessage from "../../../common/helper/decodeApiMessage";
 import customerSlice from "../../../redux/slice/Customer.Slice";
+import Validate from "../../Loan/pay_interest/view/validate";
 
 const useCustomer = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,8 @@ const useCustomer = () => {
   const handleOnChange = (e) => {
     setformvalue({ ...formvalue, [e.target.name]: e.target.value });
   const data = formvalue;
-  console.log(data);
+
+  Validate(formvalue);
     
     
   };
