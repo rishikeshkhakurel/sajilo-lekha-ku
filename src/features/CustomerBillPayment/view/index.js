@@ -83,6 +83,15 @@ function BillPayment() {
               <TextField autocomplete="off" {...params} label="Customer Name" />
             )}
           />
+          <Paper>
+          <Typography variant="h4" sx={{mt:2}}>INVOICE DATE</Typography>
+          <TextField
+            sx={{ marginTop: "20px" }}
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+        </Paper>
           <Typography variant="h5" sx={{ mb: 1, mt: 4 }}>
             INVOICE TO
           </Typography>
@@ -124,15 +133,7 @@ function BillPayment() {
             />
           </Paper>
         </Paper>
-        <Paper>
-          <Typography variant="h4">INVOICE DATE</Typography>
-          <TextField
-            sx={{ marginTop: "20px" }}
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-        </Paper>
+        
       </Grid>
       <Button
         color="secondary"
