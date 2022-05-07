@@ -37,6 +37,7 @@ const CustomerInvoice = () => {
   const [Remark, setRemark] = useState("");
   const [date, setDate] = useState("");
   const [transctionMethod, settransctionMethod] = useState("TM11");
+  const [receiptNumber, setReceiptNumber] = useState();
   const [invoice, setInvoice] = useState([
     {
       ProductName: "",
@@ -126,14 +127,12 @@ const CustomerInvoice = () => {
       state[index].CostPrice = invoice[index]?.CostPrice[i];
     }
     if (value.Quantity) {
+      console.log(invoiceData[0]);
       console.log(invoice[index].Rate.indexOf(invoiceData[index]?.Rate));
       state[index].Quantity = value?.Quantity;
       state[index].SubTotal = value?.Quantity * invoiceData[index]?.Rate;
       state[index].Sold_Equivalent_SI_Value =
-        value?.Quality *
-        invoice[index]?.Sold_Equivalent_SI_Value[
-          invoice[index].Rate.indexOf(invoiceData[index]?.Rate)
-        ];
+        value?.Quantity * invoice[index]?.Sold_Equivalent_SI_Value[0];
       state[index].COGS = value?.Quantity * invoiceData[index]?.CostPrice;
     }
     setInvoiceData((prevState) => [...prevState], state);
@@ -172,6 +171,8 @@ const CustomerInvoice = () => {
       },
     ]);
   };
+
+  console.log("----------", invoiceData, invoice);
 
   useEffect(() => {
     let Amount = 0;
@@ -254,6 +255,7 @@ const CustomerInvoice = () => {
       remarks: Remark,
       transactionMethod: transctionMethod,
       transactionDetail: invoiceData,
+      receiptNo: receiptNumber,
     };
     axiosInstance
       .post(http_config.BASE_URL + `/api/createInvoice`, data)
@@ -261,6 +263,17 @@ const CustomerInvoice = () => {
         console.log(res);
       });
   };
+
+  useEffect(() => {
+    axiosInstance
+      .get(
+        http_config.BASE_URL +
+          `/api/getReceiptNo?id=${localStorage.getItem("id")}`
+      )
+      .then((res) => {
+        setReceiptNumber(res.receiptNo);
+      });
+  }, []);
   const { Customer, Product } = useCustomer();
 
   return (
@@ -297,7 +310,7 @@ const CustomerInvoice = () => {
       </DialogComp>
       <Paper sx={{ mt: 2, mb: 2 }}>
         <Typography variant="h3" sx={{ mt: 2, mb: 2 }}>
-          Invoice No: 1234
+          Invoice No: {receiptNumber ? receiptNumber : 0}
         </Typography>
         <Divider />
         <Paper
@@ -325,7 +338,7 @@ const CustomerInvoice = () => {
         </Paper>
         <TableContainer
           component={Paper}
-          sx={{ maxHeight: "350px", minHeight: "350px" }}
+          sx={{ maxHeight: "400px", minHeight: "400px" }}
         >
           <Table aria-label="simple table">
             <TableHead>
@@ -481,86 +494,96 @@ const CustomerInvoice = () => {
         </TableContainer>
         <Paper
           sx={{
+            marginTop: "20px",
             padding: "0 40px",
             display: "flex",
             justifyContent: "space-between",
           }}
         >
-          <Paper>
+          <Paper >
             <Button variant="contained" sx={{ mt: 2 }} onClick={handleRow}>
               Add Row
             </Button>
           </Paper>
-          <Paper>
-            <Typography varient="body1">
-              Total Amount : {TotalAmount ? TotalAmount : 0}
-            </Typography>
-            <Paper sx={{ display: "flex", mt: 2 }}>
-              <TextField
-                id="standard-basic"
-                placeholder=" 100"
-                label="Discount Amount"
-                variant="standard"
-                InputLabelProps={{ shrink: true }}
-                value={Discount}
-                onChange={(e) => setDiscount(e.target.value)}
-              />
-            </Paper>
+          <Paper
+            sx={{
+              padding: "0 20px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <Paper sx={{marginRight:"40px"}}>
+              <Typography varient="body1">
+                Total Amount : {TotalAmount ? TotalAmount : 0}
+              </Typography>
+              <Paper sx={{ display: "flex", mt: 2 }}>
+                <TextField
+                  id="standard-basic"
+                  placeholder=" 100"
+                  label="Discount Amount"
+                  variant="standard"
+                  InputLabelProps={{ shrink: true }}
+                  value={Discount}
+                  onChange={(e) => setDiscount(e.target.value)}
+                />
+              </Paper>
 
-            <Typography varient="body1" mt={2}>
-              Transction Method:
-            </Typography>
-            <Paper sx={{ display: "flex", mt: 2 }}>
-              <Select
-                fullWidth
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={transctionMethod}
-                defaultValue="TM11"
-                onChange={(e) => settransctionMethod(e.target.value)}
+              <Typography varient="body1" mt={2}>
+                Transction Method:
+              </Typography>
+              <Paper sx={{ display: "flex", mt: 2 }}>
+                <Select
+                  fullWidth
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={transctionMethod}
+                  defaultValue="TM11"
+                  onChange={(e) => settransctionMethod(e.target.value)}
+                >
+                  <MenuItem value="TM11">Cash</MenuItem>
+                  <MenuItem value="TM22">Bank Deposite</MenuItem>
+                </Select>
+              </Paper>
+            </Paper>
+            <Paper>
+              <Typography varient="body1">
+                Amount to Pay : {AmountNeedtoPay ? AmountNeedtoPay : 0}
+              </Typography>
+
+              <Paper sx={{ display: "flex", mt: 2 }}>
+                <TextField
+                  id="standard-basic"
+                  placeholder=" 100"
+                  label="Paid Amount"
+                  variant="standard"
+                  InputLabelProps={{ shrink: true }}
+                  value={PaidAmount}
+                  onChange={(e) => setPaidAmount(e.target.value)}
+                />
+              </Paper>
+              <Typography varient="body1" mt={2}>
+                Due Amount : {DueAmount ? DueAmount : 0}
+              </Typography>
+              <Paper sx={{ display: "flex", mt: 2 }}>
+                <TextField
+                  id="standard-basic"
+                  placeholder=" Good"
+                  label="Remark"
+                  variant="standard"
+                  InputLabelProps={{ shrink: true }}
+                  value={Remark}
+                  onChange={(e) => setRemark(e.target.value)}
+                />
+              </Paper>
+              <Button
+                color="secondary"
+                variant="contained"
+                sx={{ mt: 2 }}
+                onClick={() => onSubmit()}
               >
-                <MenuItem value="TM11">Cash</MenuItem>
-                <MenuItem value="TM22">Bank Deposite</MenuItem>
-              </Select>
+                Submit
+              </Button>
             </Paper>
-
-            <Typography varient="body1" mt={2}>
-              Amount to Pay : {AmountNeedtoPay ? AmountNeedtoPay : 0}
-            </Typography>
-
-            <Paper sx={{ display: "flex", mt: 2 }}>
-              <TextField
-                id="standard-basic"
-                placeholder=" 100"
-                label="Paid Amount"
-                variant="standard"
-                InputLabelProps={{ shrink: true }}
-                value={PaidAmount}
-                onChange={(e) => setPaidAmount(e.target.value)}
-              />
-            </Paper>
-            <Typography varient="body1" mt={2}>
-              Due Amount : {DueAmount ? DueAmount : 0}
-            </Typography>
-            <Paper sx={{ display: "flex", mt: 2 }}>
-              <TextField
-                id="standard-basic"
-                placeholder=" Good"
-                label="Remark"
-                variant="standard"
-                InputLabelProps={{ shrink: true }}
-                value={Remark}
-                onChange={(e) => setRemark(e.target.value)}
-              />
-            </Paper>
-            <Button
-              color="secondary"
-              variant="contained"
-              sx={{ mt: 2 }}
-              onClick={() => onSubmit()}
-            >
-              Submit
-            </Button>
           </Paper>
         </Paper>
       </Paper>

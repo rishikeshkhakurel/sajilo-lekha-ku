@@ -47,6 +47,7 @@ export default function Login() {
             localStorage.setItem('login',resp.data.login);
             localStorage.setItem('accessToken',resp.data.accessToken);
             localStorage.setItem('refreshToken',resp.data.refreshToken); 
+            localStorage.setItem('id',resp.data._id); 
           }
         });
     }

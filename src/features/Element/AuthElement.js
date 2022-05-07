@@ -25,12 +25,8 @@ const menu = [
       { name: "Add customer", link: "/addCustomer" },
       { name: "Customer Detail", link: "/customerDetail" },
       { name: "Customer Ledger", link: "/customerLedger" },
+      {name: "Customer Invoice", link: "/CustomerInvoice",}
     ],
-  },
-
-  {
-    name: "Customer Invoice",
-    link: "/CustomerInvoice"
   },
 
   {
@@ -55,7 +51,7 @@ const menu = [
       { name: "Add Salary", link: "/addSalary" },
       { name: "Pay Salary", link: "/paySalary" },
       { name: "Staff Salary Detail", link: "/staffSalaryDetail" },
-    ]
+    ],
   },
 
   {
@@ -70,12 +66,18 @@ const menu = [
   },
 
   {
-    name: "Supplier",
+    name: "Service Supplier",
+    subcategoty: [
+      { name: "Add service supplier", link: "/addServiceSupplier" },
+      { name: "Service supplier detail", link: "/serviceSupplierDetail" }
+    ],
+  },
+
+  {
+    name: "Goods Supplier",
     subcategoty: [
       { name: "Add goods supplier", link: "/addGoodsSupplier" },
-      { name: "Goods supplier detail", link: "/goodsSupplierDetail" },
-      { name: "Add service supplier", link: "/addServiceSupplier" },
-      { name: "Service supplier detail", link: "/serviceSupplierDetail" },
+      { name: "Goods supplier detail", link: "/goodsSupplierDetail" }
     ],
   },
 ];
