@@ -33,6 +33,9 @@ import LoanDetail from "../Loan/LoanDetail/view/LoanDetail";
 import UpdateStaff from "../staff/updateStaff/view";
 import UpdateTax from "../Tax/UpdateTax/view";
 import UpdateInterest from "../UpdateInterest/view";
+import AddSalary from "../staff/AddSalary/view";
+import PaySalary from "../staff/PaySalary/view";
+import StaffSalaryDetail from "../staff/staffSalaryDetail/view";
 
 const AppRoutes = () => {
   const login = useSelector((state) => state.userSlice);
@@ -108,6 +111,18 @@ const AppRoutes = () => {
             <Route path="updateTax" element={<UpdateTax />} />
 
             <Route path="updateInterest" element={<UpdateInterest />} />
+
+            <Route path="addSalary" element={<AddSalary />} />
+
+            <Route path="paySalary" element={<PaySalary />} />
+
+            <Route path="staffSalaryDetail" element={<StaffSalaryDetail />} />
+
+
+            
+
+
+
             
 
             

@@ -8,7 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box, TablePagination } from "@mui/material";
+import { Box, TablePagination, Typography } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -77,6 +77,24 @@ const style = {
         
      
 <Box sx={{ m: 3, mt: 4 }}>
+
+<Box>
+        <Typography
+          variant="h2"
+          sx={{
+            backgroundColor: "#2196f3",
+            height: "60px",
+            color: "white",
+            display: "flex",
+            mb:"0.5px",
+            pl:2,
+            alignItems: "center",
+          }}
+        >
+          Tax Detail
+        </Typography>
+      </Box>  
+
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }}>
           <TableHead>

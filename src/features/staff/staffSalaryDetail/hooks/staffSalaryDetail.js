@@ -1,24 +1,32 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import http_config from "../../../../common/config/httpconfig/http_config";
 import axiosInstance from "../../../../common/helper/axiosInterceptor";
-import staffLedgerSlice from "../../../../redux/slice/staffLedgerSlice";
 
-const StaffLedgerHook = () => {
-  const dispatch = useDispatch();
+
+const StaffSalary = () => {
+
+    const [data, setData] = useState();
+
+
   useEffect(() => {
     axiosInstance
-      .get(http_config.BASE_URL + "/api/staffLedger")
+      .get(http_config.BASE_URL + "/api/getStaffSalary")
       .then((response) => {
-        dispatch(
-          staffLedgerSlice.actions.setData(response.Ledger)
-        );
-        console.log(response);
+        setData(response);
+        console.log(response, "sfasdfsd"); 
       });
-  }, [dispatch]);
+  }, []);
+
+
+return {
+
+    data
+}
+
+
 };
 
-const PageSelect = () => {
+const Pagination = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [page, setPage] = useState(0);
 
@@ -31,12 +39,13 @@ const PageSelect = () => {
     setPage(newPage);
   };
 
+
   return {
     rowsPerPage,
     page,
     handleChangeRowsPerPage,
     handleChangePage,
+    
   };
 };
-
-export { StaffLedgerHook, PageSelect };
+export { StaffSalary, Pagination };

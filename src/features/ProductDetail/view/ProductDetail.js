@@ -10,11 +10,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box, TablePagination } from "@mui/material";
+import { Box, TablePagination, Typography } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link, useNavigate } from "react-router-dom";
-import DeleteIcon from '@mui/icons-material/Delete';
-
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function ProductDetail() {
   Product();
@@ -116,6 +115,23 @@ export default function ProductDetail() {
 
   return (
     <Box sx={{ m: 3, mt: 4 }}>
+      <Box>
+        <Typography
+          variant="h2"
+          sx={{
+            backgroundColor: "#2196f3",
+            height: "60px",
+            color: "white",
+            display: "flex",
+            mb:"0.5px",
+            pl:2,
+            alignItems: "center",
+          }}
+        >
+          Product Detail
+        </Typography>
+      </Box>
+
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }}>
           <TableHead>
@@ -133,7 +149,6 @@ export default function ProductDetail() {
               <TableCell sx={style}>Stock Quantity in SI value</TableCell>
               <TableCell sx={style}>Edit</TableCell>
               <TableCell sx={style}>Delete</TableCell>
-
             </TableRow>
           </TableHead>
           <TableBody>
@@ -152,9 +167,17 @@ export default function ProductDetail() {
                 <TableCell>
                   {data.Unit[0]} , {data.Unit[1]}, {data.Unit[2]}
                 </TableCell>
-                <TableCell>{data.Equivalent_SI_Value[0]}, {data.Equivalent_SI_Value[1]}, {data.Equivalent_SI_Value[2]}</TableCell>
-                <TableCell>{data.CostPrice[0]}, {data.CostPrice[1]}, {data.CostPrice[2]}</TableCell>
-                <TableCell>{data.SellingPrice[0]}, {data.SellingPrice[1]}, {data.SellingPrice[2]}</TableCell>
+                <TableCell>
+                  {data.Equivalent_SI_Value[0]}, {data.Equivalent_SI_Value[1]},{" "}
+                  {data.Equivalent_SI_Value[2]}
+                </TableCell>
+                <TableCell>
+                  {data.CostPrice[0]}, {data.CostPrice[1]}, {data.CostPrice[2]}
+                </TableCell>
+                <TableCell>
+                  {data.SellingPrice[0]}, {data.SellingPrice[1]},{" "}
+                  {data.SellingPrice[2]}
+                </TableCell>
                 <TableCell align="center">
                   {data.Minimum_Stock_Quantity}
                 </TableCell>
@@ -163,17 +186,13 @@ export default function ProductDetail() {
                 </TableCell>
 
                 <TableCell>
-                  
-                  <Link to="/updateProduct"
-                  state = {data?._id}
-                  >
-                    
+                  <Link to="/updateProduct" state={data?._id}>
                     <EditIcon sx={{ cursor: "pointer" }} />
                   </Link>
                 </TableCell>
-                <TableCell><DeleteIcon 
-                    sx={{cursor:"pointer"}}
-                    /></TableCell>
+                <TableCell>
+                  <DeleteIcon sx={{ cursor: "pointer" }} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
