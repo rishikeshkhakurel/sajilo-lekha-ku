@@ -42,6 +42,8 @@ import StaffPersonalAccount from "../staff/staffPersonalAccount/view";
 import ServiceSupplierLedger from "../Supplier/ServiceSupplierLedger/view";
 import GoodsSupplierLedger from "../Supplier/GoodsSupplierLedger/view";
 import ServiceSupplierAccount from "../Supplier/ServiceSupplierAccount/view";
+import StockDetail from "../StockDetails/view";
+import IncomeStatement from "../IncomeStatement/view";
 
 const AppRoutes = () => {
   const login = useSelector((state) => state.userSlice);
@@ -61,6 +63,8 @@ const AppRoutes = () => {
             <Route path="addProduct" element={<AddProduct />} />
              
              <Route path="productDetail" element={<ProductDetail/>} />
+
+             <Route path="stockDetail" element={<StockDetail/>} />
 
             <Route path="*" element={<Navigate to="/" />} />
 
@@ -133,24 +137,11 @@ const AppRoutes = () => {
 
              <Route path="serviceSupplierAccount" element={<ServiceSupplierAccount />} />
 
-
-
-            
-            
-            
-
-             
-
-
-             
-
-
-
-
-
             {/* BalanceSheet */}
 
             <Route path="BalanceSheet" element={<BalanceSheet/>}/>
+
+            <Route path="IncomeStatement" element={<IncomeStatement/>}/>
 
           </Route>
         )}

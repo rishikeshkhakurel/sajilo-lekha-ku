@@ -37,6 +37,7 @@ const menu = [
     subcategoty: [
       { name: "Add product", link: "/addProduct" },
       { name: "Product Detail", link: "/productDetail" },
+      { name: "Stock Detail", link: "/stockDetail" },
     ],
   },
 
@@ -59,8 +60,7 @@ const menu = [
       { name: "Staff Detail", link: "/staffDetails" },
 
       { name: "Staff Ledger", link: "/staffLedger" },
-      
-    ]
+    ],
   },
 
   {
@@ -82,11 +82,7 @@ const menu = [
       { name: "Service supplier Ledger", link: "/serviceSupplierLedger" },
 
       { name: "Goods supplier Ledger", link: "/goodsSupplierLedger" },
-      
-     
-     
-    ]
-  
+    ],
   },
 
   {
@@ -98,8 +94,17 @@ const menu = [
   },
 
   {
-    name: "Balance Sheet",
-    link: "/BalanceSheet"
+    name: "Statement",
+    subcategoty: [
+      {
+        name: "Balance Sheet",
+        link: "/BalanceSheet",
+      },
+      {
+        name: "Income Statement",
+        link: "/IncomeStatement",
+      },
+    ],
   },
 ];
 
@@ -107,13 +112,12 @@ const AuthElement = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [collapse, setcollapse] = useState("");
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
-  const logoutHandler=()=>{
-    localStorage.clear()
+  const logoutHandler = () => {
+    localStorage.clear();
     dispatch(userSlice.actions.setData({ login: false }));
-
-  }
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -125,13 +129,17 @@ const AuthElement = (props) => {
           <Typography variant="h2" sx={{ color: "white" }}>
             SajiloLekha
           </Typography>
-          <Button color="secondary" sx={{ color: "white" }} onClick={()=>logoutHandler()}>
+          <Button
+            color="secondary"
+            sx={{ color: "white" }}
+            onClick={() => logoutHandler()}
+          >
             Log Out
           </Button>
         </Toolbar>
       </AppBar>
       <Divider />
-      <List sx={{marginTop:"80px"}}>
+      <List sx={{ marginTop: "80px" }}>
         {menu.map((category) => (
           <React.Fragment key={category.name}>
             {category.link ? (
@@ -260,7 +268,7 @@ const AuthElement = (props) => {
   const container =
     window !== undefined ? () => window().document.body : undefined;
   return (
-    <Box sx={{ display: "flex", marginTop:"20px" }}>
+    <Box sx={{ display: "flex", marginTop: "20px" }}>
       {/* <AppBar
         position="fixed"
         sx={{
