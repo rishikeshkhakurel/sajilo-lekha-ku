@@ -20,6 +20,8 @@ const useProduct = () => {
     _id: "",
   });
 
+  console.log("formvalue",formvalue)
+
   const [errors, setErrors] = useState({});
 
   const location = useLocation();
@@ -30,6 +32,7 @@ const useProduct = () => {
     axiosInstance
       .get(http_config.BASE_URL + `/api/getProduct?id=${data}`)
       .then((res) => {
+        console.log("dataaa",res)
         setformvalue({
           ...formvalue,
 

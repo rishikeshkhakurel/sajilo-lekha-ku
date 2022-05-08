@@ -4,10 +4,19 @@ import { Product } from "../../ProductDetail/hooks/Product";
 import useProduct from "../hooks/ProductSave";
 
 export default function UpdateProduct() {
-  const { handleOnChange, handleSubmit, errors, formvalue, setUnit,setEquivalent_SI_Value, setCostPrice, setSellingPrice } = useProduct();
+  const {
+    handleOnChange,
+    handleSubmit,
+    errors,
+    formvalue,
+    setUnit,
+    setEquivalent_SI_Value,
+    setCostPrice,
+    setSellingPrice,
+  } = useProduct();
 
   Product();
-  const date=formvalue?.expireyDate?.split("T")
+  const date = formvalue?.expireyDate?.split("T");
   return (
     <React.Fragment>
       <form onSubmit={handleSubmit}>

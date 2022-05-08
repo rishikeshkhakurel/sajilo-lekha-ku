@@ -42,7 +42,8 @@ function BillPayment() {
         transactionDate: date,
         paidAmount:amount,
         transactionMethod:transctionMethod,
-        remarks:remarks
+        remarks:remarks,
+        agent_id:CustomerId,
       }
       axiosInstance
       .post(http_config.BASE_URL + `/api/createBillPayment`, data)
