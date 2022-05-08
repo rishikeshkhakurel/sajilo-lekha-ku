@@ -21,6 +21,7 @@ import useCustomer from "../hooks/useCustomer";
 import DialogComp from "../../../common/component/Dialog";
 import axiosInstance from "../../../common/helper/axiosInterceptor";
 import http_config from "../../../common/config/httpconfig/http_config";
+import AlertBox from "../../../common/component/AlertBox/AlertBox";
 
 const CustomerInvoice = () => {
   const [CustomerName, setCustomerName] = useState("");
@@ -38,6 +39,7 @@ const CustomerInvoice = () => {
   const [date, setDate] = useState("");
   const [transctionMethod, settransctionMethod] = useState("TM11");
   const [receiptNumber, setReceiptNumber] = useState();
+  const [resp, setResp] = useState();
   const [invoice, setInvoice] = useState([
     {
       ProductName: "",
@@ -263,6 +265,7 @@ const CustomerInvoice = () => {
       .post(http_config.BASE_URL + `/api/createInvoice`, data)
       .then((res) => {
         console.log(res);
+        setResp(res)
       });
   };
 
@@ -279,6 +282,12 @@ const CustomerInvoice = () => {
 
   return (
     <>
+    {resp?.createReceipt && resp !== undefined && (
+        <AlertBox message={resp?.message} />
+      )}
+      {!resp?.createReceipt && resp !== undefined && (
+        <AlertBox error message={resp?.message} />
+      )}
       <DialogComp
         open={CustomerPopup}
         title="Customers"

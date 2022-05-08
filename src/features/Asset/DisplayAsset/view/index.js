@@ -65,6 +65,8 @@ export default function DisplayAsset() {
                
                 <TableCell sx={style}>Transaction Detail</TableCell>
                 <TableCell sx={style}>Transaction Method</TableCell>
+                <TableCell sx={style}>Remarks</TableCell>
+
                
             </TableRow>
 

@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import AlertBox from "../../../common/component/AlertBox/AlertBox";
 import http_config from "../../../common/config/httpconfig/http_config";
 import axiosInstance from "../../../common/helper/axiosInterceptor";
 import useCustomer from "../hooks/useCustomer";
@@ -23,6 +24,7 @@ function BillPayment() {
   const [amount, setAmount] = useState();
   const [date, setDate] = useState();
   const [remarks, setRemark] = useState();
+  const [resp, setResp] = useState();
   const { Customer } = useCustomer();
   useEffect(() => {
     axiosInstance
@@ -49,10 +51,19 @@ function BillPayment() {
       .post(http_config.BASE_URL + `/api/createBillPayment`, data)
       .then((res) => {
         console.log(res);
+        setResp(res)
       });
 
   }
   return (
+    <>
+    {resp?.completeTransaction && resp !== undefined && (
+        <AlertBox message={resp?.message} />
+      )}
+      {!resp?.completeTransaction && resp !== undefined && (
+        <AlertBox error message={resp?.message} />
+      )}
+
     <Paper>
       <Typography variant="h2" sx={{ mt: 2, mb: 2 }}>
         Bill Payment
@@ -145,6 +156,7 @@ function BillPayment() {
         Submit
       </Button>
     </Paper>
+    </>
   );
 }
 
