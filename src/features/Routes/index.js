@@ -63,145 +63,103 @@ const AppRoutes = () => {
         {login.data.login && (
           <Route path="/" element={<AuthElement />}>
             <Route index element={<Dashboard />} />
-
             <Route path="customerDetail" element={<CustomerDetail />} />
-
             <Route path="addCustomer" element={<AddCustomer />} />
-
             <Route path="addProduct" element={<AddProduct />} />
-
             <Route path="productDetail" element={<ProductDetail />} />
-
             <Route path="stockDetail" element={<StockDetail />} />
-
             <Route path="*" element={<Navigate to="/" />} />
-
             {/* <Route path="tax" element={<Tax />} /> */}
-
             <Route path="CustomerInvoice" element={<CustomerInvoice />} />
-
-            <Route path="ServiceSupplierInvoice" element={<ServiceSupplierInvoice />} />
-
-            <Route path="GoodsSupplierInvoice" element={<GoodsSupplierInvoice />} />
-
+            <Route
+              path="ServiceSupplierInvoice"
+              element={<ServiceSupplierInvoice />}
+            />
+            <Route
+              path="GoodsSupplierInvoice"
+              element={<GoodsSupplierInvoice />}
+            />
             <Route path="CustomerBillPayment" element={<BillPayment />} />
-
             <Route path="taxDetail" element={<TaxDetail />} />
-
             <Route path="addStaff" element={<AddStaff />} />
-
             <Route path="staffLedger" element={<StaffLedger />} />
-
             <Route path="StaffDetails" element={<StaffDetails />} />
-
             <Route path="addLoan" element={<AddLoan />} />
-
             <Route path="payPrinciple" element={<PayPrinciple />} />
-
             <Route path="payInterest" element={<PayInterest />} />
-
             <Route path="loanDetail" element={<LoanDetail />} />
-
             <Route path="interestDetail" element={<InterestDetail />} />
-
             <Route path="addGoodsSupplier" element={<AddGoodsSupplier />} />
-
             <Route path="addServiceSupplier" element={<ServiceSupplier />} />
-
             <Route path="addTax" element={<AddTax />} />
-
             <Route path="payTax" element={<PayTax />} />
-
             <Route path="customerLedger" element={<CustomerLedger />} />
-
             <Route path="personalAccount" element={<PersonalAccount />} />
-
             <Route path="personalAccount/:id" element={<PersonalAccount />} />
-
             <Route
               path="goodsSupplierDetail"
               element={<GoodsSupplierDetail />}
             />
-
             <Route
               path="serviceSupplierDetail"
               element={<ServiceSupplierDetail />}
             />
-
             <Route path="updateProduct" element={<UpdateProduct />} />
-
             <Route
               path="updateServiceSupplier"
               element={<EditServiceSupplier />}
             />
-
             <Route path="updateGoodsSupplier" element={<EditGoodsSupplier />} />
-
             <Route path="updateLoan" element={<LoanEdit />} />
-
             <Route path="updateStaff" element={<UpdateStaff />} />
-
             <Route path="updateTax" element={<UpdateTax />} />
-
             <Route path="updateInterest" element={<UpdateInterest />} />
-
             <Route path="addSalary" element={<AddSalary />} />
-
             <Route path="paySalary" element={<PaySalary />} />
-
-<<<<<<< HEAD
             <Route
               path="staffPersonalAccount"
               element={<StaffPersonalAccount />}
             />
-=======
-             <Route path="staffPersonalAccount" element={<StaffPersonalAccount />} />
-
-             <Route path="serviceSupplierLedger" element={<ServiceSupplierLedger />} />
-
-             <Route path="goodsSupplierLedger" element={<GoodsSupplierLedger />} />
-
-             <Route path="serviceSupplierAccount" element={<ServiceSupplierAccount />} />
-
-             <Route path="updateCustomer" element={<UpdateCustomer />} />
-
-             <Route path="goodsSupplierAccount" element={<GoodsSupplierAccount />} />
-
-             <Route path="addAsset" element={<AddAsset />} />
-
-            
-             <Route path="sellAsset" element={<SellAsset />} />
-
-             <Route path="addDepreciation" element={<AddDepreciation />} />
-
-             <Route path="displayAsset" element={<DisplayAsset />} />
-
-
->>>>>>> sumit3
-
+            =======
+            <Route
+              path="staffPersonalAccount"
+              element={<StaffPersonalAccount />}
+            />
             <Route
               path="serviceSupplierLedger"
               element={<ServiceSupplierLedger />}
             />
-
-<<<<<<< HEAD
             <Route
               path="goodsSupplierLedger"
               element={<GoodsSupplierLedger />}
             />
-=======
-            
->>>>>>> sumit3
-
             <Route
               path="serviceSupplierAccount"
               element={<ServiceSupplierAccount />}
             />
-
+            <Route path="updateCustomer" element={<UpdateCustomer />} />
+            <Route
+              path="goodsSupplierAccount"
+              element={<GoodsSupplierAccount />}
+            />
+            <Route path="addAsset" element={<AddAsset />} />
+            <Route path="sellAsset" element={<SellAsset />} />
+            <Route path="addDepreciation" element={<AddDepreciation />} />
+            <Route path="displayAsset" element={<DisplayAsset />} />
+            <Route
+              path="serviceSupplierLedger"
+              element={<ServiceSupplierLedger />}
+            />
+            <Route
+              path="goodsSupplierLedger"
+              element={<GoodsSupplierLedger />}
+            />
+            <Route
+              path="serviceSupplierAccount"
+              element={<ServiceSupplierAccount />}
+            />
             {/* BalanceSheet */}
-
             <Route path="BalanceSheet" element={<BalanceSheet />} />
-
             <Route path="IncomeStatement" element={<IncomeStatement />} />
           </Route>
         )}
