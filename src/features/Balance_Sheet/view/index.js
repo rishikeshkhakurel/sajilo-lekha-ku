@@ -206,7 +206,6 @@ const BalanceSheet = () => {
                     data?.interestPayable +
                     data?.accuiredPayroll +
                     data?.taxPayable +
-                    data?.interestPayable +
                     data?.accountPayable
                   ).toFixed(2)}
                 </Typography>
@@ -295,9 +294,7 @@ const BalanceSheet = () => {
                     (data?.interestPayable +
                       data?.accuiredPayroll +
                       data?.taxPayable +
-                      data?.interestPayable +
-                      data?.accountPayable +
-                      data?.loanBalance)}
+                      data?.accountPayable)}
                 </Typography>
               </Grid>
             </Paper>
@@ -310,19 +307,21 @@ const BalanceSheet = () => {
               <Grid item xs={6}>
                 <Typography variant="h5" ml={2}>
                   Rs{" "}
-                  {data?.cash +
+                  {(data?.cash +
                     data?.accountReceivebale +
                     data?.buildingValue +
                     data?.landValue +
                     data?.vehicleValue +
                     data?.inventory +
-                    data?.prepaidExpenses +
+                    data?.prepaidExpenses -
                     (data?.interestPayable +
                       data?.accuiredPayroll +
                       data?.taxPayable +
-                      data?.interestPayable +
-                      data?.accountPayable +
-                      data?.loanBalance)}
+                      data?.accountPayable)) +
+                    (data?.interestPayable +
+                      data?.accuiredPayroll +
+                      data?.taxPayable +
+                      data?.accountPayable)}
                 </Typography>
               </Grid>
             </Paper>
