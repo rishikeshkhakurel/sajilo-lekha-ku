@@ -108,6 +108,25 @@ const menu = [
       },
     ],
   },
+
+  {
+    name: "Fixed Asset",
+    subcategoty: [
+      { name: "Add asset", link: "/addAsset" },
+      { name: "Sell Asset", link: "/sellAsset" },
+      {
+        name: "Add Depreciation",
+        link: "/addDepreciation"
+      },
+      {
+        name: "Display Asset",
+        link: "/displayAsset"
+      },
+    ],
+  },
+
+ 
+
 ];
 
 const AuthElement = (props) => {

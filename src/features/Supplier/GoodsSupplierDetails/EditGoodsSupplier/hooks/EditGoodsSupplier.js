@@ -50,14 +50,6 @@ export default function GoodsSupplier() {
       "_id" : res.goodsSuppliers[0]._id,
 
       "credit_Limit" : res.goodsSuppliers[0].Credit_Limit,
-
-
-
-
-
-
-
- 
       
      })
       

@@ -47,6 +47,12 @@ import IncomeStatement from "../IncomeStatement/view";
 import ServiceSupplierInvoice from "../ServiceSupplierInvoice/view";
 import GoodsSupplierInvoice from "../GoodsSupplierInvoice/view";
 import BillPayment from "../CustomerBillPayment/view";
+import UpdateCustomer from "../UpdateCustomer/view/UpdateCustomer";
+import GoodsSupplierAccount from "../Supplier/GoodsSupplierAccount/view";
+import AddAsset from "../Asset/AddAsset/view";
+import SellAsset from "../Asset/SellAsset/view";
+import AddDepreciation from "../Asset/Depreciation/view";
+import DisplayAsset from "../Asset/DisplayAsset/view";
 
 const AppRoutes = () => {
   const login = useSelector((state) => state.userSlice);
@@ -143,20 +149,49 @@ const AppRoutes = () => {
 
             <Route path="paySalary" element={<PaySalary />} />
 
+<<<<<<< HEAD
             <Route
               path="staffPersonalAccount"
               element={<StaffPersonalAccount />}
             />
+=======
+             <Route path="staffPersonalAccount" element={<StaffPersonalAccount />} />
+
+             <Route path="serviceSupplierLedger" element={<ServiceSupplierLedger />} />
+
+             <Route path="goodsSupplierLedger" element={<GoodsSupplierLedger />} />
+
+             <Route path="serviceSupplierAccount" element={<ServiceSupplierAccount />} />
+
+             <Route path="updateCustomer" element={<UpdateCustomer />} />
+
+             <Route path="goodsSupplierAccount" element={<GoodsSupplierAccount />} />
+
+             <Route path="addAsset" element={<AddAsset />} />
+
+            
+             <Route path="sellAsset" element={<SellAsset />} />
+
+             <Route path="addDepreciation" element={<AddDepreciation />} />
+
+             <Route path="displayAsset" element={<DisplayAsset />} />
+
+
+>>>>>>> sumit3
 
             <Route
               path="serviceSupplierLedger"
               element={<ServiceSupplierLedger />}
             />
 
+<<<<<<< HEAD
             <Route
               path="goodsSupplierLedger"
               element={<GoodsSupplierLedger />}
             />
+=======
+            
+>>>>>>> sumit3
 
             <Route
               path="serviceSupplierAccount"

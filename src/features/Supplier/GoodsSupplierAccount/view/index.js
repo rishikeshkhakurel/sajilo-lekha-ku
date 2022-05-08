@@ -24,7 +24,11 @@ export default function GoodsSupplierAccount() {
 
   // transaction detail of staff
 
-  const data = fetchData?.salary;
+  const datas = fetchData?.goodsSuppliersDetails;
+
+  const data = fetchData?.receipts;
+
+ 
 
   console.log(data, "hasldf");
 
@@ -46,20 +50,28 @@ export default function GoodsSupplierAccount() {
         <Paper sx={{ display: "flex", width: "100%" }} elevation={0}>
           <Box>
             <Typography sx={{ fontWeight: "bold" }}>
-              Name : {staffData?.StaffName}
+              Name : {datas?.GoodsSupplierName}
             </Typography>
 
             <Typography sx={{ mt: 2, fontWeight: "bold" }}>
-              Address : {staffData?.Address}
+              Address : {datas?.Address}
             </Typography>
 
             <Typography sx={{ mt: 2, fontWeight: "bold" }}>
-              Contact No : {staffData?.Contact_No}
+              Contact No : {datas?.Contact_No}
             </Typography>
 
             <Typography sx={{ mt: 2, fontWeight: "bold" }}>
-              Status : {staffData?.Status}
+              Status : {datas?.Status}
             </Typography>
+
+            <Typography sx={{ mt: 2, fontWeight: "bold" }}>
+              Credit Limit : {datas?.Credit_Limit}
+            </Typography>
+
+            
+          
+
           </Box>
         </Paper>
       </Box>
@@ -92,6 +104,9 @@ export default function GoodsSupplierAccount() {
               <TableCell sx={style}>Debit</TableCell>
               <TableCell sx={style}>Status</TableCell>
               <TableCell sx={style}>Balance</TableCell>
+
+              <TableCell sx={style}>Receipt No</TableCell>
+
             </TableRow>
           </TableHead>
           <TableBody>
@@ -106,15 +121,18 @@ export default function GoodsSupplierAccount() {
                     backgroundColor: "#ede7f6",
                   }}
                 >
-                  <TableCell>{data?.sn}</TableCell>
-
+                   <TableCell>{data?.sn}</TableCell>
                   <TableCell>{data?.transactionDate}</TableCell>
+
                   <TableCell>{data?.transactionDetail}</TableCell>
+                 
                   <TableCell>{data?.credit}</TableCell>
                   <TableCell>{data?.debit}</TableCell>
                   <TableCell>{data?.status}</TableCell>
 
                   <TableCell>{data?.balance}</TableCell>
+                  <TableCell>{data?.receiptNo}</TableCell>
+
                 </TableRow>
               ))}
           </TableBody>

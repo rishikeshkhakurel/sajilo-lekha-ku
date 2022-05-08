@@ -1,133 +1,131 @@
-import { Box, FormControl, IconButton, TextField } from "@mui/material";
-import React, { useEffect, useMemo, useState } from "react";
-import Table from "../../table/view/index";
-import SearchIcon from "@mui/icons-material/Search";
+import React from "react";
 import { useSelector } from "react-redux";
-import Customer from "../hooks/customer";
+import {Customer, PageSelect} from "../hooks/customer";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { Box, TablePagination, Typography } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import { Link} from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-const headCells = [
-  {
-    numeric: false,
-    id: "CustomerName",
-    disablePadding: true,
-    label: "Customer Name",
-    minWidth: 170,
-  },
-  {
-    numeric: true,
-    id: "Contact_No",
-    disablePadding: false,
-    label: "Contact Number",
-    minWidth: 170,
-  },
-  {
-    numeric: true,
-    id: "Address",
-    disablePadding: false,
-    label: "Address",
-    minWidth: 170,
-  },
-  {
-    numeric: true,
-    id: "Contractor_Name",
-    disablePadding: false,
-    label: "Contractor Name",
-    minWidth: 170,
-  },
-  {
-    numeric: true,
-    id: "Contractor_ContactNo",
-    disablePadding: false,
-    label: "Contractor Number",
-    minWidth: 170,
-  },
-  {
-    numeric: true,
-    id: "Credit_Limit",
-    disablePadding: false,
-    label: "Credit Limit",
-    minWidth: 170,
-  },
-  {
-    numeric: true,
-    id: "Status",
-    disablePadding: false,
-    label: "Status",
-    minWidth: 170,
-  },
-  {
-    numeric: true,
-    disablePadding: false,
-    id: "Allow_Credit",
-    label: "Credit Status",
-    minWidth: 170,
-  },
-  {
-    numeric: true,
-    id: "Remarks",
-    disablePadding: false,
-    label: "Remark",
-    minWidth: 170,
-  },
-];
 
-const num = [2, 3, 4, 5, 6, 7, 8, 9]; // to identify number of object in rows .... if there is 3 object pass [1,2] if there is 5 object then pass [1,2,3,4] since a object must have padding none and fixed object
 
 const CustomerDetail = () => {
 
-Customer();
+ const {deleteHandler}= Customer();
 
-  const customerdata = useSelector((state) => state.customerSlice.data);
-  const [rows, setRows] = useState(customerdata);
+const { rowsPerPage, page, handleChangeRowsPerPage, handleChangePage } =
+    PageSelect();
 
-  console.log(customerdata);
 
-  const requestSearch = async (searchedVal) => {
-    const filteredRows = await customerdata.filter((row) => {
-      return ((row.CustomerName.toLowerCase().includes(searchedVal.toLowerCase())) || (row.Contact_No.toLowerCase().includes(searchedVal.toLowerCase())) );
-    });
-    setRows(filteredRows);
+  const data = useSelector((state) => state.customerSlice.data);
+  
+
+  const style = {
+    color: "white",
+    fontWeight: "600",
   };
 
 
-  useEffect(()=>{
-    setRows(customerdata)
-  },[customerdata])
-
-  const MemoTable = useMemo(
-    () => (
-      <Table
-        id="customer"
-        title="Customer Details"
-        rows={rows}
-        headCells={headCells}
-        num={num}
-        deleteurl='/api/deleteCustomer'
-      />
-    ),
-    [rows]
-  );
   return (
-    <Box>
-      
-      <FormControl fullWidth sx={{ mt: 2, mb: 2 }}>
-        <TextField
-          sx={{ ml: 1, flex: 1 }}
-          id="filled-search"
-          label="Search"
-          type="search"
-          onChange={(e) => requestSearch(e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <IconButton type="submit">
-                <SearchIcon />
-              </IconButton>
-            ),
+    <React.Fragment>
+<Box sx={{ m: 3, mt: 4 }}>
+      <Box>
+        <Typography
+          variant="h2"
+          sx={{
+            backgroundColor: "#2196f3",
+            height: "60px",
+            color: "white",
+            display: "flex",
+            mb:"0.5px",
+            pl:2,
+            alignItems: "center",
           }}
-        />
-      </FormControl>
-      <Box>{MemoTable}</Box>
+        >
+          Customer Detail
+        </Typography>
+      </Box>
+
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }}>
+          <TableHead>
+            <TableRow sx={{ backgroundColor: "#2196f3" }}>
+              <TableCell sx={style}>Customer Name</TableCell>
+              <TableCell sx={style}>Address</TableCell>
+              <TableCell sx={style}>Contact No</TableCell>
+              <TableCell sx={style}>Contractor Name</TableCell>
+              <TableCell sx={style}>Contractor Contact No</TableCell>
+              <TableCell sx={style}>Allow Credit</TableCell>
+              <TableCell sx={style}>Credit Limit</TableCell>
+
+              <TableCell sx={style}>Status</TableCell>
+              <TableCell sx={style}>Remarks</TableCell>
+              <TableCell sx={style}>Edit</TableCell>
+              <TableCell sx={style}>Delete</TableCell>
+
+
+              
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data
+                ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                ?.map((data) => (
+              <TableRow
+                sx={{
+                  "&:last-child td, &:last-child th": { border: 0 },
+                  backgroundColor: "#ede7f6",
+                }}
+              >
+                <TableCell>{data.CustomerName}</TableCell>
+                <TableCell>{data.Address}</TableCell>
+                <TableCell>{data.Contact_No}</TableCell>
+                <TableCell>{data.Contractor_Name}</TableCell>
+                <TableCell>{data.Contractor_ContactNo}</TableCell>
+                <TableCell>
+                 {data.Allow_Creditt}
+                </TableCell>
+                <TableCell>
+                  {data.Credit_Limit}
+                </TableCell>
+                <TableCell>
+                 {data.Status}
+                </TableCell>
+                <TableCell>
+                  {data.Remarks}
+                </TableCell>
+                
+                <TableCell>
+                  <Link to="/updateCustomer" state={data?._id}>
+                    <EditIcon sx={{ cursor: "pointer" }} />
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  <DeleteIcon  onClick={()=>{deleteHandler(data._id)}}/>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 15]}
+        count={data?.length}
+        component="div"
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </Box>
+
+    </React.Fragment>
   );
 };
 

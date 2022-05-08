@@ -10,11 +10,10 @@ const GoodsAccount = () => {
 
   const data = location.state;
 
-  console.log(data);
 
   useEffect(() => {
     axiosInstance
-      .get(http_config.BASE_URL + `/api/serviceSuppliersPersonalAccount?id=${data}`)
+      .get(http_config.BASE_URL + `/api/goodsSuppliersPersonalAccount?id=${data}`)
       .then((res) => setFetchData(res));
   }, []);
 
