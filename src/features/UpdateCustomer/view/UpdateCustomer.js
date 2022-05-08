@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import useCustomer from "../hooks/useCustomer";
 
- export default function AddCustomer() {
+ export default function UpdateCustomer() {
   const {
     handleSubmit,
     credit,
@@ -19,6 +19,7 @@ import useCustomer from "../hooks/useCustomer";
     formvalue,
     setformvalue,
     errors,
+    
   
 
   } = useCustomer();
@@ -46,6 +47,7 @@ import useCustomer from "../hooks/useCustomer";
             id="filled-name"
             label="Name"
             name="customerName"
+            value={formvalue.customerName}
             required
             InputLabelProps={{ shrink: true }}
             onChange={handleOnChange}
@@ -57,6 +59,7 @@ import useCustomer from "../hooks/useCustomer";
             id="filled-name"
             label="Phone Number"
             name="contact_No"
+            value={formvalue.contact_No}
             type="number"
             InputLabelProps={{ shrink: true }}
             required
@@ -74,6 +77,7 @@ import useCustomer from "../hooks/useCustomer";
             sx={{ width:"45%" }}
             id="filled-name"
             label="Address"
+            value={formvalue.address}
             name="address"
             InputLabelProps={{ shrink: true }}
             required
@@ -86,6 +90,7 @@ import useCustomer from "../hooks/useCustomer";
             sx={{ width:"45%" }}
             id="filled-name"
             label="Contractor_Name"
+            value={formvalue.contractor_Name}
             name="contractor_Name"
             InputLabelProps={{ shrink: true }}
             required
@@ -104,6 +109,7 @@ import useCustomer from "../hooks/useCustomer";
             id="filled-name"
             label="Contractor Number"
             type="number"
+            value={formvalue.contractor_ContactNo}
             name="contractor_ContactNo"
             InputLabelProps={{ shrink: true }}
             required
@@ -118,6 +124,7 @@ import useCustomer from "../hooks/useCustomer";
             sx={{ width:"45%"}}
             id="filled-name"
             label="Remark"
+            value={formvalue.remarks}
             name="remarks"
             InputLabelProps={{ shrink: true }}
             required
@@ -135,6 +142,7 @@ import useCustomer from "../hooks/useCustomer";
             id="filled-name"
             label="Status"
             name="status"
+            value={formvalue.status}
             InputLabelProps={{ shrink: true }}
             required
             onChange={handleOnChange}
@@ -164,6 +172,7 @@ import useCustomer from "../hooks/useCustomer";
               id="filled-name"
               label="Credit Limit"
               name="credit_Limit"
+    
               value={formvalue.credit_Limit}
               InputLabelProps={{ shrink: true }}
               required

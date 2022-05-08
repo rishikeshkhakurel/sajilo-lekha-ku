@@ -42,6 +42,12 @@ import StaffPersonalAccount from "../staff/staffPersonalAccount/view";
 import ServiceSupplierLedger from "../Supplier/ServiceSupplierLedger/view";
 import GoodsSupplierLedger from "../Supplier/GoodsSupplierLedger/view";
 import ServiceSupplierAccount from "../Supplier/ServiceSupplierAccount/view";
+import UpdateCustomer from "../UpdateCustomer/view/UpdateCustomer";
+import GoodsSupplierAccount from "../Supplier/GoodsSupplierAccount/view";
+import AddAsset from "../Asset/AddAsset/view";
+import SellAsset from "../Asset/SellAsset/view";
+import AddDepreciation from "../Asset/Depreciation/view";
+import DisplayAsset from "../Asset/DisplayAsset/view";
 
 const AppRoutes = () => {
   const login = useSelector((state) => state.userSlice);
@@ -133,19 +139,23 @@ const AppRoutes = () => {
 
              <Route path="serviceSupplierAccount" element={<ServiceSupplierAccount />} />
 
+             <Route path="updateCustomer" element={<UpdateCustomer />} />
+
+             <Route path="goodsSupplierAccount" element={<GoodsSupplierAccount />} />
+
+             <Route path="addAsset" element={<AddAsset />} />
+
+            
+             <Route path="sellAsset" element={<SellAsset />} />
+
+             <Route path="addDepreciation" element={<AddDepreciation />} />
+
+             <Route path="displayAsset" element={<DisplayAsset />} />
+
+
 
 
             
-            
-            
-
-             
-
-
-             
-
-
-
 
 
             {/* BalanceSheet */}

@@ -89,7 +89,7 @@ export default function GoodsSupplierLedger() {
                 }}
               >
                 <TableCell>{data.sn}</TableCell>
-                <TableCell><Link to ={`/serviceSupplierAccount`} state={data.staffId}>{data.goodsSuppliersName}</Link></TableCell>
+                <TableCell><Link to ={`/goodsSupplierAccount`} state={data.goodsSuppliersId}>{data.goodsSuppliersName}</Link></TableCell>
                 <TableCell>{data.goodsSuppliersAddress}</TableCell>
                   
                 <TableCell>{data.goodsSuppliersContact}</TableCell>
