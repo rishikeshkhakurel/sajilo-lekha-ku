@@ -1,7 +1,17 @@
 import { Divider, Grid, Paper, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import http_config from "../../../common/config/httpconfig/http_config";
+import axiosInstance from "../../../common/helper/axiosInterceptor";
 
 const BalanceSheet = () => {
+  const [data, setData] = useState();
+  useEffect(() => {
+    axiosInstance
+      .get(http_config.BASE_URL + "/api/balanceSheet")
+      .then((res) => {
+        setData(res);
+      });
+  }, []);
   return (
     <div>
       <Typography variant="h2">Balance Sheet</Typography>
@@ -17,7 +27,7 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs {data?.cash}
                 </Typography>
               </Grid>
             </Paper>
@@ -27,7 +37,7 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs {data?.accountReceivebale}
                 </Typography>
               </Grid>
             </Paper>
@@ -37,7 +47,7 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs {data?.inventory}
                 </Typography>
               </Grid>
             </Paper>
@@ -48,7 +58,7 @@ const BalanceSheet = () => {
 
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs {data?.prepaidExpenses}
                 </Typography>
               </Grid>
             </Paper>
@@ -61,7 +71,11 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs{" "}
+                  {data?.cash +
+                    data?.accountReceivebale +
+                    data?.inventory +
+                    data?.prepaidExpenses}
                 </Typography>
               </Grid>
             </Paper>
@@ -76,7 +90,7 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs {data?.landValue}
                 </Typography>
               </Grid>
             </Paper>
@@ -86,7 +100,7 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs {data?.buildingValue}
                 </Typography>
               </Grid>
             </Paper>
@@ -96,7 +110,7 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs {data?.vehicleValue}
                 </Typography>
               </Grid>
             </Paper>
@@ -108,7 +122,8 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs{" "}
+                  {data?.buildingValue + data?.landValue + data?.vehicleValue}
                 </Typography>
               </Grid>
             </Paper>
@@ -119,7 +134,14 @@ const BalanceSheet = () => {
             </Grid>
             <Grid item xs={6}>
               <Typography variant="body1" ml={2}>
-                Rs 1000
+                Rs{" "}
+                {data?.cash +
+                  data?.accountReceivebale +
+                  data?.buildingValue +
+                  data?.landValue +
+                  data?.vehicleValue +
+                  data?.inventory +
+                  data?.prepaidExpenses}
               </Typography>
             </Grid>
           </Paper>
@@ -135,7 +157,7 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs {data?.accountPayable}
                 </Typography>
               </Grid>
             </Paper>
@@ -145,7 +167,7 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs {data?.interestPayable}
                 </Typography>
               </Grid>
             </Paper>
@@ -155,7 +177,7 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs {data?.taxPayable}
                 </Typography>
               </Grid>
             </Paper>
@@ -166,7 +188,7 @@ const BalanceSheet = () => {
 
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs {data?.accuiredPayroll}
                 </Typography>
               </Grid>
             </Paper>
@@ -179,7 +201,14 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs{" "}
+                  {(
+                    data?.interestPayable +
+                    data?.accuiredPayroll +
+                    data?.taxPayable +
+                    data?.interestPayable +
+                    data?.accountPayable
+                  ).toFixed(2)}
                 </Typography>
               </Grid>
             </Paper>
@@ -194,11 +223,11 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs {data?.loanBalance}
                 </Typography>
               </Grid>
             </Paper>
-            <Paper sx={{ display: "flex", marginTop: "10px" }}>
+            {/* <Paper sx={{ display: "flex", marginTop: "10px" }}>
               <Grid item xs={6}>
                 <Typography variant="h6">
                   Other Long term loabilities:
@@ -209,7 +238,7 @@ const BalanceSheet = () => {
                   Rs 1000
                 </Typography>
               </Grid>
-            </Paper>
+            </Paper> */}
             <Paper sx={{ display: "flex", marginTop: "10px" }}>
               <Grid item xs={6}>
                 <Typography variant="h4" ml={2}>
@@ -218,15 +247,15 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs {data?.loanBalance}
                 </Typography>
               </Grid>
             </Paper>
           </Paper>
-            {/* shareholders equity */}
+          {/* shareholders equity */}
 
-            <Paper sx={{ marginTop: "20px" }}>
-            <Typography variant="h4">Share Holders Equity</Typography>
+          <Paper sx={{ marginTop: "20px" }}>
+            {/* <Typography variant="h4">Share Holders Equity</Typography>
             <Paper sx={{ display: "flex", marginTop: "10px" }}>
               <Grid item xs={6}>
                 <Typography variant="h6">Capital stock:</Typography>
@@ -239,16 +268,14 @@ const BalanceSheet = () => {
             </Paper>
             <Paper sx={{ display: "flex", marginTop: "10px" }}>
               <Grid item xs={6}>
-                <Typography variant="h6">
-                  Retained earnings:
-                </Typography>
+                <Typography variant="h6">Retained earnings:</Typography>
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
                   Rs 1000
                 </Typography>
               </Grid>
-            </Paper>
+            </Paper> */}
             <Paper sx={{ display: "flex", marginTop: "10px" }}>
               <Grid item xs={6}>
                 <Typography variant="h4" ml={2}>
@@ -257,7 +284,20 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body1" ml={2}>
-                  Rs 1000
+                  Rs{" "}
+                  {data?.cash +
+                    data?.accountReceivebale +
+                    data?.buildingValue +
+                    data?.landValue +
+                    data?.vehicleValue +
+                    data?.inventory +
+                    data?.prepaidExpenses -
+                    (data?.interestPayable +
+                      data?.accuiredPayroll +
+                      data?.taxPayable +
+                      data?.interestPayable +
+                      data?.accountPayable +
+                      data?.loanBalance)}
                 </Typography>
               </Grid>
             </Paper>
@@ -269,7 +309,20 @@ const BalanceSheet = () => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="h5" ml={2}>
-                  Rs 1000
+                  Rs{" "}
+                  {data?.cash +
+                    data?.accountReceivebale +
+                    data?.buildingValue +
+                    data?.landValue +
+                    data?.vehicleValue +
+                    data?.inventory +
+                    data?.prepaidExpenses +
+                    (data?.interestPayable +
+                      data?.accuiredPayroll +
+                      data?.taxPayable +
+                      data?.interestPayable +
+                      data?.accountPayable +
+                      data?.loanBalance)}
                 </Typography>
               </Grid>
             </Paper>

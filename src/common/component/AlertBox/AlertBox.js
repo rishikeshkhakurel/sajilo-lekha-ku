@@ -1,25 +1,18 @@
+import { Alert } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-export default function AlertBox({ isError, AlertMessage }) {
+export default function AlertBox(props) {
   const audio = new Audio("/assets/ringtone.mp3");
   const [hidealertbox, sethidealertbox] = useState(false);
-  useEffect(() => {
-    audio.play();
-  }, []);
+  // useEffect(() => {
+  //   audio.play();
+  // }, []);
   setTimeout(() => {
     sethidealertbox(true);
-  }, 8000);
-  return createPortal(
-    <div
-      className={`alertBox ${hidealertbox && "hidealertbox"} ${
-        isError && "alertBoxerror"
-      }`}
-    >
-      {AlertMessage}
-      {/* <span>
-        <CloseIcon />
-      </span> */}
-    </div>,
-    document.getElementById("forAlert")
+  }, 5000);
+  return (
+    <Alert sx={hidealertbox && { display:"none"}} variant="filled" severity={props.error ? "error":"success"}>
+      {props?.message}
+    </Alert>
   );
 }

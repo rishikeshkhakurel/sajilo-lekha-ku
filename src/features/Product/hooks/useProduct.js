@@ -4,6 +4,7 @@ import axiosInstance from "../../../common/helper/axiosInterceptor";
 import Validate from "../hooks/validate";
 
 const useProduct = () => {
+  const [resp,setResp]=useState()
   const [formvalue, setformvalue] = useState({
     productName: "",
     companyName: "",
@@ -69,7 +70,10 @@ console.log("fomrvalue", formvalue)
  http_config.BASE_URL + "/api/addProduct",
         formvalue
       ).then((response) => {
+        setResp(response)
+                
         console.log(response, "formvalue");
+
       });
     }
 
@@ -83,7 +87,8 @@ console.log("fomrvalue", formvalue)
     setUnit,
     setEquivalent_SI_Value,
     setCostPrice,
-    setSellingPrice
+    setSellingPrice,
+    resp
   };
 };
 

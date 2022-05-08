@@ -8,12 +8,29 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import AlertBox from "../../../common/component/AlertBox/AlertBox";
 import useProduct from "../hooks/useProduct";
 
 export default function AddProduct() {
-  const { handleOnChange, handleSubmit, errors, setUnit, setEquivalent_SI_Value, setCostPrice, setSellingPrice } = useProduct();
+  const {
+    handleOnChange,
+    handleSubmit,
+    errors,
+    setUnit,
+    setEquivalent_SI_Value,
+    setCostPrice,
+    setSellingPrice,
+    resp,
+  } = useProduct();
+  console.log(resp);
   return (
     <React.Fragment>
+      {resp?.addProduct && resp !== undefined && (
+        <AlertBox message={resp?.message} />
+      )}
+      {!resp?.addProduct && resp !== undefined && (
+        <AlertBox error message={resp?.message} />
+      )}
       <form onSubmit={handleSubmit}>
         <Box sx={{ m: 3, p: 3 }}>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -82,7 +99,7 @@ export default function AddProduct() {
               sx={{ width: "45%" }}
               label="Unit"
               name="unit"
-              onChange={(e)=>setUnit(e.target.value)}
+              onChange={(e) => setUnit(e.target.value)}
               required
               InputLabelProps={{ shrink: true }}
               error={Boolean(errors.unit)}
@@ -95,7 +112,7 @@ export default function AddProduct() {
               sx={{ width: "45%" }}
               label="Equivalent SI Value"
               name="equivalent_SI_Value"
-              onChange={ (e) => setEquivalent_SI_Value(e.target.value)}
+              onChange={(e) => setEquivalent_SI_Value(e.target.value)}
               required
               InputLabelProps={{ shrink: true }}
               error={Boolean(errors.equivalent_SI_Value)}
